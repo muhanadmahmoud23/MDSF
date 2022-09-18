@@ -1,23 +1,27 @@
 <?php
 
-use App\Http\Controllers\ScInvoiceController;
+use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\PrintInvoiceController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//HomePage
+Route::get('/', function () { return view('home');})->name('home');
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+//Excel Uploads
+Route::get('Excel' ,[ExcelController::class , 'Excel'])->name('Excel');
+Route::post('postProdGroup' ,[ExcelController::class , 'postProdGroup'])->name('postProdGroup');
+Route::post('postSalesTerr' ,[ExcelController::class , 'postSalesTerr'])->name('postSalesTerr');
+Route::post('postVan' ,[ExcelController::class , 'postVan'])->name('postVan');
+Route::post('postSalesMen' ,[ExcelController::class , 'postSalesMen'])->name('postSalesMen');
+Route::post('postSalesMenTerr' ,[ExcelController::class , 'postSalesMenTerr'])->name('postSalesMenTerr');
+Route::post('postJourney' ,[ExcelController::class , 'postJourney'])->name('postJourney');
+Route::post('postSalesCall' ,[ExcelController::class , 'postSalesCall'])->name('postSalesCall');
+Route::post('postSalesCallDetails' ,[ExcelController::class , 'postSalesCallDetails'])->name('postSalesCallDetails');
+Route::post('postPOS' ,[ExcelController::class , 'postPOS'])->name('postPOS');
 
-Route::resource('invoice', ScInvoiceController::class);
-Route::get('pivotInvoice' ,[ScInvoiceController::class , 'pivotInvoice']);
-Route::get('pivotInvoicee' ,[ScInvoiceController::class , 'pivotInvoicee']);
+//SalesPrintInvoice 
+Route::get('SalesTerr' ,[PrintInvoiceController::class , 'SalesTerr'])->name('SalesTerr');
+Route::get('SalesManTerr' ,[PrintInvoiceController::class , 'SalesManTerr'])->name('SalesManTerr');
+Route::get('SalesPrintInvoice' ,[PrintInvoiceController::class , 'SalesPrintInvoice'])->name('SalesPrintInvoice');
+Route::get('printInvoiceIndex', [PrintInvoiceController::class , 'printInvoiceIndex'])->name('printInvoiceIndex');
+
