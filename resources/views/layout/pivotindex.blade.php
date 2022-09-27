@@ -18,7 +18,6 @@
     <script src="{{ asset('assets/kendou/js/kendo.all.min.js') }}"></script>
     <script src="{{ asset('assets/kendou/examples/content/shared/js/console.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
-
 </head>
 
 @yield('content')

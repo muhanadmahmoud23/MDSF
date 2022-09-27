@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExcelController;
-use App\Http\Controllers\PrintInvoiceController;
+use App\Http\Controllers\SalesTotalDailySalesReportController;
 use Illuminate\Support\Facades\Route;
 
 //HomePage
@@ -19,9 +19,17 @@ Route::post('postSalesCall' ,[ExcelController::class , 'postSalesCall'])->name('
 Route::post('postSalesCallDetails' ,[ExcelController::class , 'postSalesCallDetails'])->name('postSalesCallDetails');
 Route::post('postPOS' ,[ExcelController::class , 'postPOS'])->name('postPOS');
 
-//SalesPrintInvoice 
-Route::get('SalesTerr' ,[PrintInvoiceController::class , 'SalesTerr'])->name('SalesTerr');
-Route::get('SalesManTerr' ,[PrintInvoiceController::class , 'SalesManTerr'])->name('SalesManTerr');
-Route::get('SalesPrintInvoice' ,[PrintInvoiceController::class , 'SalesPrintInvoice'])->name('SalesPrintInvoice');
-Route::get('printInvoiceIndex', [PrintInvoiceController::class , 'printInvoiceIndex'])->name('printInvoiceIndex');
+//SalesTotalDailySalesReport 
+Route::get('printInvoiceIndex', [SalesTotalDailySalesReportController::class , 'printInvoiceIndex'])->name('printInvoiceIndex');
+Route::get('SalesRepVisitsIndex', [SalesTotalDailySalesReportController::class , 'SalesRepVisitsIndex'])->name('SalesRepVisitsIndex');
+Route::get('DSRIndex', [SalesTotalDailySalesReportController::class , 'DSRIndex'])->name('DSRIndex');
+
+   //Ajax
+    Route::get('SalesTerr' ,[SalesTotalDailySalesReportController::class , 'SalesTerr'])->name('SalesTerr');
+    Route::get('SalesManTerr' ,[SalesTotalDailySalesReportController::class , 'SalesManTerr'])->name('SalesManTerr');
+   //Results
+    Route::get('SalesPrintInvoice' ,[SalesTotalDailySalesReportController::class , 'SalesPrintInvoice'])->name('SalesPrintInvoice');
+    Route::get('SalesRepVisitsInvoice' ,[SalesTotalDailySalesReportController::class , 'SalesRepVisitsInvoice'])->name('SalesRepVisitsInvoice');
+    Route::get('DSRInvoice' ,[SalesTotalDailySalesReportController::class , 'DSRInvoice'])->name('DSRInvoice');
+
 

@@ -30,4 +30,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
+
+    <link href="{{asset('assets/kendou/content/shared/styles/examples-offline.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/kendou/styles/kendo.common.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/kendou/styles/kendo.rtl.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/kendou/styles/kendo.default.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/kendou/styles/kendo.default.mobile.min.css')}}" rel="stylesheet">
+    <script src="{{asset('assets/kendou/js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/kendou/js/jszip.min.js')}}"></script>
+    <script src="{{asset('assets/kendou//js/kendo.all.min.js')}}"></script>
+    <script src="{{asset('assets/kendou/content/shared/js/console.js')}}"></script>
+
 </head>

@@ -4,8 +4,8 @@
 
     <body>
         <div id="example">
-            <div class="col-md-12">
-                <div class="col-md-3">
+            <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="col-md-4">
                         <label for="multiple">Region</label>
                     </div>
@@ -13,7 +13,7 @@
                         @include('sales.Common.branchesSelect')
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <div class="col-md-4">
                         <label for="multiple">Company</label>
                     </div>
@@ -21,7 +21,7 @@
                         @include('sales.Common.companiesSelect')
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <div class="col-md-4">
                         <label for="multiple">Sales Terr</label>
                     </div>
@@ -29,7 +29,7 @@
                         @include('sales.Common.SalesTerrSelect')
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <div class="col-md-4">
                         <label for="multiple">Sales Men</label>
                     </div>
@@ -39,9 +39,9 @@
                 </div>
             </div>
 
-            <form id="Product">
-                <div class="col-md-12" style="margin:30px">
-                    <div class="form-group col-md-3">
+            <form id="Product" class="col-md-8">
+                <div>
+                    <div class="form-group col-md-6">
                         <div class="col-md-4">
                             <label>Begin Date</label>
                         </div>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-6">
                         <div class="col-md-4">
                             <label>End Date</label>
                         </div>
@@ -61,66 +61,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="col-md-4">
-                            <label>By Account</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select class="selectpicker" multiple data-live-search="true" name="multiple" id="Account"
-                                data-actions-box="true">
-                                @foreach ($accounts as $account)
-                                    <option value="{{ $account->acc_id }}" name="multiple_select" id="Account">
-                                        {{ $account->acc_desc }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div class="form-group col-md-6">
+                        @include('sales.Common.ByDatePickUp')
                     </div>
-
+                    <div class="col-md-3">
+                        <input type="checkbox" id="VisitTimeDetails" name="VisitTimeDetails" value="1">
+                        <label for="VisitTimeDetails"> Visit Time Details</label><br>
+                    </div>
                     <div class="form-group col-md-3">
                         <button class="btn btn-success" id="submit" style="font-size:26px">Search</button>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group col-md-3">
-                        <div class="col-md-4">
-                            <label>OR Invoice ID</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="text" name="invoice" class="form-control" placeholder="Enter Invoice Id"
-                                id="invoice" style="color:black">
-                        </div>
-                        <span class="text-danger" id="name-error"></span>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <div class="col-md-4">
-                            <label>OR SalesRep ID</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="text" name="sales_rep" class="form-control" placeholder="Enter Sales Rep ID"
-                                id="sales_rep" style="color:black">
-                        </div>
-                        <span class="text-danger" id="name-error"></span>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <div class="col-md-4">
-                            <label>OR POS_CODE</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="text" name="pos_code" class="form-control" placeholder="Enter POS ID"
-                                id="pos_code" style="color:black">
-                        </div>
-                        <span class="text-danger" id="name-error"></span>
-                    </div>
-                    <div class="form-group col-md-3">
-                        @include('sales.Common.PrintDailySalesReport')
-                        <div class="col-md-6">
-                            <input type="button" value="Print Div" onclick="PrintElem('#myDiv')" />
-
-
-                        </div>
-                        <div class="col-md-6">
-                            <input type="button" onclick="PrintDiv();" value="Print" />
-                        </div>
                     </div>
                 </div>
             </form>
@@ -230,46 +179,6 @@
         });
     </script>
     <div id="grid" class=""></div>
-    <div class="example" id="InvoicesTotal">
-        <div class="col-md-12" style="padding:2.7em 0 0 20em">
-            <div class="form-group col-md-3">
-                <div class="col-md-5">
-                    <label>Total Invoice</label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" name="totalInvoice" id="totalInvoice" class="form-control" value=""
-                        style="color:black">
-                </div>
-            </div>
-            <div class="form-group col-md-3">
-                <div class="col-md-5">
-                    <label>Total Incentive</label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" name="totalIncentiveAmount" id="totalIncentiveAmount" class="form-control"
-                        value="" style="color:black">
-                </div>
-            </div>
-            <div class="form-group col-md-3">
-                <div class="col-md-5">
-                    <label>Total Tax </label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" name="totalTaxAmount" id="totalTaxAmount" class="form-control" value=""
-                        style="color:black">
-                </div>
-            </div>
-            <div class="form-group col-md-3">
-                <div class="col-md-5">
-                    <label>Total Net Amount</label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" name="totalNetAmount" id="totalNetAmount" class="form-control" value=""
-                        style="color:black">
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         $(document).ready(function() {
             var crudServiceBaseUrl = "http://localhost:8080",
@@ -374,59 +283,39 @@
                     //     }
                     // },
                     {
-                        field: "salesrep_id",
+                        field: "salesrep_name",
                         title: "Sales Rep",
                         width: 100
                     },
                     {
-                        field: "salescall_id",
-                        title: "Sales Call",
-                        width: 120
-                    },
-                    {
-                        field: "salescall_details_id",
-                        title: "Invoice",
+                        field: "call_duartion_by_minutes",
+                        title: "CALL DUARTION BY MINUTES",
                         width: 120
                     },
                     {
                         field: "pos_code",
-                        title: "POS ",
+                        title: "POS Code",
                         width: 120
                     },
                     {
                         field: "pos_name",
-                        title: "pos_name",
+                        title: "POS Name",
                         width: 120
                     },
                     {
                         field: "visit_start_time",
-                        title: "Start Time",
+                        title: "Visit Start Time",
+                        width: 120
+                    },
+                    {
+                        field: "visit_end_time",
+                        title: "Visit End Time",
                         width: 170
                     },
                     {
-                        field: "total_invoice",
-                        title: "Total Invoice",
+                        field: "call_status_id",
+                        title: "Call Status",
                         width: 120
-                    },
-                    {
-                        field: "incentive_amount",
-                        title: "Incentive Amount",
-                        width: 140
-                    },
-                    {
-                        field: "tax_amount",
-                        title: "Tax Amount",
-                        width: 120
-                    },
-                    {
-                        field: "net_amout",
-                        title: "Net Amount",
-                        width: 120
-                    },
-                    {
-                        field: "category_id",
-                        title: "Category",
-                        width: 90
                     },
                 ],
             });
@@ -568,58 +457,42 @@
 
             e.preventDefault();
 
-            let invoice_id = $('#invoice').val();
-            let pos_code = $('#pos_code').val();
-            let sales_rep = $('#sales_rep').val();
             let endDate = $('#endDate').val();
             let Begindate = $('#Begindate').val();
             let SalesMen = $('#SalesMenAjax').val();
-            let Account = $('#Account').val();
+            let DateBy = $('input[name="DateBy"]:checked').val();
+            let VisitTimeDetails = $('input[name="VisitTimeDetails"]:checked').val();
+
             $.ajax({
-                url: '{{ URL::to('SalesPrintInvoice') }}',
+                url: '{{ URL::to('SalesRepVisitsInvoice') }}',
                 type: 'get',
                 data: {
-                    invoice_id: invoice_id,
-                    pos_code: pos_code,
-                    sales_rep: sales_rep,
                     Begindate: Begindate,
                     endDate: endDate,
                     SalesMen: SalesMen,
-                    Account: Account,
+                    DateBy: DateBy,
+                    VisitTimeDetails: VisitTimeDetails,
+
                 },
                 beforeSend: function() {
-                    $("body").addClass("loading");
-                    $('body').css('cursor', 'wait');
+                    // $("body").addClass("loading");
+                    // $('body').css('cursor', 'wait');
                 },
                 success: function(data) {
                     $('body').css('cursor', 'auto');
                     $("body").removeClass("loading");
 
-                    if (data['PrintInvoiceResult'] == "Missing Paramters") {
+                    if (data['SalesRepVisitsResult'] == "Missing Paramter") {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: 'Missing Paramter!',
                         })
                     } else {
-                        document.getElementById('totalInvoicesCount').value = data['totalInvoicesCount']
-                        if (data['totalTotalValue'] > 0) {
-                            document.getElementById('totalInvoice').value = data['totalTotalValue']
-                        }
-                        if (data['totalTotalValue'] > 0) {
-                            document.getElementById('totalIncentiveAmount').value = data[
-                                'totalIncentiveAmount']
-                        }
-                        if (data['totalTotalValue'] > 0) {
-                            document.getElementById('totalTaxAmount').value = data['totalTaxAmount']
-                        }
-                        if (data['totalTotalValue'] > 0) {
-                            document.getElementById('totalNetAmount').value = data['totalNetAmount']
-                        }
                         $(document).ready(function() {
                             var crudServiceBaseUrl = "http://localhost:8080",
                                 dataSource = new kendo.data.DataSource({
-                                    data: data['PrintInvoiceResult'],
+                                    data: data['SalesRepVisitsResult'],
                                     batch: true,
                                     pageSize: 100000000,
                                     autoSync: true,
@@ -699,59 +572,39 @@
                                     //     }
                                     // },
                                     {
-                                        field: "salesrep_id",
+                                        field: "salesrep_name",
                                         title: "Sales Rep",
                                         width: 100
                                     },
                                     {
-                                        field: "salescall_id",
-                                        title: "Sales Call",
-                                        width: 120
-                                    },
-                                    {
-                                        field: "salescall_details_id",
-                                        title: "Invoice",
+                                        field: "call_duartion_by_minutes",
+                                        title: "CALL_DUARTION_BY_MINUTES ",
                                         width: 120
                                     },
                                     {
                                         field: "pos_code",
-                                        title: "POS ID",
+                                        title: "POS Code",
                                         width: 120
                                     },
                                     {
                                         field: "pos_name",
-                                        title: "POS NAME",
+                                        title: "POS Name",
                                         width: 120
                                     },
                                     {
                                         field: "visit_start_time",
-                                        title: "Start Time",
+                                        title: "Visit Start Time",
+                                        width: 120
+                                    },
+                                    {
+                                        field: "visit_end_time",
+                                        title: "Visit End Time",
                                         width: 170
                                     },
                                     {
-                                        field: "total_invoice",
-                                        title: "Total Invoice",
+                                        field: "call_status_id",
+                                        title: "Call Status",
                                         width: 120
-                                    },
-                                    {
-                                        field: "incentive_amount",
-                                        title: "Incentive Amount",
-                                        width: 140
-                                    },
-                                    {
-                                        field: "tax_amount",
-                                        title: "Tax Amount",
-                                        width: 120
-                                    },
-                                    {
-                                        field: "net_amount",
-                                        title: "Net Amount",
-                                        width: 120
-                                    },
-                                    {
-                                        field: "category_id",
-                                        title: "Category",
-                                        width: 90
                                     },
                                 ],
                             });
@@ -901,9 +754,9 @@
         }
 
         /* .k-grid tr .checkbox-align {
-                            text-align: center;
-                            vertical-align: middle;
-                        } */
+                                        text-align: center;
+                                        vertical-align: middle;
+                                    } */
 
         .product-photo {
             display: inline-block;
@@ -945,9 +798,9 @@
         }
 
         /* #grid .k-grid-edit-row>td>.k-rating {
-                            margin-left: 275px;
-                            width: 100%;
-                        } */
+                                        margin-left: 275px;
+                                        width: 100%;
+                                    } */
 
         .k-widget {
             text-align: center;
@@ -955,8 +808,8 @@
         }
 
         /* .k-input {
-                            width: 18em;
-                        } */
+                                        width: 18em;
+                                    } */
 
         .topbar .menu ul li .dropdown-menu a {
             color: #ffffff;
@@ -993,26 +846,5 @@
         });
     </script>
     <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.1.min.js"></script>
-    <script type="text/javascript">
-        function PrintElem(elem) {
-            Popup($(elem).html());
-        }
 
-        function Popup(data) {
-            var myWindow = window.open('', 'my div', 'height=400,width=600');
-            myWindow.document.write('<html><head><title>my div</title>');
-            /*optional stylesheet*/ //myWindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
-            myWindow.document.write('</head><body >');
-            myWindow.document.write(data);
-            myWindow.document.write('</body></html>');
-            myWindow.document.close(); // necessary for IE >= 10
-
-            myWindow.onload = function() { // necessary if the div contain images
-
-                myWindow.focus(); // necessary for IE >= 10
-                myWindow.print();
-                myWindow.close();
-            };
-        }
-    </script>
 @endsection

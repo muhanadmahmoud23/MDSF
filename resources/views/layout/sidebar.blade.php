@@ -27,6 +27,8 @@
                         </a>
                         <ul class="side-dropdown">
                             <li><a href="{{ route('printInvoiceIndex') }}">Print Invoice</a></li>
+                            <li><a href="{{ route('SalesRepVisitsIndex') }}">Sales Rep Visits</a></li>
+                            <li><a href="{{ route('DSRIndex') }}">Daily Sales Report (DSR)</a></li>
                         </ul>
                     </li>
                     <li>
