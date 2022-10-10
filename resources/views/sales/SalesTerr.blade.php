@@ -1,5 +1,5 @@
 @extends('layout.pivotindex')
-@section('title', 'Daily Sales Report(DSR)')
+@section('title', 'Sales Territory')
 @section('content')
 
     <body>
@@ -27,14 +27,6 @@
                     </div>
                     <div class="col-md-8">
                         @include('sales.Common.SalesTerrSelect')
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-4">
-                        <label for="multiple">Sales Men</label>
-                    </div>
-                    <div class="col-md-8">
-                        @include('sales.Common.SalesMenSelect')
                     </div>
                 </div>
             </div>
@@ -115,46 +107,6 @@
                             opt.value = response[i]['sales_ter_id'];
                             select.appendChild(opt);
                         }
-                    }
-                }
-            });
-
-        });
-    </script>
-    <script>
-        $(document).on('change', '#SalesTerrAjax', function() {
-
-            var SalesTerrId = $('#SalesTerrAjax').val();
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: 'get',
-                url: '{{ route('SalesManTerr') }}',
-                dataType: 'json',
-                data: {
-                    SalesTerrId: SalesTerrId,
-                },
-                success: function(response) {
-
-                    if (response.length > 0) {
-                        $('.SalesMenAjax').html("");
-                        $('.SalesMenAjax').append(`
-                                <select class="selectpicker SalesMenAjax" multiple data-live-search="true" name="SalesMenAjax"
-                                    id="SalesMenAjax">
-                    `);
-                        for (let i = 0; i < response.length; i++) {
-                            var sales_id = response[i].sales_id;
-                            var name = response[i].salesrep_name;
-                            var option = "<option style='color:black' value='" + sales_id + "'>" +
-                                name + "</option>";
-                            $(".SalesMenAjax").append(option);
-
-                        }
-                        $(".SalesMenAjax").append(`</select>`);
                     }
                 }
             });
@@ -254,32 +206,32 @@
 
             let endDate = $('#endDate').val();
             let Begindate = $('#Begindate').val();
-            let SalesMen = $('#SalesMenAjax').val();
+            let SalesTerr = $('#SalesTerrAjax').val();
             let DateBy = $('input[name="DateBy"]:checked').val();
             let SalesBy = $('input[name="SalesBy"]:checked').val();
             let QuantityMeasure = $('input[name="QuantityMeasure"]:checked').val();
 
             $.ajax({
-                url: '{{ URL::to('DSRInvoice') }}',
+                url: '{{ URL::to('SaleTerrInvoice') }}',
                 type: 'get',
                 data: {
                     Begindate: Begindate,
                     endDate: endDate,
-                    SalesMen: SalesMen,
+                    SalesTerr: SalesTerr,
                     DateBy: DateBy,
                     SalesBy: SalesBy,
                     QuantityMeasure: QuantityMeasure,
 
                 },
                 beforeSend: function() {
-                    $("body").addClass("loading");
-                    $('body').css('cursor', 'wait');
+                    // $("body").addClass("loading");
+                    // $('body').css('cursor', 'wait');
                 },
                 success: function(data) {
                     $('body').css('cursor', 'auto');
                     $("body").removeClass("loading");
 
-                    if (data['DSRResult'] == "Missing Paramter") {
+                    if (data['SaleTerrResult'] == "Missing Paramter") {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -299,7 +251,7 @@
                                 //     console.log("expand member");
                                 // },
                                 dataSource: {
-                                    data: data['DSRResult'],
+                                    data: data['SaleTerrResult'],
                                     schema: {
                                         model: {
                                             // id: "salesrep_name",

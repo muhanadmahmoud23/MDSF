@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Traits\DBRetrive;
 use App\Models\GEN_ACTIVE_SALESREP_INFO;
 use App\Models\POS;
-use App\Models\SALES_ANDRIOD_V4;
+use App\Models\POS_INF;
 use App\Models\SALES_INVOICE_PRINT_FINE;
 use App\Models\SALES_TERRITORIES_ACTIVE;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use mysqli;
+
 
 class SalesTotalDailySalesReportController extends Controller
 {
@@ -60,6 +59,44 @@ class SalesTotalDailySalesReportController extends Controller
         );
     }
 
+    public function POSIndex()
+    {
+        $branches = $this->branches();
+        $companies = $this->companies();
+        return view(
+            'sales.POS',
+            [
+                'branches'  => $branches,
+                'companies' => $companies,
+            ]
+        );
+    }
+
+    public function SalesRepIndex()
+    {
+        $branches = $this->branches();
+        $companies = $this->companies();
+        return view(
+            'sales.SalesRep',
+            [
+                'branches'  => $branches,
+                'companies' => $companies,
+            ]
+        );
+    }
+
+    public function SaleTerrIndex()
+    {
+        $branches = $this->branches();
+        $companies = $this->companies();
+        return view(
+            'sales.SalesTerr',
+            [
+                'branches'  => $branches,
+                'companies' => $companies,
+            ]
+        );
+    }
     public function SalesTerr(Request $request)
     {
         $SalesTerr = "";
@@ -87,6 +124,20 @@ class SalesTotalDailySalesReportController extends Controller
         }
 
         return response()->json($SalesManTerr);
+    }
+
+    public function POSSalesManTerr(Request $request)
+    {
+        $POS_SALESMEN = "";
+        if ($request->SalesMen) {
+            $POS_SALESMEN = POS_INF::select('NAME', DB::raw("ter_id||'_'||pos_id as POS_CODE"))
+                ->whereIn('CURR_SALES_ID', $request->SalesMen)
+                ->distinct()
+                ->orderBy('NAME')
+                ->get();
+        }
+
+        return response()->json($POS_SALESMEN);
     }
 
     public function SalesPrintInvoice(Request $request)
@@ -256,17 +307,82 @@ class SalesTotalDailySalesReportController extends Controller
     public function DSRInvoice(Request $request)
     {
         $DSRResult = "Missing Paramter";
-        if($request->Begindate && $request->endDate && $request->SalesMen && $request->DateBy && $request->SalesBy && $request->QuantityMeasure){
-            $DSRResult = DB::connection('oracle2')->table('SALES_ANDROID_V4')
-            ->select('*')
-            ->whereIn('SALESREP_ID', $request->SalesMen)
-            ->whereBetween($request->DateBy, [$request->Begindate, $request->endDate])
-            ->distinct()
-            ->get();
-        }
+
+        $quantity = helper_get_quantity($request->QuantityMeasure);
+        $paramters = $request->Begindate && $request->endDate && $request->SalesMen && $request->DateBy && $request->SalesBy && $request->QuantityMeasure;
+        $DSRResult = get_data_pivot_table($paramters, $quantity, 'SALESREP_ID', $request->SalesMen, $request->DateBy, $request->Begindate, $request->endDate);
 
         return response()->json([
             'DSRResult' =>  $DSRResult,
+            'SalesByType' => $request->SalesBy,
+
+        ]);
+    }
+
+    public function POSInvoice(Request $request)
+    {
+        $POSResult = "Missing Paramter";
+
+        $quantity = helper_get_quantity($request->QuantityMeasure);
+        $paramters = $request->Begindate && $request->endDate && $request->DateBy && $request->SalesBy && $request->QuantityMeasure && $request->POSSalesTerrAjax;
+        $POSResult = get_data_pivot_table($paramters, $quantity, 'POS_CODE', $request->POSSalesTerrAjax, $request->DateBy, $request->Begindate, $request->endDate);
+
+        return response()->json([
+            'POSResult' =>  $POSResult,
+            'SalesByType' => $request->SalesBy,
+
+        ]);
+    }
+
+    public function SalesRepInvoice(Request $request)
+    {
+        $SalesRepResult = "Missing Paramter";
+
+        $quantity = helper_get_quantity($request->QuantityMeasure);
+        $paramters = $request->Begindate && $request->endDate && $request->SalesMen && $request->DateBy && $request->SalesBy && $request->QuantityMeasure;
+        $SalesRepResult = get_data_pivot_table($paramters, $quantity, 'SALESREP_ID', $request->SalesMen, $request->DateBy, $request->Begindate, $request->endDate);
+
+  
+        return response()->json([
+            'SalesRepResult' =>  $SalesRepResult,
+            'SalesByType' => $request->SalesBy,
+
+        ]);
+    }
+
+    public function SaleTerrInvoice(Request $request)
+    {
+        $SaleTerrResult = "Missing Paramter";
+
+        $quantity = helper_get_quantity($request->QuantityMeasure);
+
+        if ($request->Begindate && $request->endDate && $request->SalesTerr && $request->DateBy && $request->SalesBy && $request->QuantityMeasure) {
+            $SaleTerrResult = DB::connection('oracle2')->table('SALES_ANDROID_V4')
+                ->select(
+                    'salesrep_name',
+                    'pos_name',
+                    'pos_code',
+                    'visit_start_time',
+                    'visit_end_time',
+                    'company_name',
+                    $quantity,
+                    'DAY',
+                    'VISIT_DAY',
+                    'prod_seq',
+                    'prod_id',
+                    'product',
+                    'FAMILY_SEQ',
+                    'PROD_FAMILY',
+                    'total_invoice'
+                )
+                ->whereIn('SALES_TER_ID', $request->SalesTerr)
+                ->whereBetween($request->DateBy, [$request->Begindate, $request->endDate])
+                ->distinct()
+                ->get();
+        }
+        return response()->json([
+            'SaleTerrResult' =>  $SaleTerrResult,
+            'SalesByType' => $request->SalesBy,
 
         ]);
     }

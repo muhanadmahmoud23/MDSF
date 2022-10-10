@@ -29,6 +29,19 @@
                             <li><a href="{{ route('printInvoiceIndex') }}">Print Invoice</a></li>
                             <li><a href="{{ route('SalesRepVisitsIndex') }}">Sales Rep Visits</a></li>
                             <li><a href="{{ route('DSRIndex') }}">Daily Sales Report (DSR)</a></li>
+                            <li><a href="{{ route('POSIndex') }}">POS</a></li>
+                            <li><a href="{{ route('SalesRepIndex') }}">SalesRep</a></li>
+                            <li><a href="{{ route('SaleTerrIndex') }}">SalesTerr</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class='bx bx-columns icon'></i>
+                            Andriod Support
+                            <i class='bx bx-chevron-right icon-right'></i>
+                        </a>
+                        <ul class="side-dropdown">
+                            <li><a href="{{ route('DevAndriodIndex') }}">Dev Andriod </a></li>
                         </ul>
                     </li>
                     <li>

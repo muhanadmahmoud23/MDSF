@@ -1,5 +1,5 @@
 @extends('layout.pivotindex')
-@section('title', 'Daily Sales Report(DSR)')
+@section('title', 'Sales Rep')
 @section('content')
 
     <body>
@@ -260,7 +260,7 @@
             let QuantityMeasure = $('input[name="QuantityMeasure"]:checked').val();
 
             $.ajax({
-                url: '{{ URL::to('DSRInvoice') }}',
+                url: '{{ URL::to('SalesRepInvoice') }}',
                 type: 'get',
                 data: {
                     Begindate: Begindate,
@@ -272,14 +272,14 @@
 
                 },
                 beforeSend: function() {
-                    $("body").addClass("loading");
-                    $('body').css('cursor', 'wait');
+                    // $("body").addClass("loading");
+                    // $('body').css('cursor', 'wait');
                 },
                 success: function(data) {
                     $('body').css('cursor', 'auto');
                     $("body").removeClass("loading");
 
-                    if (data['DSRResult'] == "Missing Paramter") {
+                    if (data['SalesRepResult'] == "Missing Paramter") {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -299,7 +299,7 @@
                                 //     console.log("expand member");
                                 // },
                                 dataSource: {
-                                    data: data['DSRResult'],
+                                    data: data['SalesRepResult'],
                                     schema: {
                                         model: {
                                             // id: "salesrep_name",

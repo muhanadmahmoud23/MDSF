@@ -1,5 +1,5 @@
 @extends('layout.pivotindex')
-@section('title', 'Daily Sales Report(DSR)')
+@section('title', 'POS')
 @section('content')
 
     <body>
@@ -35,6 +35,14 @@
                     </div>
                     <div class="col-md-8">
                         @include('sales.Common.SalesMenSelect')
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <label for="multiple">POS</label>
+                    </div>
+                    <div class="col-md-8">
+                        @include('sales.Common.POSSelect')
                     </div>
                 </div>
             </div>
@@ -161,6 +169,46 @@
 
         });
     </script>
+    <script>
+        $(document).on('change', '#SalesMenAjax', function() {
+
+            var SalesMen = $('#SalesMenAjax').val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'get',
+                url: '{{ route('POSSalesManTerr') }}',
+                dataType: 'json',
+                data: {
+                    SalesMen: SalesMen,
+                },
+                success: function(response) {
+
+                    if (response.length > 0) {
+                        $('.POSSalesTerrAjax').html("");
+                        $('.POSSalesTerrAjax').append(`
+                                    <select class="selectpicker POSSalesTerrAjax" multiple data-live-search="true" name="POSSalesTerrAjax"
+                                        id="POSSalesTerrAjax">
+                        `);
+                        for (let i = 0; i < response.length; i++) {
+                            var pos_id = response[i].pos_code;
+                            var name = response[i].name;
+                            var option = "<option style='color:black' value='" + pos_id + "'>" +
+                                name + "</option>";
+                            $(".POSSalesTerrAjax").append(option);
+
+                        }
+                        $(".POSSalesTerrAjax").append(`</select>`);
+                    }
+                }
+            });
+
+        });
+    </script>
     <div id="grid" class="">
         <div class="k-pivotgrid-wrapper">
             {{-- <div id="configurator" class="hidden-on-narrow"></div> --}}
@@ -169,117 +217,39 @@
         <div class="responsive-message"></div>
     </div>
     <script src="{{ asset('assets/kendou/examples/content/shared/js/products.js') }}"></script>
-    <script>
-        // $(document).ready(function() {
-        //     var pivotgrid = $("#pivotgrid").kendoPivotGrid({
-        //         filterable: true,
-        //         sortable: true,
-        //         columnWidth: 120,
-        //         height: 570,
-        //         dataSource: {
-        //             data: products,
-        //             schema: {
-        //                 model: {
-        //                     fields: {
-        //                         ProductName: {
-        //                             type: "string"
-        //                         },
-        //                         UnitPrice: {
-        //                             type: "number"
-        //                         },
-        //                         UnitsInStock: {
-        //                             type: "number"
-        //                         },
-        //                         Discontinued: {
-        //                             type: "boolean"
-        //                         },
-        //                         CategoryName: {
-        //                             field: "Category.CategoryName"
-        //                         }
-        //                     }
-        //                 },
-        //                 cube: {
-        //                     dimensions: {
-        //                         ProductName: {
-        //                             caption: "All Products"
-        //                         },
-        //                         CategoryName: {
-        //                             caption: "All Categories"
-        //                         },
-        //                         Discontinued: {
-        //                             caption: "Discontinued"
-        //                         }
-        //                     },
-        //                     measures: {
-        //                         "Sum": {
-        //                             field: "UnitPrice",
-        //                             format: "{0:c}",
-        //                             aggregate: "sum"
-        //                         },
-        //                         "Average": {
-        //                             field: "UnitPrice",
-        //                             format: "{0:c}",
-        //                             aggregate: "average"
-        //                         }
-        //                     }
-        //                 }
-        //             },
-        //             columns: [{
-        //                 name: "CategoryName",
-        //                 expand: true
-        //             }, {
-        //                 name: "ProductName"
-        //             }],
-        //             rows: [{
-        //                 name: "Discontinued",
-        //                 expand: true
-        //             }],
-        //             measures: ["Sum"]
-        //         }
-        //     }).data("kendoPivotGrid");
-
-        //     $("#configurator").kendoPivotConfigurator({
-        //         dataSource: pivotgrid.dataSource,
-        //         filterable: true,
-        //         sortable: true,
-        //         height: 570
-        //     });
-        // });
-    </script>
     </div>
     <script type="text/javascript">
         $('#Product').on('submit', function(e) {
-
             e.preventDefault();
 
             let endDate = $('#endDate').val();
             let Begindate = $('#Begindate').val();
-            let SalesMen = $('#SalesMenAjax').val();
+            let POSSalesTerrAjax = $('#POSSalesTerrAjax').val();
             let DateBy = $('input[name="DateBy"]:checked').val();
             let SalesBy = $('input[name="SalesBy"]:checked').val();
             let QuantityMeasure = $('input[name="QuantityMeasure"]:checked').val();
 
             $.ajax({
-                url: '{{ URL::to('DSRInvoice') }}',
+                url: '{{ URL::to('POSInvoice') }}',
                 type: 'get',
                 data: {
                     Begindate: Begindate,
                     endDate: endDate,
-                    SalesMen: SalesMen,
                     DateBy: DateBy,
                     SalesBy: SalesBy,
                     QuantityMeasure: QuantityMeasure,
+                    POSSalesTerrAjax: POSSalesTerrAjax,
 
                 },
                 beforeSend: function() {
-                    $("body").addClass("loading");
-                    $('body').css('cursor', 'wait');
+                    // $("body").addClass("loading");
+                    // $('body').css('cursor', 'wait');
                 },
                 success: function(data) {
                     $('body').css('cursor', 'auto');
                     $("body").removeClass("loading");
 
-                    if (data['DSRResult'] == "Missing Paramter") {
+                    if (data['POSResult'] == "Missing Paramter") {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -299,7 +269,7 @@
                                 //     console.log("expand member");
                                 // },
                                 dataSource: {
-                                    data: data['DSRResult'],
+                                    data: data['POSResult'],
                                     schema: {
                                         model: {
                                             // id: "salesrep_name",
@@ -311,9 +281,9 @@
                                                     type: "string"
                                                 },
                                                 pos_code: {
-                                                    type:"number"
+                                                    type: "number"
                                                 },
-                                                
+
                                             }
                                         },
                                         cube: {
@@ -473,8 +443,8 @@
         }
 
         /* .k-pivotgrid-wrapper {
-                    margin-left: 266px;
-                } */
+                        margin-left: 266px;
+                    } */
 
         .k-floatwrap {
             margin-left: 0px;
