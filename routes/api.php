@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('DevAndriodInvoice/{salesRepId}/{runCode}/{tabName}', [AndriodSupportController::class, 'DevAndriodInvoice'])->name('DevAndriodInvoice');
+Route::get('DevAndriodInvoice', [AndriodSupportController::class, 'DevAndriodInvoice'])->name('DevAndriodInvoice');
+Route::get('devandriod', [AndriodSupportController::class, 'devandriod'])->name('devandriod');
