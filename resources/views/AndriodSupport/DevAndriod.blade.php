@@ -215,38 +215,30 @@
         function sendParamter(e) {
             var salesRepId = document.getElementById('salesrep_id').value;
             if (e == 'فتح احداثيات') {
+                var posCode = "Missing POS";
                 var posCode = document.getElementById('posCode').value;
                 if (posCode) {
-                    alert(posCode);
                     var tabName = 'POS';
                     var runCode = ` set LONGITUDE = 0, LATITUDE = 0 where POS_CODE = " ` + posCode + `"`;
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'يرجى ادخال رقم العميل!',
-                    })
                 }
-            }else if(e == 'تحديث محلات'){
+            } else if (e == 'تحديث محلات') {
                 var runCode = 'تحديث محلات';
-            } 
-            else if(e == 'set PAY_FORCE = 0'){
+            } else if (e == 'set PAY_FORCE = 0') {
                 var tabName = "FIXED_INCENTIVE_DETAILS"
                 var runCode = e
-            }else if(e == 'target'){
+            } else if (e == 'target') {
                 var tabName = "TARGET"
                 var runCode = null
-            }else if (e == 'INCENTIVE_GRAD_DEATILS'){
+            } else if (e == 'INCENTIVE_GRAD_DEATILS') {
                 var tabName = e
                 var runCode = null
-            }else if(e == 'FIXED_INCENTIVE_DETAILS'){
+            } else if (e == 'FIXED_INCENTIVE_DETAILS') {
                 var tabName = e
                 var runCode = null
-            }else if(e == 'INCENTIVE_MIX'){
+            } else if (e == 'INCENTIVE_MIX') {
                 var tabName = e
                 var runCode = null
-            }
-            else {
+            } else {
                 var tabName = 'PARAMETERS';
                 var runCode = e;
             }
@@ -267,8 +259,8 @@
                     posCode: posCode,
                 },
                 beforeSend: function() {
-                    // $("body").addClass("loading");
-                    // $('body').css('cursor', 'wait');
+                    $("body").addClass("loading");
+                    $('body').css('cursor', 'wait');
                 },
                 success: function(data) {
                     $('body').css('cursor', 'auto');
@@ -280,6 +272,12 @@
                             title: 'Oops...',
                             text: 'Missing Paramter!',
                         })
+                    } else if (data['result'] == "Missing POS") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'يرجى ادخال رقم العميل!',
+                        });
                     } else {
                         $(document).ready(function() {
                             var crudServiceBaseUrl = "http://localhost:8080",
