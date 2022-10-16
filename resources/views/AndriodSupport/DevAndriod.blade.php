@@ -90,7 +90,41 @@
                     onClick="sendParamter('set param_val = 1 where param_id = 41')">فتح تعديل المخزون لمناديب العير
                     مباشر</button>
             </div>
-            <br>
+            <div class=" col-md-2 col-sm-3 p-3">
+                <button class="btn btn-success col-md-12" id="runCode" name="runCode"
+                    onClick="sendParamter('مشاكل الطباعة')">أرسال حل مشكلة الطباعة</button>
+            </div>
+            <div class=" col-md-2 col-sm-3 p-3">
+                <button class="btn btn-success col-md-12" id="runCode" name="runCode"
+                    onClick="sendParamter('تفعيل الحد الأئتمانى')">تفعيل الحد الأئتمانى</button>
+            </div>
+            <div class=" col-md-2 col-sm-3 p-3">
+                <button class="btn btn-success col-md-12" id="runCode" name="runCode"
+                    onClick="sendParamter('تفعيل الفترة الأئتمانية')">فتح تفعيل الفترة الأئتمانية</button>
+            </div>
+            <div class=" col-md-2 col-sm-3 p-3">
+                <button class="btn btn-success col-md-12" id="runCode" name="runCode"
+                    onClick="sendParamter('تفعيل الفترة الأئتمانية')">فتح تفعيل الفترة الأئتمانية</button>
+            </div>
+            <div class=" col-md-2 col-sm-3 p-3">
+                <button class="btn btn-success col-md-12" id="runCode" name="runCode"
+                    onClick="sendParamter('فتح عدد البيع')">فتح عدد البيع</button>
+            </div>
+            <div class=" col-md-2 col-sm-3 p-3">
+                <button class="btn btn-success col-md-12" id="runCode" name="runCode"
+                    onClick="sendParamter('set param_val = 999 where param_id = 64')">زيادة عدد الزيارات</button>
+            </div>
+            <div class=" col-md-2 col-sm-3 p-3">
+                <button class="btn btn-success col-md-12" id="runCode" name="runCode"
+                    onClick="sendParamter('زيادة قيمة الحد الأئتمانى')">زيادة قيمة الحد الأئتمانى</button>
+            </div>
+            <div class="col-md-2 col-sm-3 p-3">
+                <div class="col-md-12">
+                <label for="credit_limit" >قيمة الأئتمان </labeL>
+                <input type="text" class="col-md-6 col-sm-6" name="credit_limit" id="credit_limit"
+                    style="color:black">
+                </div>
+            </div>
             <div class=" col-md-3 p-3">
                 <button class="btn btn-success col-md-12" id="submit" value="search"
                     onClick="sendParamter('search')">Search</button>
@@ -100,6 +134,13 @@
     </body>
 
     <style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            left: 37%;
+        }
+
         #example {
             font-size: 18px;
             font-weight: 600;
@@ -214,15 +255,26 @@
     <script>
         function sendParamter(e) {
             var salesRepId = document.getElementById('salesrep_id').value;
-            if (e == 'فتح احداثيات') {
-                var posCode = "Missing POS";
+            var creditLimit = document.getElementById('credit_limit').value;
+            if (e == 'فتح احداثيات' || e == 'تفعيل الحد الأئتمانى' || e == 'تفعيل الفترة الأئتمانية' || e ==
+                "زيادة قيمة الحد الأئتمانى") {
                 var posCode = document.getElementById('posCode').value;
                 if (posCode) {
                     var tabName = 'POS';
-                    var runCode = ` set LONGITUDE = 0, LATITUDE = 0 where POS_CODE = " ` + posCode + `"`;
+                    if (e == 'فتح احداثيات') {
+                        var runCode = ` set LONGITUDE = 0, LATITUDE = 0 where POS_CODE = "` + posCode + `"`;
+                    } else if (e == 'تفعيل الحد الأئتمانى') {
+                        var runCode = `set ACTIVE_CREDIT_LIMIT = 0 where POS_CODE = "` + posCode + `"`;
+                    } else if (e == 'تفعيل الفترة الأئتمانية') {
+                        var runCode = `set Active_credit_period = 0 where POS_CODE = "` + posCode + `"`;
+                    } else if (e == 'زيادة قيمة الحد الأئتمانى') {
+                        var runCode = `set pos_creditlimit =` + creditLimit + ` where POS_CODE = "` + posCode + `"`;
+                    }
                 }
             } else if (e == 'تحديث محلات') {
                 var runCode = 'تحديث محلات';
+            } else if (e == 'مشاكل الطباعة') {
+                var runCode = 'مشاكل الطباعة';
             } else if (e == 'set PAY_FORCE = 0') {
                 var tabName = "FIXED_INCENTIVE_DETAILS"
                 var runCode = e
@@ -238,6 +290,8 @@
             } else if (e == 'INCENTIVE_MIX') {
                 var tabName = e
                 var runCode = null
+            } else if (e == 'فتح عدد البيع') {
+                var runCode = 'فتح عدد البيع';
             } else {
                 var tabName = 'PARAMETERS';
                 var runCode = e;
@@ -259,8 +313,8 @@
                     posCode: posCode,
                 },
                 beforeSend: function() {
-                    $("body").addClass("loading");
                     $('body').css('cursor', 'wait');
+                    $("body").addClass("loading");
                 },
                 success: function(data) {
                     $('body').css('cursor', 'auto');
@@ -329,7 +383,7 @@
                                 // groupable: true,
                                 filterable: true,
                                 dataBound: onDataBound,
-                                toolbar: ["excel", "search"],
+                                // toolbar: ["excel", "search"],
                                 columns: [
                                     // {
                                     //     selectable: true,
@@ -354,7 +408,7 @@
                                     {
                                         field: "run_code",
                                         title: "Run Code",
-                                        width: 130
+                                        width: 160
                                     },
                                     {
                                         field: "comm_date",

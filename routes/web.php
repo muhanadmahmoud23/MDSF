@@ -3,6 +3,7 @@
 use App\Http\Controllers\AndriodSupportController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\SalesTotalDailySalesReportController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 //HomePage
