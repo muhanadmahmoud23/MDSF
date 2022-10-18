@@ -13,19 +13,23 @@
             <div class="row mb-3">
                 <div class="col-md-3 col-12">
                     <label for="Region" class="form-label">Region</labeL>
-                    <input class="form-control" min="0" type="number" name="Region" id="Region">
+                    <input class="form-control" min="0" type="number" name="Region" id="Region"
+                        placeholder="Enter number between  1 to 7">
                 </div>
                 <div class="col-md-3 col-12">
                     <label for="salesrep_id" class="form-label">SalesRep Id</labeL>
-                    <input class="form-control" min="0" type="number" name="salesrep_id" id="salesrep_id">
+                    <input class="form-control" min="0" type="number" name="salesrep_id" id="salesrep_id"
+                        placeholder="Enter sales Code..">
                 </div>
                 <div class="col-md-3 col-12">
                     <label for="posCode" class="form-label">POS Code</labeL>
-                    <input class="form-control" min="0" type="number" name="posCode" id="posCode">
+                    <input class="form-control" min="0" type="number" name="posCode" id="posCode"
+                        placeholder="Enter like = 111_1111">
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <label for="credit_limit">قيمة الأئتمان </labeL>
-                    <input type="text" class="form-control" name="credit_limit" id="credit_limit">
+                    <input type="text" class="form-control" name="credit_limit" id="credit_limit"
+                        placeholder="Enter like = 50000">
                 </div>
                 <div class="col-md-3 col-12">
                     <select class="form-select form-select-lg" aria-label="Default select example" id="tablename">
@@ -39,7 +43,7 @@
                 </div>
                 <div class="col-md-6 col-12">
                     <input type="text" class="form-control" name="runCodeQuery" id="runCodeQuery"
-                        placeholder="Run Code ">
+                        placeholder="(Run Code) like= set param_val=0 where oaram_id=0">
                 </div>
                 <div class="col-md-3 col-12">
                     <button class="btn btn-outline-success w-100" id="Query" name="Query"
