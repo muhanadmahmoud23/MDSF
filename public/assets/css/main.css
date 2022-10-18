@@ -328,8 +328,12 @@ body {
   color: var(--grey);
 }
 
-/* @media (max-width:700px) {
-  .fa-chevron-right {
-    display: none;
-  }
-} */
+.btn-outline-success {
+  border: 1px solid var(--GREEN) !important;
+  transition: all 0.3s linear;
+}
+
+.btn-outline-success:hover {
+  background-color: var(--GREEN) !important;
+  color: var(--body) !important;
+}

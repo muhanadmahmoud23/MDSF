@@ -9,7 +9,11 @@ class AndriodSupportController extends Controller
 {
     public function DevAndriodIndex()
     {
-        return view('AndriodSupport.DevAndriod');
+        // $tablenames = DB::connection('oracle2')->table('TAB_LOADING')->get();
+
+        return view('AndriodSupport.DevAndriod',[
+            // 'tablenames'  =>  $tablenames,
+        ]);
     }
 
     public function DevAndriodInvoice(Request $request)
@@ -17,6 +21,8 @@ class AndriodSupportController extends Controller
         $salesRepId = $request->salesRepId;
         $runCode = $request->runCode;
         $tabName = $request->tabName;
+        $runCodeQuery = $request->runCodeQuery;
+        $tablename = $request->tablename;
         $result = "Missing Paramters";
         $message = "Empty";
 
@@ -25,7 +31,11 @@ class AndriodSupportController extends Controller
         } elseif ($salesRepId && $tabName == "FIXED_INCENTIVE_DETAILS" || $tabName == "TARGET" || $tabName == "INCENTIVE_GRAD_DEATILS" || $tabName == "INCENTIVE_MIX") {
             helper_update_table($salesRepId, $tabName, $runCode);
             $result = sync_data_by_salesrep_id($salesRepId);
-        } elseif ($runCode == 'فتح عدد البيع' && $salesRepId) {
+        }elseif ($runCode=='Query' && $salesRepId && $tablename) {
+                helper_update_table($salesRepId,$tablename,$runCodeQuery);
+                $result = sync_data_by_salesrep_id($salesRepId);
+        }
+         elseif ($runCode == 'فتح عدد البيع' && $salesRepId) {
             helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 0 where param_id = 62');
             helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 999 where param_id = 63');
             $result = sync_data_by_salesrep_id($salesRepId);

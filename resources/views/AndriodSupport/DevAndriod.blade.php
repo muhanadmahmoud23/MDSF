@@ -12,16 +12,52 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-3 col-12">
+                    <label for="Region" class="form-label">Region</labeL>
+                    <input class="form-control" min="0" type="number" name="Region" id="Region">
+                </div>
+                <div class="col-md-3 col-12">
                     <label for="salesrep_id" class="form-label">SalesRep Id</labeL>
                     <input class="form-control" min="0" type="number" name="salesrep_id" id="salesrep_id">
                 </div>
-
+                <div class="col-md-3 col-12">
+                    <label for="posCode" class="form-label">POS Code</labeL>
+                    <input class="form-control" min="0" type="number" name="posCode" id="posCode">
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <label for="credit_limit">قيمة الأئتمان </labeL>
+                    <input type="text" class="form-control" name="credit_limit" id="credit_limit">
+                </div>
+                <div class="col-md-3 col-12">
+                    <select class="form-select form-select-lg" aria-label="Default select example" id="tablename">
+                        {{-- @foreach ($tablenames as $tablename)
+                        <option value="{{$tablename->id}}">{{$tablename->name}}</option>
+                        @endforeach --}}
+                        <option value="amar eldeen">product loading</option>
+                        <option value="adass">adasd</option>
+                        <option value="AnteshWeAgry">asdasd</option>
+                    </select>
+                </div>
+                <div class="col-md-6 col-12">
+                    <input type="text" class="form-control" name="runCodeQuery" id="runCodeQuery"
+                        placeholder="Run Code ">
+                </div>
+                <div class="col-md-3 col-12">
+                    <button class="btn btn-outline-success w-100" id="Query" name="Query"
+                        onClick="sendParamter('Query')">Send
+                    </button>
+                </div>
             </div>
             <div class="row">
                 <div class=" col-md-3 col-12 mb-3 ">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('فتح احداثيات')">فتح
                         احداثيات</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3 ">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 0 where param_id = 7')">
+                        فتح احداثيات جميع العملاء
+                    </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
@@ -101,9 +137,38 @@
                         onClick="sendParamter('set param_val = 1 where param_id = 41')">فتح تعديل المخزون لمناديب العير
                         مباشر</button>
                 </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('مشاكل الطباعة')">أرسال حل مشكلة الطباعة</button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('تفعيل الحد الأئتمانى')">تفعيل الحد الأئتمانى</button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('تفعيل الفترة الأئتمانية')">فتح تفعيل الفترة الأئتمانية</button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('تفعيل الفترة الأئتمانية')">فتح تفعيل الفترة الأئتمانية</button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('فتح عدد البيع')">فتح عدد البيع</button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 999 where param_id = 64')">زيادة عدد الزيارات</button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('زيادة قيمة الحد الأئتمانى')">زيادة قيمة الحد الأئتمانى</button>
+                </div>
+
                 <br>
-                <div class=" col-md-3 mb-3">
-                    <button class="btn btn-success w-100" id="submit" value="search"
+                <div class=" col-md-6 mb-3">
+                    <button class="btn btn-outline-success w-100" id="submit" value="search"
                         onClick="sendParamter('search')">Search</button>
                 </div>
             </div>
@@ -115,86 +180,17 @@
     </div>
 
     </body>
-
-    <style>
-        .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            left: 37%;
-        }
-
-        #example {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 1em 0 0px;
-            padding-left: 25rem;
-        }
-
-        .k-widget {
-            text-align: center;
-            margin-left: 275px;
-            font-size: 11px !important;
-        }
-
-
-
-        .k-floatwrap {
-            display: none;
-        }
-
-        label {
-            font-size: 15px;
-        }
-
-        .customer-photo {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-size: 32px 35px;
-            background-position: center center;
-            vertical-align: middle;
-            line-height: 32px;
-            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
-            margin-left: 5px;
-        }
-
-        .customer-name {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 32px;
-            padding-left: 3px;
-        }
-
-        .product-photo {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-size: 32px 35px;
-            background-position: center center;
-            vertical-align: middle;
-            line-height: 32px;
-            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
-            margin-right: 5px;
-        }
-
-        .product-name {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 32px;
-            padding-left: 3px;
-        }
-
-
-
-
-
     <script>
         function sendParamter(e) {
             var salesRepId = document.getElementById('salesrep_id').value;
             var creditLimit = document.getElementById('credit_limit').value;
+            var Region = document.getElementById('Region').value;
+            var tablename = document.getElementById('tablename').value;
+            var runCodeQuery = document.getElementById('runCodeQuery').value;
+
+
+
+
             if (e == 'فتح احداثيات' || e == 'تفعيل الحد الأئتمانى' || e == 'تفعيل الفترة الأئتمانية' || e ==
                 "زيادة قيمة الحد الأئتمانى") {
                 var posCode = document.getElementById('posCode').value;
@@ -231,6 +227,8 @@
                 var runCode = null
             } else if (e == 'فتح عدد البيع') {
                 var runCode = 'فتح عدد البيع';
+            } else if (e == 'Query') {
+                var runCode = 'Query';
             } else {
                 var tabName = 'PARAMETERS';
                 var runCode = e;
@@ -250,6 +248,9 @@
                     runCode: runCode,
                     tabName: tabName,
                     posCode: posCode,
+                    Region: Region,
+                    tablename: tablename,
+                    runCodeQuery: runCodeQuery
                 },
                 beforeSend: function() {
                     $('body').css('cursor', 'wait');
@@ -489,4 +490,5 @@
             });
         }
     </script>
+
 @endsection
