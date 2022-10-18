@@ -18,28 +18,37 @@ class AndriodSupportController extends Controller
         $runCode = $request->runCode;
         $tabName = $request->tabName;
         $result = "Missing Paramters";
-        $message ="Empty";
+        $message = "Empty";
 
         if ($salesRepId && $runCode == "search") {
             $result = sync_data_by_salesrep_id($salesRepId);
-        }elseif($salesRepId && $tabName == "FIXED_INCENTIVE_DETAILS" || $tabName == "TARGET" || $tabName =="INCENTIVE_GRAD_DEATILS" || $tabName =="INCENTIVE_MIX" ){
+        } elseif ($salesRepId && $tabName == "FIXED_INCENTIVE_DETAILS" || $tabName == "TARGET" || $tabName == "INCENTIVE_GRAD_DEATILS" || $tabName == "INCENTIVE_MIX") {
             helper_update_table($salesRepId, $tabName, $runCode);
             $result = sync_data_by_salesrep_id($salesRepId);
-        } 
-        elseif ($runCode == 'تحديث محلات' && $salesRepId) {
+        } elseif ($runCode == 'فتح عدد البيع' && $salesRepId) {
+            helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 0 where param_id = 62');
+            helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 999 where param_id = 63');
+            $result = sync_data_by_salesrep_id($salesRepId);
+        } elseif ($runCode == 'تحديث محلات' && $salesRepId) {
             helper_update_table($salesRepId, 'INCENTIVE_GRAD_DETAILS', null);
             helper_update_table($salesRepId, 'POS', null);
             helper_update_table($salesRepId, 'TARGET', null);
             $result = sync_data_by_salesrep_id($salesRepId);
-        } elseif ($salesRepId && $runCode && $tabName && $request->posCode !=null) {
-            if($request->posCode !== "Missing POS"){
+        } elseif ($runCode == 'مشاكل الطباعة' && $salesRepId) {
+            helper_update_table($salesRepId, 'INC_MST', null);
+            helper_update_table($salesRepId, 'Pricelist', null);
+            helper_update_table($salesRepId, 'FUEL_PRICE', null);
+            helper_update_table($salesRepId, 'DISPLAY_UOM', null);
+            helper_update_table($salesRepId, 'TAB_LOADING', null);
+            helper_update_table($salesRepId, 'MENU_ITEMS', null);
+            $result = sync_data_by_salesrep_id($salesRepId);
+        } elseif ($salesRepId && $runCode && $tabName && $request->posCode != null) {
             helper_update_table($salesRepId, $tabName, $runCode);
             $result = sync_data_by_salesrep_id($salesRepId);
-        }
         } elseif ($salesRepId && $runCode && $tabName) {
             helper_update_table($salesRepId, $tabName, $runCode);
             $result = sync_data_by_salesrep_id($salesRepId);
         }
-        return response()->json(['result' => $result , 'message' => $message]);
+        return response()->json(['result' => $result, 'message' => $message]);
     }
 }
