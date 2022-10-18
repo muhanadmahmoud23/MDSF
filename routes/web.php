@@ -43,3 +43,9 @@ Route::get('POSSalesManTerr', [SalesTotalDailySalesReportController::class, 'POS
 //Andriod Support
 Route::get('DevAndriodIndex', [AndriodSupportController::class, 'DevAndriodIndex'])->name('DevAndriodIndex');
 Route::get('DevAndriodInvoice', [AndriodSupportController::class, 'DevAndriodInvoice'])->name('DevAndriodInvoice');
+
+
+Route::get('test',function(){
+  $g = DB::table('JOURNEY')->first();
+  return $g;
+});

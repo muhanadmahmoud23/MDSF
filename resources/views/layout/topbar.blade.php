@@ -1,5 +1,5 @@
     <!--Topbar -->
-    <div class="topbar transition">
+    {{-- <div class="topbar transition d-none">
         <div class="bars">
             <button type="button" class="btn transition" id="sidebar-toggle">
                 <i class="fa fa-bars"></i>
@@ -7,9 +7,9 @@
             <li class="SideBarTitle">@yield('title')</li>
         </div>
         <div class="menu">
-            <ul>
+            <ul> --}}
 
-                {{-- <li class="nav-item dropdown dropdown-list-toggle">
+    {{-- <li class="nav-item dropdown dropdown-list-toggle">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="fa fa-bell size-icon-1"></i><span class="badge bg-danger notif">4</span>
@@ -69,7 +69,7 @@
 
                 </li> --}}
 
-                <li class="nav-item dropdown">
+    {{-- <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <img src="{{ asset('assets/images/logo.jfif') }}" alt="">
@@ -86,17 +86,4 @@
                 </li>
             </ul>
         </div>
-    </div>
-
-    <style>
-        .topbar {
-            background: #081a51
-        }
-
-        .SideBarTitle {
-            font-size: 25px;
-            border: 2px solid #ffffff;
-            border-radius: 5px;
-            padding: 6px;
-        }
-    </style>
+    </div> --}}

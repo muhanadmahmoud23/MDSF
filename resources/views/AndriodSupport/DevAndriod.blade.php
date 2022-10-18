@@ -2,16 +2,18 @@
 @section('title', 'Dev Andriod Support')
 @section('content')
 
-    <body>
-        <div id="example">
-            <div class="col-md-12">
-                <div class="col-md-3 ">
-                    <label for="salesrep_id">SalesRep Id</labeL>
-                    <input type="text" name="salesrep_id" id="salesrep_id" style="color:black">
-                </div>
-                <div class="col-md-3">
-                    <label for="salesrep_id">POS Code</labeL>
-                    <input type="text" name="posCode" id="posCode" style="color:black">
+
+
+    <div class="main">
+        <div class="main-content container-fluid">
+            <div class="header-top">
+                <p class="SideBarTitle info">@yield('title')</p>
+
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 col-12">
+                    <label for="salesrep_id" class="form-label">SalesRep Id</labeL>
+                    <input class="form-control" min="0" type="number" name="salesrep_id" id="salesrep_id">
                 </div>
             </div>
             <div class=" col-md-2 col-sm-3  p-3">
@@ -204,54 +206,10 @@
             padding-left: 3px;
         }
 
-        .k-rating-container .k-rating-item {
-            padding: 4px 0;
-        }
 
-        .k-rating-container .k-rating-item .k-icon {
-            font-size: 16px;
-        }
 
-        .dropdown-country-wrap {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            white-space: nowrap;
-        }
 
-        .dropdown-country-wrap img {
-            margin-right: 10px;
-        }
 
-        .topbar .menu ul li .dropdown-menu a {
-            color: #ffffff;
-        }
-
-        .k-floatwrap {
-            margin-left: 0px;
-        }
-
-        .k-footer-template {
-            display: none;
-        }
-
-        #runCode {
-            font-size: 13px;
-            font-weight: 900;
-        }
-
-        @media screen and (max-width: 1000px) and (min-width:0px) {
-            #example {
-                padding-left: 0rem;
-            }
-
-            .k-widget {
-
-                margin-left: 275px;
-            }
-        }
-    </style>
-    <div id="grid" class=""></div>
     <script>
         function sendParamter(e) {
             var salesRepId = document.getElementById('salesrep_id').value;
@@ -334,7 +292,7 @@
                         });
                     } else {
                         $(document).ready(function() {
-                            var crudServiceBaseUrl = "http://localhost:8080",
+                            var crudServiceBaseUrl = "http://localhost:8000",
                                 dataSource = new kendo.data.DataSource({
                                     data: data['result'],
                                     batch: true,
@@ -369,7 +327,7 @@
                                 columnMenu: {
                                     filterable: false
                                 },
-                                height: 600,
+                                height: 260,
                                 editable: "incell",
                                 // pageable: true,
                                 pageable: {

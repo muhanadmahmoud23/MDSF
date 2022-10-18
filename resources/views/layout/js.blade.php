@@ -1,5 +1,5 @@
     <!-- Loader -->
-    <div class="loader-overlay"></div>
+    {{-- <div class="loader-overlay"></div> --}}
 
     <!-- General JS Scripts -->
     <script src="{{ asset('assets/js/atrana.js') }}"></script>
@@ -47,4 +47,6 @@
                 useCurrent: false,
             });
         });
+        
     </script>
+    
