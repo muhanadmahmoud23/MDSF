@@ -1,8 +1,8 @@
 @include('layout.head')
 @include('layout.topbar')
 @include('layout.sidebar')
-@include('layout.preloader')
 @include('layout.js')
+
 <head>
     <title>@yield('title')</title>
     <meta charset="utf-8">

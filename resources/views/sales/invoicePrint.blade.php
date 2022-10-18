@@ -2,38 +2,45 @@
 @section('title', 'Print Invoice')
 @section('content')
 
-    <body>
-        <div id="example">
-            <div class="col-md-12">
-                <div class="col-md-3">
-                    <div class="col-md-4">
-                        <label for="multiple">Region</label>
-                    </div>
-                    <div class="col-md-8">
+
+    {{-- <div class="main">
+    <div class="main-content">
+        <div class="header-top">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        
+    </div>
+    
+</div> --}}
+
+    <div class="main ">
+        <div class="main-content container-fluid">
+            <div class="header-top">
+                {{-- <i class="fas fa-bars"></i> --}}
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-12">
+                    <label for="BranchAjax">Region</label>
+                    <div class="SalesMenAjax">
                         @include('sales.Common.branchesSelect')
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="col-md-4">
-                        <label for="multiple">Company</label>
-                    </div>
-                    <div class="col-md-8">
+                <div class="col-md-3 col-12">
+                    <label for="CompanyAjax">Company</label>
+                    <div class="">
                         @include('sales.Common.companiesSelect')
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="col-md-4">
-                        <label for="multiple">Sales Terr</label>
-                    </div>
-                    <div class="col-md-8">
+                <div class="col-md-3 col-12">
+                    <label for="multiple">Sales Terr</label>
+                    <div class="">
                         @include('sales.Common.SalesTerrSelect')
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="col-md-4">
-                        <label for="multiple">Sales Men</label>
-                    </div>
-                    <div class="col-md-8">
+                <div class="col-md-3 col-12">
+                    <label for="multiple">Sales Men</label>
+                    <div class="">
                         @include('sales.Common.SalesMenSelect')
                     </div>
                 </div>
@@ -124,9 +131,167 @@
                     </div>
                 </div>
             </form>
+
+            <div id="grid" class="d-none"></div>
+            <div class="example" id="InvoicesTotal">
+                <div class="col-md-12" style="padding:2.7em 0 0 20em">
+                    <div class="form-group col-md-3">
+                        <div class="col-md-5">
+                            <label>Total Invoice</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="totalInvoice" id="totalInvoice" class="form-control" value=""
+                                style="color:black">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="col-md-5">
+                            <label>Total Incentive</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="totalIncentiveAmount" id="totalIncentiveAmount"
+                                class="form-control" value="" style="color:black">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="col-md-5">
+                            <label>Total Tax </label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="totalTaxAmount" id="totalTaxAmount" class="form-control"
+                                value="" style="color:black">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="col-md-5">
+                            <label>Total Net Amount</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="totalNetAmount" id="totalNetAmount" class="form-control"
+                                value="" style="color:black">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-    </body>
+    </div>
+
+
+
+
+
+    {{-- STYLE --}}
+    <style type="text/css">
+        #example {
+            font-size: 18px;
+            padding-left: 14em !important;
+            font-weight: 600;
+            margin: 1em 0 0px;
+        }
+
+        label {
+            font-size: 15px;
+        }
+
+        .customer-photo {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-size: 32px 35px;
+            background-position: center center;
+            vertical-align: middle;
+            line-height: 32px;
+            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
+            margin-left: 5px;
+        }
+
+        .customer-name {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 32px;
+            padding-left: 3px;
+        }
+
+        /* .k-grid tr .checkbox-align {
+                                                                                                                                            text-align: center;
+                                                                                                                                            vertical-align: middle;
+                                                                                                                                        } */
+
+        .product-photo {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-size: 32px 35px;
+            background-position: center center;
+            vertical-align: middle;
+            line-height: 32px;
+            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
+            margin-right: 5px;
+        }
+
+        .product-name {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 32px;
+            padding-left: 3px;
+        }
+
+        .k-rating-container .k-rating-item {
+            padding: 4px 0;
+        }
+
+        .k-rating-container .k-rating-item .k-icon {
+            font-size: 16px;
+        }
+
+        .dropdown-country-wrap {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .dropdown-country-wrap img {
+            margin-right: 10px;
+        }
+
+        /* #grid .k-grid-edit-row>td>.k-rating {
+                                                                                                                                            margin-left: 275px;
+                                                                                                                                            width: 100%;
+                                                                                                                                        } */
+
+        .k-widget {
+            text-align: center;
+            margin-left: 275px;
+        }
+
+        /* .k-input {
+                                                                                                                                            width: 18em;
+                                                                                                                                        } */
+
+        .topbar .menu ul li .dropdown-menu a {
+            color: #ffffff;
+        }
+
+        .k-floatwrap {
+            margin-left: 0px;
+        }
+
+        .k-footer-template {
+            display: none;
+        }
+    </style>
+
+
+
+    {{-- SCRIPTS --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.1.min.js"></script>
+
     <script>
         $(document).on('change', '#CompanyAjax, #BranchAjax', function() {
 
@@ -188,8 +353,6 @@
             });
 
         });
-    </script>
-    <script>
         $(document).on('change', '#SalesTerrAjax', function() {
 
             var SalesTerrId = $('#SalesTerrAjax').val();
@@ -211,9 +374,9 @@
                     if (response.length > 0) {
                         $('.SalesMenAjax').html("");
                         $('.SalesMenAjax').append(`
-                                <select class="selectpicker SalesMenAjax" multiple data-live-search="true" name="SalesMenAjax"
-                                    id="SalesMenAjax">
-                    `);
+                    <select class="selectpicker SalesMenAjax" multiple data-live-search="true" name="SalesMenAjax"
+                        id="SalesMenAjax">
+        `);
                         for (let i = 0; i < response.length; i++) {
                             var sales_id = response[i].sales_id;
                             var name = response[i].salesrep_name;
@@ -228,49 +391,6 @@
             });
 
         });
-    </script>
-    <div id="grid" class=""></div>
-    <div class="example" id="InvoicesTotal">
-        <div class="col-md-12" style="padding:2.7em 0 0 20em">
-            <div class="form-group col-md-3">
-                <div class="col-md-5">
-                    <label>Total Invoice</label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" name="totalInvoice" id="totalInvoice" class="form-control" value=""
-                        style="color:black">
-                </div>
-            </div>
-            <div class="form-group col-md-3">
-                <div class="col-md-5">
-                    <label>Total Incentive</label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" name="totalIncentiveAmount" id="totalIncentiveAmount" class="form-control"
-                        value="" style="color:black">
-                </div>
-            </div>
-            <div class="form-group col-md-3">
-                <div class="col-md-5">
-                    <label>Total Tax </label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" name="totalTaxAmount" id="totalTaxAmount" class="form-control" value=""
-                        style="color:black">
-                </div>
-            </div>
-            <div class="form-group col-md-3">
-                <div class="col-md-5">
-                    <label>Total Net Amount</label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" name="totalNetAmount" id="totalNetAmount" class="form-control" value=""
-                        style="color:black">
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
         $(document).ready(function() {
             var crudServiceBaseUrl = "http://localhost:8080",
                 dataSource = new kendo.data.DataSource({
@@ -562,8 +682,6 @@
             "CategoryID": 8,
             "CategoryName": "Seafood"
         }];
-    </script>
-    <script type="text/javascript">
         $('#Product').on('submit', function(e) {
 
             e.preventDefault();
@@ -867,112 +985,6 @@
 
             });
         });
-    </script>
-    <style type="text/css">
-        #example {
-            font-size: 18px;
-            padding-left: 14em !important;
-            font-weight: 600;
-            margin: 1em 0 0px;
-        }
-
-        label {
-            font-size: 15px;
-        }
-
-        .customer-photo {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-size: 32px 35px;
-            background-position: center center;
-            vertical-align: middle;
-            line-height: 32px;
-            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
-            margin-left: 5px;
-        }
-
-        .customer-name {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 32px;
-            padding-left: 3px;
-        }
-
-        /* .k-grid tr .checkbox-align {
-                            text-align: center;
-                            vertical-align: middle;
-                        } */
-
-        .product-photo {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-size: 32px 35px;
-            background-position: center center;
-            vertical-align: middle;
-            line-height: 32px;
-            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
-            margin-right: 5px;
-        }
-
-        .product-name {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 32px;
-            padding-left: 3px;
-        }
-
-        .k-rating-container .k-rating-item {
-            padding: 4px 0;
-        }
-
-        .k-rating-container .k-rating-item .k-icon {
-            font-size: 16px;
-        }
-
-        .dropdown-country-wrap {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            white-space: nowrap;
-        }
-
-        .dropdown-country-wrap img {
-            margin-right: 10px;
-        }
-
-        /* #grid .k-grid-edit-row>td>.k-rating {
-                            margin-left: 275px;
-                            width: 100%;
-                        } */
-
-        .k-widget {
-            text-align: center;
-            margin-left: 275px;
-        }
-
-        /* .k-input {
-                            width: 18em;
-                        } */
-
-        .topbar .menu ul li .dropdown-menu a {
-            color: #ffffff;
-        }
-
-        .k-floatwrap {
-            margin-left: 0px;
-        }
-
-        .k-footer-template {
-            display: none;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
-    </script>
-    <script type="text/javascript">
         $(function() {
             $('#datetimepicker1').datetimepicker({
                 format: 'YYYY-MM-DD',
@@ -981,8 +993,6 @@
                 useCurrent: false,
             });
         });
-    </script>
-    <script type="text/javascript">
         $(function() {
             $('#datetimepicker2').datetimepicker({
                 format: 'YYYY-MM-DD',
@@ -991,9 +1001,7 @@
                 useCurrent: false,
             });
         });
-    </script>
-    <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.1.min.js"></script>
-    <script type="text/javascript">
+
         function PrintElem(elem) {
             Popup($(elem).html());
         }

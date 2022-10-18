@@ -2,215 +2,133 @@
 @section('title', 'Dev Andriod Support')
 @section('content')
 
-    <body>
-        <div id="example">
-            <div class="col-md-12">
-                <div class="col-md-3 ">
-                    <label for="salesrep_id">SalesRep Id</labeL>
-                    <input type="text" name="salesrep_id" id="salesrep_id" style="color:black">
+
+
+    <div class="main">
+        <div class="main-content container-fluid">
+            <div class="header-top">
+                <p class="SideBarTitle info">@yield('title')</p>
+
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 col-12">
+                    <label for="salesrep_id" class="form-label">SalesRep Id</labeL>
+                    <input class="form-control" min="0" type="number" name="salesrep_id" id="salesrep_id">
                 </div>
-                <div class="col-md-3">
-                    <label for="salesrep_id">POS Code</labeL>
-                    <input type="text" name="posCode" id="posCode" style="color:black">
+                <div class="col-md-3 col-12">
+                    <label for="posCode" class="form-label">POS Code</labeL>
+                    <input class="form-control" min="0" type="number" name="posCode" id="posCode">
+                </div>
+                {{-- <div class="col-md-3 col-12">
+                    <select id="select" multiple name="native-select" placeholder="Native Select" data-search="false"
+                        data-silent-initial-value-set="true">
+                        <option value="1">one</option>
+                        <option value="2">tow</option>
+                        <option value="3">three</option>
+                    </select>
+                </div> --}}
+            </div>
+            <div class="row">
+                <div class=" col-md-3 col-12 mb-3 ">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('فتح احداثيات')">فتح
+                        احداثيات</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 0 where param_id = 16')">فتح الزيارات الخارجية بدون انهاء
+                        خط السير </button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 999 where param_id = 10')">زيادة عدد الزيارات
+                        الخارجية</button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 0 where param_id = 13')">الغاء باقى عملاء خط
+                        السير</button>
+                </div>
+                <div class="col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('تحديث محلات')">تحديث محلات</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 0 where param_id = 22')">فتح الغاء فاتورة بدون حافز
+                    </button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100 " id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 1 where param_id = 22')">اغلاق الغاء فاتورة بدون حافز
+                    </button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 0 where param_id = 18')">فتح الغاء فاتورة بحافز </button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 0 where param_id = 18')">اغلاق الغاء فاتورة بحافز
+                    </button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100 " id="runCode" name="runCode"
+                        onClick="sendParamter('set PAY_FORCE = 0')">ايقاف حافز ثابت</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100 " id="runCode" name="runCode"
+                        onClick="sendParamter('target')">ارسال
+                        الاهداف</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('INCENTIVE_GRAD_DEATILS')">ارسال INCENTIVE_GRAD_DEATILS</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('FIXED_INCENTIVE_DETAILS')">ارسال حوافز ثابتة (FIX)</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100 " id="runCode" name="runCode"
+                        onClick="sendParamter('INCENTIVE_MIX')">
+                        ارسال حوافز فورية (MIX) </button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 1 where param_id = 25')">فتح أضافة بيع المندوب
+                        تجزئة</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 0 where param_id = 15')">فتح Near (N)</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100" id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 1 where param_id = 33')">فتح GPS</button>
+                </div>
+                <div class=" col-md-3 col-12 mb-3">
+                    <button class="btn btn-success w-100 " id="runCode" name="runCode"
+                        onClick="sendParamter('set param_val = 1 where param_id = 41')">فتح تعديل المخزون لمناديب العير
+                        مباشر</button>
+                </div>
+                <br>
+                <div class=" col-md-3 mb-3">
+                    <button class="btn btn-success w-100" id="submit" value="search"
+                        onClick="sendParamter('search')">Search</button>
                 </div>
             </div>
-            <div class=" col-md-2 col-sm-3  p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('فتح احداثيات')">فتح احداثيات</button>
+            <div class="row overflow-auto">
+                <div id="grid" class="col-12"></div>
             </div>
-            <div class=" col-md-2 col-sm-3  p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 0 where param_id = 16')">فتح الزيارات الخارجية بدون انهاء
-                    خط السير </button>
-            </div>
-            <div class=" col-md-2 col-sm-3  p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 999 where param_id = 10')">زيادة عدد الزيارات
-                    الخارجية</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 0 where param_id = 13')">الغاء باقى عملاء خط
-                    السير</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('تحديث محلات')">تحديث محلات</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 0 where param_id = 22')">فتح الغاء فاتورة بدون حافز </button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 1 where param_id = 22')">اغلاق الغاء فاتورة بدون حافز </button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 0 where param_id = 18')">فتح الغاء فاتورة بحافز </button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 0 where param_id = 18')">اغلاق الغاء فاتورة بحافز </button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set PAY_FORCE = 0')">ايقاف حافز ثابت</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('target')">ارسال الاهداف</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('INCENTIVE_GRAD_DEATILS')">ارسال INCENTIVE_GRAD_DEATILS</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('FIXED_INCENTIVE_DETAILS')">ارسال حوافز ثابتة (FIX)</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('INCENTIVE_MIX')"> ارسال حوافز فورية (MIX) </button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 1 where param_id = 25')">فتح أضافة بيع المندوب تجزئة</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 0 where param_id = 15')">فتح Near (N)</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12 col-sm-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 1 where param_id = 33')">فتح GPS</button>
-            </div>
-            <div class=" col-md-2 col-sm-3 p-3">
-                <button class="btn btn-success col-md-12" id="runCode" name="runCode"
-                    onClick="sendParamter('set param_val = 1 where param_id = 41')">فتح تعديل المخزون لمناديب العير
-                    مباشر</button>
-            </div>
-            <br>
-            <div class=" col-md-3 p-3">
-                <button class="btn btn-success col-md-12" id="submit" value="search"
-                    onClick="sendParamter('search')">Search</button>
-            </div>
+
         </div>
-
-    </body>
-
-    <style>
-        #example {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 1em 0 0px;
-            padding-left: 25rem;
-        }
-
-        .k-widget {
-            text-align: center;
-            margin-left: 275px;
-            font-size: 11px !important;
-        }
+    </div>
 
 
 
-        .k-floatwrap {
-            display: none;
-        }
 
-        label {
-            font-size: 15px;
-        }
 
-        .customer-photo {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-size: 32px 35px;
-            background-position: center center;
-            vertical-align: middle;
-            line-height: 32px;
-            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
-            margin-left: 5px;
-        }
-
-        .customer-name {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 32px;
-            padding-left: 3px;
-        }
-
-        .product-photo {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-size: 32px 35px;
-            background-position: center center;
-            vertical-align: middle;
-            line-height: 32px;
-            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
-            margin-right: 5px;
-        }
-
-        .product-name {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 32px;
-            padding-left: 3px;
-        }
-
-        .k-rating-container .k-rating-item {
-            padding: 4px 0;
-        }
-
-        .k-rating-container .k-rating-item .k-icon {
-            font-size: 16px;
-        }
-
-        .dropdown-country-wrap {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            white-space: nowrap;
-        }
-
-        .dropdown-country-wrap img {
-            margin-right: 10px;
-        }
-
-        .topbar .menu ul li .dropdown-menu a {
-            color: #ffffff;
-        }
-
-        .k-floatwrap {
-            margin-left: 0px;
-        }
-
-        .k-footer-template {
-            display: none;
-        }
-
-        #runCode {
-            font-size: 13px;
-            font-weight: 900;
-        }
-
-        @media screen and (max-width: 1000px) and (min-width:0px) {
-            #example {
-                padding-left: 0rem;
-            }
-
-            .k-widget {
-
-                margin-left: 275px;
-            }
-        }
-    </style>
-    <div id="grid" class=""></div>
     <script>
         function sendParamter(e) {
             var salesRepId = document.getElementById('salesrep_id').value;
@@ -280,7 +198,7 @@
                         });
                     } else {
                         $(document).ready(function() {
-                            var crudServiceBaseUrl = "http://localhost:8080",
+                            var crudServiceBaseUrl = "http://localhost:8000",
                                 dataSource = new kendo.data.DataSource({
                                     data: data['result'],
                                     batch: true,
@@ -315,7 +233,7 @@
                                 columnMenu: {
                                     filterable: false
                                 },
-                                height: 600,
+                                height: 260,
                                 editable: "incell",
                                 // pageable: true,
                                 pageable: {
@@ -329,19 +247,8 @@
                                 // groupable: true,
                                 filterable: true,
                                 dataBound: onDataBound,
-                                toolbar: ["excel", "search"],
-                                columns: [
-                                    // {
-                                    //     selectable: true,
-                                    //     width: 75,
-                                    //     attributes: {
-                                    //         "class": "checkbox-align",
-                                    //     },
-                                    //     headerAttributes: {
-                                    //         "class": "checkbox-align",
-                                    //     }
-                                    // },
-                                    {
+                                // toolbar: ["excel", "search"],
+                                columns: [{
                                         field: "salesrep_id",
                                         title: "Sales Rep",
                                         width: 30
@@ -354,7 +261,7 @@
                                     {
                                         field: "run_code",
                                         title: "Run Code",
-                                        width: 130
+                                        width: 95
                                     },
                                     {
                                         field: "comm_date",
