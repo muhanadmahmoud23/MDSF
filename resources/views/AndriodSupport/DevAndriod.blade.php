@@ -19,14 +19,14 @@
                     <label for="posCode" class="form-label">POS Code</labeL>
                     <input class="form-control" min="0" type="number" name="posCode" id="posCode">
                 </div>
-                {{-- <div class="col-md-3 col-12">
-                    <select id="select" multiple name="native-select" placeholder="Native Select" data-search="false"
+                <div class="col-md-3 col-12">
+                    <select id="example-select" multiple name="native-select" placeholder="Native Select" data-search="false"
                         data-silent-initial-value-set="true">
                         <option value="1">one</option>
                         <option value="2">tow</option>
                         <option value="3">three</option>
                     </select>
-                </div> --}}
+                </div>
             </div>
             <div class="row">
                 <div class=" col-md-3 col-12 mb-3 ">
