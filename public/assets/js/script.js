@@ -576,6 +576,15 @@ $(document).ready(function(){
     }else{
         $(".nav11").removeClass("close11");
     }
+
+    VirtualSelect.init({
+        ele: '#example-select',
+        options: myOptions,
+        search: true,
+        searchGroup: false, // Include group title for searching
+        searchByStartsWith: false, // Search options by startsWith() method
+      });
+    
 });
 
 // Query-----
@@ -586,8 +595,6 @@ $(window).on("load resize ", function() {
   //kindo select 
 
 
-  VirtualSelect.init({ 
-    ele: 'select' 
-  });
+
 
  
