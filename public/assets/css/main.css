@@ -11,7 +11,9 @@
 
 :root {
   --GREEN: #27ae60;
-  --GREEN2: #2ecc71;
+  /* #076461;*/
+  --GREEN2: #05c46b;
+  /* #0A837F; */
   --white: #fff;
   --grey: #f5f5f5;
   --black: #222;
@@ -19,15 +21,21 @@
   --body: #ffffff;
 }
 
+.rotate {
+  rotate: 180deg;
+}
+
 .btn-success {
   background-color: var(--GREEN2) !important;
+  border: none !important;
+  font-weight: bolder !important;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: var(--black2) !important;
+  background-color: var(--body) !important;
 }
 
 .nav11 {
@@ -320,6 +328,18 @@ body {
   border-radius: 50%;
   border: solid 2px var(--GREEN);
   line-height: .8 !important;
+  transition: all 0.5s ease-in-out;
+  animation: ro7wt3ala 0.5s linear 2s infinite alternate;
+}
+
+@keyframes ro7wt3ala {
+  0% {
+    right: -12px;
+  }
+
+  100% {
+    right: -17px;
+  }
 }
 
 .body-main {
@@ -328,9 +348,23 @@ body {
   color: var(--grey);
 }
 
+
+
 .btn-outline-success {
   border: 1px solid var(--GREEN) !important;
   transition: all 0.3s linear;
+  animation: ro7wt3ala2 0.5s linear 2s infinite alternate;
+}
+
+
+.btn-outline-success:focus,
+.btn-success:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+.btn-success:hover {
+  background-color: var(--GREEN) !important;
 }
 
 .btn-outline-success:hover {
