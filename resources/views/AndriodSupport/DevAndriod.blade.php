@@ -13,8 +13,12 @@
             <div class="row mb-3">
                 <div class="col-md-3 col-12">
                     <label for="Region" class="form-label">Region</labeL>
-                    <input class="form-control" min="0" type="number" name="Region" id="Region"
-                        placeholder="Enter number between  1 to 7">
+                    <select class="form-select form-select-lg" aria-label="Default select example" id="Region">
+                        <option value="0" selected disable>Select Region</option>
+                        @foreach ($regions as $region)
+                        <option value="{{$region->branch_code}}">{{$region->branch_name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-3 col-12">
                     <label for="salesrep_id" class="form-label">SalesRep Id</labeL>
@@ -33,12 +37,9 @@
                 </div>
                 <div class="col-md-3 col-12">
                     <select class="form-select form-select-lg" aria-label="Default select example" id="tablename">
-                        {{-- @foreach ($tablenames as $tablename)
-                        <option value="{{$tablename->id}}">{{$tablename->name}}</option>
-                        @endforeach --}}
-                        <option value="amar eldeen">product loading</option>
-                        <option value="adass">adasd</option>
-                        <option value="AnteshWeAgry">asdasd</option>
+                        @foreach ($tablenames as $tablename)
+                        <option value="{{$tablename->sfa_tablename}}">{{$tablename->sfa_tablename}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 col-12">
@@ -217,16 +218,7 @@
             } else if (e == 'set PAY_FORCE = 0') {
                 var tabName = "FIXED_INCENTIVE_DETAILS"
                 var runCode = e
-            } else if (e == 'target') {
-                var tabName = "TARGET"
-                var runCode = null
-            } else if (e == 'INCENTIVE_GRAD_DEATILS') {
-                var tabName = e
-                var runCode = null
-            } else if (e == 'FIXED_INCENTIVE_DETAILS') {
-                var tabName = e
-                var runCode = null
-            } else if (e == 'INCENTIVE_MIX') {
+            }  else if (e == 'INCENTIVE_MIX' || e == 'FIXED_INCENTIVE_DETAILS' || e == 'INCENTIVE_GRAD_DEATILS' || e == 'target')  {
                 var tabName = e
                 var runCode = null
             } else if (e == 'فتح عدد البيع') {
@@ -254,7 +246,7 @@
                     posCode: posCode,
                     Region: Region,
                     tablename: tablename,
-                    runCodeQuery: runCodeQuery
+                    runCodeQuery: runCodeQuery,
                 },
                 beforeSend: function() {
                     $('body').css('cursor', 'wait');
@@ -276,7 +268,14 @@
                             title: 'Oops...',
                             text: 'يرجى ادخال رقم العميل!',
                         });
-                    } else {
+                    } else if(data['message'] == "region message success"){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data['result'],
+                        });
+                    }
+                    else {
                         $(document).ready(function() {
                             var crudServiceBaseUrl = "http://localhost:8000",
                                 dataSource = new kendo.data.DataSource({
