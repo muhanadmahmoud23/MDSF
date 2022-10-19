@@ -567,8 +567,9 @@ for (let i = 0; i < arrow.length; i++) {
 //------------jQuery
 $(document).ready(function(){
 
-    $(".fa-chevron-right").click(function() {
+    $(".fa-chevron-left").click(function() {
         $(".nav11").toggleClass("close11");
+        $(".fa-chevron-left").toggleClass("rotate")
     });
 
     if ($(window).width() <=700) {

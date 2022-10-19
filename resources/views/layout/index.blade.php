@@ -4,7 +4,7 @@
 <body>
     @include('layout.sidebar')
     @include('layout.topbar')
-    {{-- @yield('content') --}}
+    @yield('content')
     @include('layout.footer')
 </body>
 @include('layout.js')

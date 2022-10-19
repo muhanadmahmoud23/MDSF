@@ -16,7 +16,7 @@
                     <select class="form-select form-select-lg" aria-label="Default select example" id="Region">
                         <option value="0" selected disable>Select Region</option>
                         @foreach ($regions as $region)
-                        <option value="{{$region->branch_code}}">{{$region->branch_name}}</option>
+                            <option value="{{ $region->branch_code }}">{{ $region->branch_name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -35,14 +35,14 @@
                     <input type="text" class="form-control" name="credit_limit" id="credit_limit"
                         placeholder="Enter like = 50000">
                 </div>
-                <div class="col-md-3 col-12">
+                <div class="col-md-3 col-12 mb-3">
                     <select class="form-select form-select-lg" aria-label="Default select example" id="tablename">
                         @foreach ($tablenames as $tablename)
-                        <option value="{{$tablename->sfa_tablename}}">{{$tablename->sfa_tablename}}</option>
+                            <option value="{{ $tablename->sfa_tablename }}">{{ $tablename->sfa_tablename }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-6 col-12">
+                <div class="col-md-6 col-12 mb-3">
                     <input type="text" class="form-control" name="runCodeQuery" id="runCodeQuery"
                         placeholder="(Run Code) like= set param_val=0 where oaram_id=0">
                 </div>
@@ -66,18 +66,16 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 16')">فتح الزيارات الخارجية بدون انهاء
-                        خط السير </button>
+                        onClick="sendParamter('set param_val = 0 where param_id = 16')">فتح الزيارات الخارجية</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 999 where param_id = 10')">زيادة عدد الزيارات
+                        onClick="sendParamter('set param_val = 999 where param_id = 10')">زيادة الزيارات
                         الخارجية</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 13')">الغاء باقى عملاء خط
-                        السير</button>
+                        onClick="sendParamter('set param_val = 0 where param_id = 13')">عودة</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
@@ -85,22 +83,12 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 22')">فتح الغاء فاتورة بدون حافز
-                    </button>
-                </div>
-                <div class=" col-md-3 col-12 mb-3">
-                    <button class="btn btn-success w-100 " id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 1 where param_id = 22')">اغلاق الغاء فاتورة بدون حافز
+                        onClick="sendParamter('set param_val = 0 where param_id = 22')"> الغاء فاتورة بدون حافز
                     </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 18')">فتح الغاء فاتورة بحافز </button>
-                </div>
-                <div class=" col-md-3 col-12 mb-3">
-                    <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 18')">اغلاق الغاء فاتورة بحافز
-                    </button>
+                        onClick="sendParamter('set param_val = 0 where param_id = 18')"> الغاء فاتورة بحافز </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
@@ -113,11 +101,11 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('INCENTIVE_GRAD_DEATILS')">ارسال INCENTIVE_GRAD_DEATILS</button>
+                        onClick="sendParamter('INCENTIVE_GRAD_DEATILS')">INCENTIVE_GRAD_DEATILS</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('FIXED_INCENTIVE_DETAILS')">ارسال حوافز ثابتة (FIX)</button>
+                        onClick="sendParamter('FIXED_INCENTIVE_DETAILS')">(FIX)</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
@@ -126,21 +114,20 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 1 where param_id = 25')">فتح أضافة بيع المندوب
-                        تجزئة</button>
+                        onClick="sendParamter('set param_val = 1 where param_id = 25')">فتح أضافة بيع
+                    </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 15')">فتح Near (N)</button>
+                        onClick="sendParamter('set param_val = 0 where param_id = 15')"> Near (N)</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 1 where param_id = 33')">فتح GPS</button>
+                        onClick="sendParamter('set param_val = 1 where param_id = 33')">open GPS</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 1 where param_id = 41')">فتح تعديل المخزون لمناديب العير
-                        مباشر</button>
+                        onClick="sendParamter('set param_val = 1 where param_id = 41')">فتح التحميل للغير مباشر</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
@@ -149,10 +136,6 @@
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('تفعيل الحد الأئتمانى')">تفعيل الحد الأئتمانى</button>
-                </div>
-                <div class="col-md-3 col-12 mb-3">
-                    <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('تفعيل الفترة الأئتمانية')">فتح تفعيل الفترة الأئتمانية</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
@@ -172,7 +155,7 @@
                 </div>
 
                 <br>
-                <div class=" col-md-6 mb-3">
+                <div class=" col-md-3 mb-3">
                     <button class="btn btn-outline-success w-100" id="submit" value="search"
                         onClick="sendParamter('search')">Search</button>
                 </div>
@@ -218,7 +201,8 @@
             } else if (e == 'set PAY_FORCE = 0') {
                 var tabName = "FIXED_INCENTIVE_DETAILS"
                 var runCode = e
-            }  else if (e == 'INCENTIVE_MIX' || e == 'FIXED_INCENTIVE_DETAILS' || e == 'INCENTIVE_GRAD_DEATILS' || e == 'target')  {
+            } else if (e == 'INCENTIVE_MIX' || e == 'FIXED_INCENTIVE_DETAILS' || e == 'INCENTIVE_GRAD_DEATILS' || e ==
+                'target') {
                 var tabName = e
                 var runCode = null
             } else if (e == 'فتح عدد البيع') {
@@ -268,14 +252,13 @@
                             title: 'Oops...',
                             text: 'يرجى ادخال رقم العميل!',
                         });
-                    } else if(data['message'] == "region message success"){
+                    } else if (data['message'] == "region message success") {
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',
                             text: data['result'],
                         });
-                    }
-                    else {
+                    } else {
                         $(document).ready(function() {
                             var crudServiceBaseUrl = "http://localhost:8000",
                                 dataSource = new kendo.data.DataSource({
