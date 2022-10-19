@@ -77,7 +77,7 @@ class AndriodSupportController extends Controller
             if ($Region !== '0') {
                 $SalesRepWhereRegion = DB::connection('oracle2')->table('VER_CTRL')->select('salesrep_id')->where('branch_code', $Region)->get();
                 foreach ($SalesRepWhereRegion as $salesrepid) {
-                    // helper_update_table($salesrepid, $tabName, $runCode);
+                    helper_update_table($salesrepid, $tabName, $runCode);
                     $result = " RunCode = $runCode tabName = $tabName تم ارسال ل branch code = $Region";
                     $message = "region message success";
                 }
