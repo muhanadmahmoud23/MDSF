@@ -411,3 +411,11 @@ input[type-number] {
   cursor: pointer;
   text-decoration: underline;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: var(--GREEN);
+  color: var(--body);
+  
+}

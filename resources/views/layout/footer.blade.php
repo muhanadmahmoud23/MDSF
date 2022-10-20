@@ -1,22 +1,16 @@
-    <!-- Footer -->
-    <div class="container-fluid">
+    {{-- <!-- Footer -->
+    <footer class="w-100 m-auto">
         <div class="row">
-
-            <footer>
-                <div class="footer">
-                    <div class="float-start">
-                        <p>2022 &copy; Atrana</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Crafted with
-                            <span class="text-danger">
-                                <i class="fa fa-heart"></i> by
-                                <a href="https://www.facebook.com/andreew.co.id/" class="author-footer">Andre Tri
-                                    Ramadana</a>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </footer>
+            <div class="float-start col-md-6 col-12">
+                <p>2022 &copy; MANSOUR</p>
+            </div>
+            <div class="float-end col-md-6 col-12">
+                <p>Crafted with
+                    <span class="text-danger">
+                        <i class="fa fa-heart"></i> by
+                        <a href="#" class="author-footer">Mansour Developers Team</a>
+                    </span>
+                </p>
+            </div>
         </div>
-    </div>
+    </footer> --}}
