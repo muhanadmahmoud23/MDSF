@@ -7,6 +7,7 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   list-style: none;
+
 }
 
 :root {
@@ -233,52 +234,6 @@ body {
   font-size: 14px !important;
 }
 
-/* .profile-details {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 24px;
-  background-color: var(--GREEN2);
-}
-
-.profile-details .profile-content {
-  display: flex;
-  align-items: center;
-}
-
-.profile-details img {
-  height: 52px;
-  width: 52px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin: 0 14px 0 12px;
-  background: var(--GREEN);
-  padding: 10px;
-}
-
-.profile-details .profile-name,
-.profile-details .job {
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.profile-details .job {
-  font-size: 12px;
-  color: var(--black2);
-}
-
-.profile-details i {
-  cursor: pointer;
-  height: 30px;
-  min-width: 78px;
-  line-height: 30px;
-  text-align: center;
-  color: var(--white);
-  font-size: 20px;
-  transition: all 0.3s ease;
-} */
-
 /* --- main --- */
 
 .main {
@@ -287,6 +242,9 @@ body {
   width: calc(100% - 280px);
   height: 100vh;
   background-color: var(--grey);
+  background-image: url(../images/mansour-logo-white.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   overflow-x: auto;
   transition: all 0.3s ease;
 }
@@ -383,4 +341,73 @@ input::-webkit-inner-spin-button {
 input[type-number] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+/* Dashboard styles */
+
+.dash-icon {
+  width: 100%;
+  background-color: var(--GREEN);
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  height: 10rem;
+  border: 1px solid var(--GREEN);
+  transition: all 0.3s linear;
+  overflow: hidden;
+}
+
+.dash-icon:hover {
+  background-color: var(--body);
+
+}
+
+.dash-icon:hover a i {
+  color: var(--GREEN);
+
+}
+
+.dash-icon:hover .link-name {
+  color: var(--body);
+  background-color: var(--GREEN);
+}
+
+.dash-icon a i {
+  width: 100%;
+  height: 100%;
+  font-size: 5rem;
+  color: var(--body);
+}
+
+.dash-icon .link-name {
+  background-color: var(--body);
+  color: var(--GREEN);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  height: 3rem;
+  line-height: 2;
+}
+
+.titledash,
+.card-title {
+  color: var(--black2);
+}
+
+.card-title {
+  padding: 1px;
+  border-bottom: 1px solid #ccc;
+}
+
+::selection {
+  color: var(--GREEN);
+  background: var(--grey);
+}
+
+.change-text {
+  cursor: pointer;
+  text-decoration: underline;
 }
