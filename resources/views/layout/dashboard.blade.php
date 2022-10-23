@@ -41,6 +41,10 @@
         </div>
         <div class="card mb-3">
             <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fa-solid fa-money-bill-trend-up"></i>
+                    <span class="titledash">Total DalySales Report</span>
+                </h5>
                 <div class="row">
                     <div class="col-md-6 col-12 mb-3">
 
