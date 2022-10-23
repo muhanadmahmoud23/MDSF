@@ -2,6 +2,8 @@
 //  * Atrana
 //  */
 
+
+
 // /*
 //  * this is the javascipt for the Atrana template.
 //  * if you want to change, please create a new javascript, 
@@ -598,4 +600,55 @@ $(window).on("load resize ", function() {
 
 
 
- 
+//  charts 
+
+
+
+
+
+let mychart =document.getElementById('myChart').getContext('2d');
+
+
+let massPopChart=new Chart(mychart,{
+    type:'bar',
+    data:{
+        labels:['ITG','FINE','BIC'],
+        datasets:[{
+            label:'اجمالي مبيعات اليوم',
+            data:[
+                617594,
+                317300,
+                517120
+            ],
+            backgroundColor:[
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)'
+            ],
+            borderWidth:1,
+            borderColor:'#777',
+            hoverBorderWidth:3,
+            hoverBorderColor:'#000',
+        },
+    ]
+    },
+    options:{
+      legend: {
+        display: false
+      }
+    }
+    });
+
+    // let fine1 = document.getElementById('fine');
+    // let itg2 = document.getElementById('itg');
+    // let bic3 = document.getElementById('bic');
+    // let total4 = document.getElementById('total');
+    // fine1= massPopChart.data.datasets.data[0];
+    
+$(document).ready(function () {
+    $('#fine').html(massPopChart.data.datasets[0].data[0]);
+    $('#itg').html(massPopChart.data.datasets[0].data[1]);
+    $('#bic').html(massPopChart.data.datasets[0].data[2]);
+    $('#total').html(massPopChart.data.datasets[0].data[0] + massPopChart.data.datasets[0].data[1] +massPopChart.data.datasets[0].data[2] )
+})
+    
