@@ -3,12 +3,17 @@
 use App\Http\Controllers\AndriodSupportController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\HomeContoller;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SalesTotalDailySalesReportController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+
+
+Auth::routes();
 //Home Controller
-Route::get('/', [HomeContoller::class, 'home'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //Excel Uploads
 Route::get('Excel', [ExcelController::class, 'Excel'])->name('Excel');
@@ -43,8 +48,5 @@ Route::get('POSSalesManTerr', [SalesTotalDailySalesReportController::class, 'POS
 Route::get('DevAndriodIndex', [AndriodSupportController::class, 'DevAndriodIndex'])->name('DevAndriodIndex');
 Route::get('DevAndriodInvoice', [AndriodSupportController::class, 'DevAndriodInvoice'])->name('DevAndriodInvoice');
 
-
-Route::get('test',function(){
-  $g = DB::table('JOURNEY')->first();
-  return $g;
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
