@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-3 col-12">
                     <label for="posCode" class="form-label">POS Code</labeL>
-                    <input class="form-control" min="0" type="number" name="posCode" id="posCode"
+                    <input class="form-control" type="text" name="posCode" id="posCode"
                         placeholder="Enter like = 111_1111">
                 </div>
                 <div class="col-md-3 col-12 mb-3">

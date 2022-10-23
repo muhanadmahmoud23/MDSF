@@ -21,6 +21,7 @@
         </div>
     </div>
     <div class="main-content container-fluid">
+
         <div class="header-top mb-3">
             <p class="SideBarTitle info">@yield('title')</p>
             <div class="card">
@@ -34,6 +35,37 @@
                                 السري
                             </p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-12 mb-3">
+
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="col-md-6 col-12 mb-3">
+
+                        <ul class="total-ivoices">
+                            <li>
+                                <span>FINE: </span>
+                                <span id="fine">0</span>
+                            </li>
+                            <li>
+                                <span>ITG: </span>
+                                <span id="itg">1000,000</span>
+                            </li>
+                            <li>
+                                <span>BIC: </span>
+                                <span id="bic">1000,000</span>
+                            </li>
+                            <li>
+                                <span>TOTAL: </span>
+                                <span id="total">3000,000</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -120,3 +152,4 @@
 
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
