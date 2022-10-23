@@ -59,7 +59,7 @@ if (!function_exists('get_data_pivot_table')) {
     if (!function_exists('sync_data_by_salesrep_id')) {
         function sync_data_by_salesrep_id($salesrep_id)
         {
-            $result =  DB::connection('oracle2')->table('SYNC_DATA_SALESREP_TEST')->select('*')->where('SALESREP_ID', $salesrep_id)->orderBy('COMM_DATE', 'DESC')->get();
+            $result =  DB::connection('oracle2')->table('SYNC_DATA_SALESREP')->select('*')->where('SALESREP_ID', $salesrep_id)->orderBy('COMM_DATE', 'DESC')->get();
             return $result;
         }
     }
