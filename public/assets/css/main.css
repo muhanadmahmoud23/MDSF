@@ -450,13 +450,48 @@ footer {
 .total-ivoices li #total {
   color: var(--GREEN)
 }
-.total-ivoices li{
+
+.total-ivoices li {
   display: flex;
-    padding: 10px;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    border-bottom: 1px solid;
+  padding: 10px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+}
+
+.title-total {
+  color: #27ae60;
+  position: relative;
+  font-weight: bold;
+}
+
+.title-total::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  background-color: var(--GREEN);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+}
+
+.title-total::after {
+  content: '';
+  position: absolute;
+  width: 40%;
+  background-color: var(--GREEN);
+  height: 5px;
+  bottom: -1px;
+  left: 27%;
+}
+
+.total-h {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 /* 114272 */
