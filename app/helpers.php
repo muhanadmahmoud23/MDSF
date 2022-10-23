@@ -51,16 +51,23 @@ if (!function_exists('get_data_pivot_table')) {
     if (!function_exists('helper_update_table')) {
         function helper_update_table($SALESREP_ID, $TAB_NAME, $RUN_CODE)
         {
-            DB::insert('insert into SYNC_DATA_SALESREP@SALES (SALESREP_ID, TAB_NAME, RUN_CODE) values (?, ?,?)', [
+            DB::insert('insert into SYNC_DATA_SALESREP_TEST@SALES (SALESREP_ID, TAB_NAME, RUN_CODE) values (?, ?,?)', [
                 $SALESREP_ID, $TAB_NAME, $RUN_CODE
             ]);
         }
     }
     if (!function_exists('sync_data_by_salesrep_id')) {
-    function sync_data_by_salesrep_id($salesrep_id){
-       $result =  DB::connection('oracle2')->table('SYNC_DATA_SALESREP')->select('*')->where('SALESREP_ID',$salesrep_id)->orderBy('COMM_DATE','DESC')->get();
-       return $result;
+        function sync_data_by_salesrep_id($salesrep_id)
+        {
+            $result =  DB::connection('oracle2')->table('SYNC_DATA_SALESREP_TEST')->select('*')->where('SALESREP_ID', $salesrep_id)->orderBy('COMM_DATE', 'DESC')->get();
+            return $result;
+        }
     }
-
+    if (!function_exists('get_salesrep_from_sync_data_where_region')) {
+        function get_salesrep_from_sync_data_where_region($Region)
+        {
+            $salesreps = DB::connection('oracle2')->table('VER_CTRL')->select('salesrep_id')->where('branch_code', $Region)->get();
+            return $salesreps;
+        }
     }
 }

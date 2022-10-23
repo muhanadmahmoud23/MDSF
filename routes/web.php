@@ -2,14 +2,13 @@
 
 use App\Http\Controllers\AndriodSupportController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\HomeContoller;
 use App\Http\Controllers\SalesTotalDailySalesReportController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-//HomePage
-Route::get('/', function () {
-   return view('home');
-})->name('home');
+//Home Controller
+Route::get('/', [HomeContoller::class, 'home'])->name('home');
 
 //Excel Uploads
 Route::get('Excel', [ExcelController::class, 'Excel'])->name('Excel');
