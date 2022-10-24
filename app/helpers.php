@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 if (!function_exists('helper_get_quantity')) {
@@ -51,8 +52,8 @@ if (!function_exists('get_data_pivot_table')) {
     if (!function_exists('helper_update_table')) {
         function helper_update_table($SALESREP_ID, $TAB_NAME, $RUN_CODE)
         {
-            DB::insert('insert into SYNC_DATA_SALESREP@SALES (SALESREP_ID, TAB_NAME, RUN_CODE) values (?, ?,?)', [
-                $SALESREP_ID, $TAB_NAME, $RUN_CODE
+            DB::insert('insert into SYNC_DATA_SALESREP@SALES (SALESREP_ID, TAB_NAME, RUN_CODE, USER_NAMe) values (?, ?,?,?)', [
+                $SALESREP_ID, $TAB_NAME, $RUN_CODE, Auth::user()->name
             ]);
         }
     }
