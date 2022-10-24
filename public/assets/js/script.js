@@ -632,11 +632,7 @@ let massPopChart=new Chart(mychart,{
         },
     ]
     },
-    options:{
-      legend: {
-        display: false
-      }
-    }
+    options: { plugins: { legend: { display: false },  responsive: true,} }
     });
 
     // let fine1 = document.getElementById('fine');

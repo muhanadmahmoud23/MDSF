@@ -46,6 +46,12 @@
                     <span class="titledash">Total DalySales Report</span>
                 </h5>
                 <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="total-h">
+
+                            <h3 class="text-center p-3 title-total">Total DalySales Report</h3>
+                        </div>
+                    </div>
                     <div class="col-md-6 col-12 mb-3">
 
                         <canvas id="myChart"></canvas>
