@@ -500,8 +500,4 @@ footer {
   z-index: 9999;
   background-color: var(--GREEN);
 }
-
-/* .logout span,
-.logout i {
-  color: red !important;
-} */
+/* login */
