@@ -167,5 +167,17 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="parent logout">
+                <div class="icon-link">
+                    <a href="{{ route('logout') }}">
+                        <i class="fa fa-right-from-bracket"></i>
+                        <span class="link-name">LOGOUT</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+
+                </ul>
+            </li>
         </ul>
     </div>

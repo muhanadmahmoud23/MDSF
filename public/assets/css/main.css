@@ -494,4 +494,14 @@ footer {
 
 }
 
-/* 114272 */
+.logout {
+  position: fixed !important;
+  bottom: 0;
+  z-index: 9999;
+  background-color: var(--GREEN);
+}
+
+/* .logout span,
+.logout i {
+  color: red !important;
+} */
