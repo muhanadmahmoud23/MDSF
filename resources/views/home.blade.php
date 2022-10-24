@@ -1,9 +1,7 @@
-@can('edit articles')
-@extends('layout.index')
-@section('title','DashBoard')
-@section('content')
+@role('admin')
+    @extends('layout.index')
+    @section('title', 'DashBoard')
+    @section('content')
     @include('layout.dashboard')
-@endsection
-
-
-@endcan
+    @endsection
+@endrole
