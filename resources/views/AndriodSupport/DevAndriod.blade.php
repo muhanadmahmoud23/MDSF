@@ -60,22 +60,22 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3 ">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 7')">
+                        onClick="sendParamter('فتح احداثيات جميع العملاء')">
                         فتح احداثيات جميع العملاء
                     </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 16')">فتح الزيارات الخارجية</button>
+                        onClick="sendParamter('فتح الزيارات الخارجية')">فتح الزيارات الخارجية</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 999 where param_id = 10')">زيادة الزيارات
+                        onClick="sendParamter('زيادة الزيارات الخارجية')">زيادة الزيارات
                         الخارجية</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 13')">عودة</button>
+                        onClick="sendParamter('عودة')">عودة</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
@@ -83,16 +83,16 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 22')"> الغاء فاتورة بدون حافز
+                        onClick="sendParamter('الغاء فاتورة بدون حافز')"> الغاء فاتورة بدون حافز
                     </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 18')"> الغاء فاتورة بحافز </button>
+                        onClick="sendParamter('الغاء فاتورة بحافز')"> الغاء فاتورة بحافز </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
-                        onClick="sendParamter('set PAY_FORCE = 0')">ايقاف حافز ثابت</button>
+                        onClick="sendParamter('FIXED_INCENTIVE_DETAILS')">ايقاف حافز ثابت</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
@@ -105,7 +105,7 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('FIXED_INCENTIVE_DETAILS')">(FIX)</button>
+                        onClick="sendParamter('FIX')">(FIX)</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
@@ -114,20 +114,20 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 1 where param_id = 25')">فتح أضافة بيع
+                        onClick="sendParamter('فتح أضافة بيع')">فتح أضافة بيع
                     </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
-                    <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 0 where param_id = 15')"> Near (N)</button>
+                    <button class="btn btn-success w-100" id="runCode" name="runCode" onClick="sendParamter('Near')">
+                        Near (N)</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 1 where param_id = 33')">open GPS</button>
+                        onClick="sendParamter('GPS')">open GPS</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 1 where param_id = 41')">فتح التحميل للغير مباشر</button>
+                        onClick="sendParamter('فتح التحميل للغير مباشر')">فتح التحميل للغير مباشر</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
@@ -147,7 +147,8 @@
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('set param_val = 999 where param_id = 64')">زيادة عدد الزيارات</button>
+                        onClick="sendParamter('زيادة عدد الزيارات')">زيادة عدد
+                        الزيارات</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
@@ -169,50 +170,12 @@
 
     </body>
     <script>
-        function sendParamter(e) {
+        function sendParamter(requestData) {
+
+            var requestDatae = requestData;
             var salesRepId = document.getElementById('salesrep_id').value;
-            var creditLimit = document.getElementById('credit_limit').value;
             var Region = document.getElementById('Region').value;
-            var tablename = document.getElementById('tablename').value;
-            var runCodeQuery = document.getElementById('runCodeQuery').value;
-
-
-
-
-            if (e == 'فتح احداثيات' || e == 'تفعيل الحد الأئتمانى' || e == 'تفعيل الفترة الأئتمانية' || e ==
-                "زيادة قيمة الحد الأئتمانى") {
-                var posCode = document.getElementById('posCode').value;
-                if (posCode) {
-                    var tabName = 'POS';
-                    if (e == 'فتح احداثيات') {
-                        var runCode = ` set LONGITUDE = 0, LATITUDE = 0 where POS_CODE = "` + posCode + `"`;
-                    } else if (e == 'تفعيل الحد الأئتمانى') {
-                        var runCode = `set ACTIVE_CREDIT_LIMIT = 0 where POS_CODE = "` + posCode + `"`;
-                    } else if (e == 'تفعيل الفترة الأئتمانية') {
-                        var runCode = `set Active_credit_period = 0 where POS_CODE = "` + posCode + `"`;
-                    } else if (e == 'زيادة قيمة الحد الأئتمانى') {
-                        var runCode = `set pos_creditlimit =` + creditLimit + ` where POS_CODE = "` + posCode + `"`;
-                    }
-                }
-            } else if (e == 'تحديث محلات') {
-                var runCode = 'تحديث محلات';
-            } else if (e == 'مشاكل الطباعة') {
-                var runCode = 'مشاكل الطباعة';
-            } else if (e == 'set PAY_FORCE = 0') {
-                var tabName = "FIXED_INCENTIVE_DETAILS"
-                var runCode = e
-            } else if (e == 'INCENTIVE_MIX' || e == 'FIXED_INCENTIVE_DETAILS' || e == 'INCENTIVE_GRAD_DEATILS' || e ==
-                'target') {
-                var tabName = e
-                var runCode = null
-            } else if (e == 'فتح عدد البيع') {
-                var runCode = 'فتح عدد البيع';
-            } else if (e == 'Query') {
-                var runCode = 'Query';
-            } else {
-                var tabName = 'PARAMETERS';
-                var runCode = e;
-            }
+            var posCode = document.getElementById('posCode').value;
 
             $.ajaxSetup({
                 headers: {
@@ -224,13 +187,10 @@
                 url: '{{ route('DevAndriodInvoice') }}',
                 dataType: 'json',
                 data: {
+                    requestData: requestData,
                     salesRepId: salesRepId,
-                    runCode: runCode,
-                    tabName: tabName,
                     posCode: posCode,
                     Region: Region,
-                    tablename: tablename,
-                    runCodeQuery: runCodeQuery,
                 },
                 beforeSend: function() {
                     $('body').css('cursor', 'wait');
@@ -240,25 +200,19 @@
                     $('body').css('cursor', 'auto');
                     $("body").removeClass("loading");
 
-                    if (data['result'] == "Missing Paramters") {
+                    if (data['status'] == 'error') {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Missing Paramter!',
+                            text: data['message'],
                         })
-                    } else if (data['result'] == "Missing POS") {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'يرجى ادخال رقم العميل!',
-                        });
-                    } else if (data['message'] == "region message success") {
+                    } else{
                         Swal.fire({
                             icon: 'success',
-                            title: 'Success',
-                            text: data['result'],
-                        });
-                    } else {
+                            title: 'عملية ناجحة',
+                            text: data['message'],
+                        })
+
                         $(document).ready(function() {
                             var crudServiceBaseUrl = "http://localhost:8000",
                                 dataSource = new kendo.data.DataSource({
@@ -270,13 +224,6 @@
                                         field: "TotalSales",
                                         aggregate: "sum"
                                     }],
-                                    // group: {
-                                    //     field: "sub__cat_id",
-                                    // },
-                                    // sort: {
-                                    //     field: "main__cat_id",
-                                    //     dir: "desc"
-                                    // },
                                     schema: {
                                         model: {
                                             id: "SALESREP_ID",
@@ -297,7 +244,6 @@
                                 },
                                 height: 260,
                                 editable: "incell",
-                                // pageable: true,
                                 pageable: {
                                     refresh: true,
                                     pageSizes: true,
@@ -306,22 +252,9 @@
                                 navigatable: true,
                                 resizable: true,
                                 reorderable: true,
-                                // groupable: true,
                                 filterable: true,
                                 dataBound: onDataBound,
-                                // toolbar: ["excel", "search"],
-                                columns: [
-                                    // {
-                                    //     selectable: true,
-                                    //     width: 75,
-                                    //     attributes: {
-                                    //         "class": "checkbox-align",
-                                    //     },
-                                    //     headerAttributes: {
-                                    //         "class": "checkbox-align",
-                                    //     }
-                                    // },
-                                    {
+                                columns: [{
                                         field: "salesrep_id",
                                         title: "Sales Rep",
                                         width: 30
