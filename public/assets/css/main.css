@@ -517,4 +517,25 @@ footer {
   outline: none !important;
 }
 
+.form-switch .form-check-input {
+  padding: 6px 25px 6px 13px;
+  box-sizing: border-box;
+}
+
+.form-switch .form-check-input:checked[type=checkbox]:after {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  background-color: #06c !important;
+  margin-top: -9px !important;
+  margin-left: 1.0625rem !important;
+}
+
+.form-switch .form-check-input:after {
+  margin-left: -14px !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  background-color: #db4240 !important;
+  margin-top: -9px !important;
+}
+
 /* login */
