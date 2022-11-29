@@ -11,7 +11,7 @@
 //  */
 
 
-//preloader
+// preloader
 $(document).ready(function () {
 	setInterval(function () {
 		$(".loader").hide();
@@ -30,10 +30,7 @@ $(document).ready(function () {
 
     // 
 
-    $(".fa-chevron-left").click(function() {
-        $(".nav11").toggleClass("close11");
-        $(".fa-chevron-left").toggleClass("rotate")
-    });
+   
 
     if ($(window).width() <=700) {
         $(".nav11").addClass("close11");
@@ -55,6 +52,12 @@ $(document).ready(function () {
         $('.tbl-header').css({'padding-right':scrollWidth});
       }).resize();
 });
+
+$(".fa-chevron-left").click(function() {
+    $(".nav11").toggleClass("close11");
+    $(".fa-chevron-left").toggleClass("rotate")
+});
+
 // ======================
 let arrow  = document.querySelectorAll(".arrow");
 let nav = document.querySelector(".nav11");

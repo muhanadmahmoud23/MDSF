@@ -506,4 +506,15 @@ footer {
   background-color: var(--GREEN);
 }
 
+.posCodeLable {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0 !important;
+}
+
+.form-check-input {
+  outline: none !important;
+}
+
 /* login */
