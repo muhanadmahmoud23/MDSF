@@ -6,23 +6,24 @@
 
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
-:root {
-    --GREEN: #3ce382;
-    --grey: #f5f5f5b9;
-}
 
-#app {
-    height: 100vh;
-    overflow: hidden;
-    background-color: var(--GREEN);
-    background-image: url(../../public/assets/images/mansor-logo-green.svg);
-    background-position: center;
-    background-size: 36rem;
-    background-repeat: no-repeat;
-    .py-4 {
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
-}
+				:root {
+				--GREEN: #3ce382;
+				--grey: #f5f5f5b9;
+			}
+
+			#app {
+				height: 100vh;
+				overflow: hidden;
+				background-color: var(--GREEN);
+				background-image: url(../../public/assets/images/mansor-logo-green.svg);
+				background-position: center;
+				background-size: 36rem;
+				background-repeat: no-repeat;
+				.py-4 {
+					height: 100%;
+					align-items: center;
+					justify-content: center;
+					display: flex;
+				}
+			}

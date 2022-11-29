@@ -28,6 +28,7 @@
     <script src="{{ asset('assets/hand/jquery.min.js') }}"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 
     <!----======== CSS ======== -->
     {{-- <link rel="stylesheet" href="assets/css/main.css"> --}}
@@ -49,10 +50,8 @@
     <link href="{{ asset('assets/kendou/styles/kendo.rtl.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/kendou/styles/kendo.default.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/kendou/styles/kendo.default.mobile.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('assets/kendou/js/jquery.min.js') }}">
-        < /> <
-        script src = "{{ asset('assets/kendou/js/jszip.min.js') }}" >
-    </script>
+    <script src="{{ asset('assets/kendou/js/jquery.min.js') }}"></script>
+
     <script src="{{ asset('assets/kendou//js/kendo.all.min.js') }}"></script>
     <script src="{{ asset('assets/kendou/content/shared/js/console.js') }}"></script>
 

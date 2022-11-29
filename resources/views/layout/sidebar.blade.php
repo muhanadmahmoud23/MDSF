@@ -110,6 +110,9 @@
                     <i class="fas fa-chevron-down arrow"></i>
                 </div>
                 <ul class="sub-menu">
+				    <li>
+                        <a href="{{route('target-import-view')}}">Insert Target By SalesRep</a>
+                    </li>
                     <li>
                         <a href="#">Target Assigning</a>
                     </li>
