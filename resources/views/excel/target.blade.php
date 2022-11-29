@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html>
 
@@ -19,6 +20,31 @@
         <div class="card bg-light mt-3">
             <div class="card-header">
                 AAAAAALLLLLLLLLLLLOOOOOOOOOOOOOOOO
+=======
+@extends('layout.index')
+@section('title', 'DashBoard')
+@section('content')
+
+
+<div class="main">
+@if (\Session::has('success'))
+<script>
+$(function(){
+   SwalfireSuccessMessage();
+});
+		function SwalfireSuccessMessage(){
+        swal.fire({
+            title: "Target By SalesRep",
+            text: "{!! \Session::get('success') !!}",
+            type: "success"
+        });
+		}
+</script>
+@endif
+        <div class="card bg-light mt-3">
+            <div class="card-header">
+                Insert Target By SalesRep Excel
+>>>>>>> Stashed changes
             </div>
             <div class="card-body">
                 <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
@@ -26,6 +52,7 @@
                     <input type="file" name="file" class="form-control">
                     <br>
                     <button class="btn btn-success">
+<<<<<<< Updated upstream
                         Import User Data
                     </button>
                 </form>
@@ -36,3 +63,15 @@
 </body>
 
 </html>
+=======
+                        Import Target Excel
+                    </button>
+			
+                </form>
+            </div>
+        </div>
+
+	</div>
+@endsection
+
+>>>>>>> Stashed changes

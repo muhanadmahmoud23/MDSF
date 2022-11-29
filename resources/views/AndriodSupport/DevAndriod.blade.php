@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-6 col-12 mb-3">
                     <input type="text" class="form-control" name="runCodeQuery" id="runCodeQuery"
-                        placeholder="(Run Code) like= set param_val=0 where oaram_id=0">
+                        placeholder="(Run Code) like= set param_val=0 where oaram_id=0" value="set param_val = 0 where param_id = 0">
                 </div>
                 <div class="col-md-3 col-12">
                     <button class="btn btn-outline-success w-100" id="Query" name="Query"
@@ -272,12 +272,12 @@
                                         width: 20
                                     },
                                     {
-                                        field: "hh_upp_date",
-                                        title: "HH UPP DATE",
+                                        field: "hh_upd_date",
+                                        title: "HH UPD DATE",
                                         width: 100
                                     },
                                     {
-                                        field: "user_iud",
+                                        field: "user_id",
                                         title: "User ID",
                                         width: 20
                                     },

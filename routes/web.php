@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AndriodSupportController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\TargetController;
 use App\Http\Controllers\HomeContoller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SalesTotalDailySalesReportController;
@@ -16,6 +17,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+<<<<<<< Updated upstream
 //Excel Uploads
 Route::group(['middleware' => 'auth'], function () {
     Route::get('Excel', [ExcelController::class, 'Excel'])->name('Excel');
@@ -54,3 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/import', [ExcelController::class, 'import'])->name('import');
     Route::get('/export-users', [ExcelController::class, 'exportUsers'])->name('export');
 });
+=======
+    //Target
+Route::get('/target-import', [TargetController::class, 'importView'])->name('target-import-view');
+Route::post('/import', [TargetController::class, 'import'])->name('import');
+>>>>>>> Stashed changes

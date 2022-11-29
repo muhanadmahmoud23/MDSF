@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-
 class ExcelController extends Controller
 {
     public function Excel()
@@ -112,6 +111,48 @@ class ExcelController extends Controller
         //Get Target Types
 
 
+        return redirect()->back()->with('success', 'LOLLLLLLLYYYY');;
+    }
+	
+    public function importView(Request $request)
+    {
+        return view('excel.target');
+    }
+
+    public function import(Request $request)
+    {
+        $excelData = Excel::toArray([], $request->file('file')->store('files'))[0]; // store excell in array
+        $excelColumnName = $excelData[0]; //get excel cloumn name 
+        $excelColumnCount = count($excelData);
+        $excelrowCount = count($excelColumnName);
+        $tableName = 'target_test_22';
+
+        //Trauncate Table
+        $visitors = DB::table($tableName);
+        $visitors->truncate();
+
+        // check if cloumn exist -- if(no) => add
+        foreach ($excelColumnName as $column) {
+            $isColExist = Schema::hasColumn($tableName, $column);
+            if (!$isColExist) {
+                $newColumnName = $column;
+                Schema::table($tableName, function (Blueprint $table) use ($newColumnType, $newColumnName) {
+                    $table->decimal($newColumnName,12,3)->nullable();
+                });
+            }
+        }
+
+        //add data to table citites
+        for ($i = 1; $i < $excelColumnCount; $i++) {
+            for ($x = 0; $x < $excelrowCount; $x++) {
+                $answers[$excelColumnName[$x]] = $excelData[$i][$x];
+            }
+            DB::table($tableName)->insert($answers);
+        }
+		
+		//Get Target Type
+		
+		
         return redirect()->back()->with('success', 'LOLLLLLLLYYYY');;
     }
 }
