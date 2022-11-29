@@ -65,15 +65,15 @@
                             </li>
                             <li>
                                 <span>ITG: </span>
-                                <span id="itg">1000,000</span>
+                                <span id="itg">0</span>
                             </li>
                             <li>
                                 <span>BIC: </span>
-                                <span id="bic">1000,000</span>
+                                <span id="bic">0</span>
                             </li>
                             <li>
                                 <span>TOTAL: </span>
-                                <span id="total">3000,000</span>
+                                <span id="total">0</span>
                             </li>
                         </ul>
                     </div>

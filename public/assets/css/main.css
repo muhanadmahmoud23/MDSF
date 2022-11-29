@@ -343,6 +343,11 @@ input[type-number] {
   appearance: textfield;
 }
 
+.form-control {
+  color: #dc0303 !important;
+  font-weight: bolder !important;
+}
+
 /* Dashboard styles */
 
 .dash-icon {
@@ -500,4 +505,5 @@ footer {
   z-index: 9999;
   background-color: var(--GREEN);
 }
+
 /* login */
