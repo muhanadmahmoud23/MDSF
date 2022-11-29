@@ -77,11 +77,14 @@ class ExcelController extends Controller
 
     public function import(Request $request)
     {
+
+        dd('get_taget_type');
+
         $excelData = Excel::toArray([], $request->file('file')->store('files'))[0]; // store excell in array
         $excelColumnName = $excelData[0]; //get excel cloumn name 
         $excelColumnCount = count($excelData);
         $excelrowCount = count($excelColumnName);
-        $tableName = 'target_test_22';
+        $tableName = 'cities';
 
         //Trauncate Table
         $visitors = DB::table($tableName);
@@ -91,15 +94,12 @@ class ExcelController extends Controller
         foreach ($excelColumnName as $column) {
             $isColExist = Schema::hasColumn($tableName, $column);
             if (!$isColExist) {
-                $newColumnType = 'number';
                 $newColumnName = $column;
-                Schema::table($tableName, function (Blueprint $table) use ($newColumnType, $newColumnName) {
-                    $table->$newColumnType($newColumnName);
+                Schema::table($tableName, function (Blueprint $table) use ($newColumnName) {
+                    $table->decimal($newColumnName, 12, 8);
                 });
             }
         }
-
-
 
         //add data to table citites
         for ($i = 1; $i < $excelColumnCount; $i++) {
@@ -108,6 +108,9 @@ class ExcelController extends Controller
             }
             DB::table($tableName)->insert($answers);
         }
+
+        //Get Target Types
+
 
         return redirect()->back()->with('success', 'LOLLLLLLLYYYY');;
     }

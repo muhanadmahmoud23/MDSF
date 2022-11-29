@@ -78,11 +78,12 @@ if (!function_exists('get_data_pivot_table')) {
             if ($salesRepId && $requestData == 'FIXED_INCENTIVE_DETAILS') {
                 helper_update_table($salesRepId, 'FIXED_INCENTIVE_DETAILS', 'set PAY_FORCE = 0');
                 $status = 'success';
-                $message = 'تم فتح الغاء فاتور بحافز';
+                $message = 'تم ايقاف حافز ثابت';
                 $result = sync_data_by_salesrep_id($salesRepId);
             } elseif ($salesRepId && $requestData == 'تحديث محلات') {
-                helper_update_table($salesRepId, 'INCENTIVE_GRAD_DETAILS', null);
                 helper_update_table($salesRepId, 'POS', null);
+                helper_update_table($salesRepId, 'INCENTIVE_GRAD_DETAILS', null);
+                helper_update_table($salesRepId, 'INC_MST', null);
                 helper_update_table($salesRepId, 'TARGET', null);
                 $status = 'success';
                 $message = 'تم ارسال العملاء بنجاح ';
@@ -163,15 +164,11 @@ if (!function_exists('get_data_pivot_table')) {
                 $status = 'success';
                 $message = 'تم فتح الاحداثيات لجميع العملاء';
                 $result = sync_data_by_salesrep_id($salesRepId);
-            } elseif ($salesRepId && $requestData == 'فتح الزيارات الخارجية') {
+            } elseif ($salesRepId && $requestData == 'الزيارات الخارجية') {
                 helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 0 where param_id = 16');
-                $status = 'success';
-                $message = 'تم فتح الزيارات الخارجية';
-                $result = sync_data_by_salesrep_id($salesRepId);
-            } elseif ($salesRepId && $requestData == 'زيادة الزيارات الخارجية') {
                 helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 999 where param_id = 10');
                 $status = 'success';
-                $message = 'تم زيادة عدد الزيارات الخارجية';
+                $message = 'تم فتح الزيارات الخارجية';
                 $result = sync_data_by_salesrep_id($salesRepId);
             } elseif ($salesRepId && $requestData == 'عودة') {
                 helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 0 where param_id = 13');
@@ -193,15 +190,11 @@ if (!function_exists('get_data_pivot_table')) {
                 $status = 'success';
                 $message = 'تم فتح أضافة البيع';
                 $result = sync_data_by_salesrep_id($salesRepId);
-            } elseif ($salesRepId && $requestData == 'Near') {
+            } elseif ($salesRepId && $requestData == 'GPS & Near') {
+                helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 1 where param_id = 33');
                 helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 0 where param_id = 15');
                 $status = 'success';
                 $message = 'Near Byتم فتح ال';
-                $result = sync_data_by_salesrep_id($salesRepId);
-            } elseif ($salesRepId && $requestData == 'GPS') {
-                helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 1 where param_id = 33');
-                $status = 'success';
-                $message = 'GPSتم فتح ال';
                 $result = sync_data_by_salesrep_id($salesRepId);
             } elseif ($salesRepId && $requestData == 'فتح التحميل للغير مباشر') {
                 helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 1 where param_id = 41');
@@ -226,7 +219,7 @@ if (!function_exists('get_data_pivot_table')) {
             }
 
             $data['status'] = $status;
-            $data['message'] =$message;
+            $data['message'] = $message;
             $data['result'] = $result;
 
             return $data;
@@ -239,7 +232,7 @@ if (!function_exists('get_data_pivot_table')) {
             if ($salesRepId && $posCode && $requestData == 'تفعيل الحد الأئتمانى') {
                 helper_update_table($salesRepId, 'POS', 'set ACTIVE_CREDIT_LIMIT = 0 where POS_CODE ="' . $posCode . '"');
                 $status = 'success';
-                $message = 'تم فتح الاحداثيات لجميع العملاء';
+                $message = 'تم فتح الاحداثيات   ';
                 $result = sync_data_by_salesrep_id($salesRepId);
             } elseif ($salesRepId && $posCode && $requestData == 'تفعيل الفترة الأئتمانية') {
                 helper_update_table($salesRepId, 'POS', 'set ACTIVE_CREDIT_PERIOD = 0 where POS_CODE ="' . $posCode . '"');

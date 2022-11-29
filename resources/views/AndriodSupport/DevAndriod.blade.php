@@ -66,12 +66,7 @@
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('فتح الزيارات الخارجية')">فتح الزيارات الخارجية</button>
-                </div>
-                <div class="col-md-3 col-12 mb-3">
-                    <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('زيادة الزيارات الخارجية')">زيادة الزيارات
-                        الخارجية</button>
+                        onClick="sendParamter('الزيارات الخارجية')">فتح الزيارات الخارجية</button>
                 </div>
                 <div class="col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
@@ -118,12 +113,8 @@
                     </button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
-                    <button class="btn btn-success w-100" id="runCode" name="runCode" onClick="sendParamter('Near')">
-                        Near (N)</button>
-                </div>
-                <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('GPS')">open GPS</button>
+                        onClick="sendParamter('GPS & Near')">GPS & Near</button>
                 </div>
                 <div class=" col-md-3 col-12 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
@@ -157,7 +148,7 @@
 
                 <br>
                 <div class=" col-md-3 mb-3">
-                    <button class="btn btn-outline-success w-100" id="submit" value="search"
+                    <button class="btn btn-outline-success w-100" id="submit" value="search" name="runCode"
                         onClick="sendParamter('search')">Search</button>
                 </div>
             </div>
@@ -176,7 +167,7 @@
             var salesRepId = document.getElementById('salesrep_id').value;
             var Region = document.getElementById('Region').value;
             var posCode = document.getElementById('posCode').value;
-
+            var creditLimit = document.getElementById('credit_limit').value;
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -191,6 +182,7 @@
                     salesRepId: salesRepId,
                     posCode: posCode,
                     Region: Region,
+                    creditLimit:creditLimit,
                 },
                 beforeSend: function() {
                     $('body').css('cursor', 'wait');
@@ -206,13 +198,13 @@
                             title: 'Oops...',
                             text: data['message'],
                         })
-                    } else{
+                    } else if(data['status'] == 'success' ){
                         Swal.fire({
                             icon: 'success',
                             title: 'عملية ناجحة',
                             text: data['message'],
                         })
-
+                        
                         $(document).ready(function() {
                             var crudServiceBaseUrl = "http://localhost:8000",
                                 dataSource = new kendo.data.DataSource({
@@ -257,7 +249,7 @@
                                 columns: [{
                                         field: "salesrep_id",
                                         title: "Sales Rep",
-                                        width: 30
+                                        width: 50
                                     },
                                     {
                                         field: "tab_name",
