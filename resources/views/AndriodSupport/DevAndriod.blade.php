@@ -4,7 +4,7 @@
 
 
 
-    <div class="main">
+    <div class="main divAndroidSuport">
         <div class="main-content container-fluid">
             <div class="header-top">
                 <p class="SideBarTitle info">@yield('title')</p>

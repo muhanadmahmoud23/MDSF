@@ -343,7 +343,7 @@ input[type-number] {
   appearance: textfield;
 }
 
-.form-control {
+.divAndroidSuport .form-control {
   color: #dc0303 !important;
   font-weight: bolder !important;
 }
@@ -540,6 +540,10 @@ footer {
 
 .flexSwitchCheckChed {
   margin-left: 1rem !important;
+}
+
+.form-check-input:after::before {
+  content: none !important;
 }
 
 /* login */
