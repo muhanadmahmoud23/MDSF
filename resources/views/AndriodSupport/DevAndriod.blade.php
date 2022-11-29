@@ -29,7 +29,7 @@
                     <label for="posCode" class="form-label posCodeLable">POS Code
                         <span class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" name="" id="flexSwitchCheckChed">
-                            <label for="flexSwitchCheckChed"> ALL</label>
+                            <label for="flexSwitchCheckChed" class="flexSwitchCheckChed"> ALL</label>
                         </span>
                     </labeL>
 

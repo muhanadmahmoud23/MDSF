@@ -526,7 +526,7 @@ footer {
   width: 1.5rem !important;
   height: 1.5rem !important;
   background-color: #06c !important;
-  margin-top: -9px !important;
+  margin-top: -12px !important;
   margin-left: 1.0625rem !important;
 }
 
@@ -535,7 +535,11 @@ footer {
   width: 1.5rem !important;
   height: 1.5rem !important;
   background-color: #db4240 !important;
-  margin-top: -9px !important;
+  margin-top: -12px !important;
+}
+
+.flexSwitchCheckChed {
+  margin-left: 1rem !important;
 }
 
 /* login */
