@@ -343,6 +343,11 @@ input[type-number] {
   appearance: textfield;
 }
 
+.divAndroidSuport .form-control {
+  color: #000000 !important;
+  font-weight: bolder !important;
+}
+
 /* Dashboard styles */
 
 .dash-icon {
@@ -500,4 +505,89 @@ footer {
   z-index: 9999;
   background-color: var(--GREEN);
 }
-/* login */
+
+.posCodeLable {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0 !important;
+}
+
+.form-check-input {
+  outline: none !important;
+}
+
+.form-switch .form-check-input {
+  padding: 6px 25px 6px 13px;
+  box-sizing: border-box;
+}
+
+.form-switch .form-check-input:checked[type=checkbox]:after {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  background-color: #06c !important;
+  margin-top: -12px !important;
+  margin-left: 1.0625rem !important;
+}
+
+.form-switch .form-check-input:after {
+  margin-left: -14px !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  background-color: #db4240 !important;
+  margin-top: -12px !important;
+}
+
+.flexSwitchCheckChed {
+  margin-left: 1rem !important;
+}
+
+.form-check-input:after::before {
+  content: none !important;
+}
+
+/* target */
+.file-target {
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  position: relative;
+  border: 2px dashed #9999;
+}
+
+.file-target::before {
+  content: '+';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #ffff;
+  font-size: 8.5rem;
+  color: #0000004f;
+  font-weight: 100;
+  text-align: center;
+}
+
+#fileuploadurl {
+  border: none;
+  padding-left: 1rem;
+  width: 250px;
+  background-color: transparent;
+  font-size: 1.5rem;
+  outline: none;
+  color: #db4240;
+
+}
+
+.fileandname {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+#fileuploadurl::placeholder {
+  color: var(--GREEN);
+  opacity: 1;
+}

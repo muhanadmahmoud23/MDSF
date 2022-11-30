@@ -4,7 +4,7 @@
 
 
 
-    <div class="main">
+    <div class="main divAndroidSuport">
         <div class="main-content container-fluid">
             <div class="header-top">
                 <p class="SideBarTitle info">@yield('title')</p>
@@ -26,7 +26,13 @@
                         placeholder="Enter sales Code..">
                 </div>
                 <div class="col-md-3 col-12">
-                    <label for="posCode" class="form-label">POS Code</labeL>
+                    <label for="posCode" class="form-label posCodeLable">POS Code
+                        <span class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="" id="flexSwitchCheckChed">
+                            <label for="flexSwitchCheckChed" class="flexSwitchCheckChed"> ALL</label>
+                        </span>
+                    </labeL>
+
                     <input class="form-control" type="text" name="posCode" id="posCode"
                         placeholder="Enter like = 111_1111">
                 </div>
@@ -44,7 +50,8 @@
                 </div>
                 <div class="col-md-6 col-12 mb-3">
                     <input type="text" class="form-control" name="runCodeQuery" id="runCodeQuery"
-                        placeholder="(Run Code) like= set param_val=0 where oaram_id=0" value="set param_val = 0 where param_id = 0">
+                        placeholder="(Run Code) like= set param_val=0 where oaram_id=0"
+                        value="set param_val = 0 where param_id = 0">
                 </div>
                 <div class="col-md-3 col-12">
                     <button class="btn btn-outline-success w-100" id="Query" name="Query"
@@ -53,95 +60,95 @@
                 </div>
             </div>
             <div class="row">
-                <div class=" col-md-3 col-12 mb-3 ">
+                <div class=" col-md-3 col-6 mb-3 ">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('فتح احداثيات')">فتح
                         احداثيات</button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3 ">
+                <div class=" col-md-3 col-6 mb-3 ">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('فتح احداثيات جميع العملاء')">
                         فتح احداثيات جميع العملاء
                     </button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('الزيارات الخارجية')">فتح الزيارات الخارجية</button>
                 </div>
-                <div class="col-md-3 col-12 mb-3">
+                <div class="col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('عودة')">عودة</button>
                 </div>
-                <div class="col-md-3 col-12 mb-3">
+                <div class="col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('تحديث محلات')">تحديث محلات</button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('الغاء فاتورة بدون حافز')"> الغاء فاتورة بدون حافز
                     </button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('الغاء فاتورة بحافز')"> الغاء فاتورة بحافز </button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
                         onClick="sendParamter('FIXED_INCENTIVE_DETAILS')">ايقاف حافز ثابت</button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
                         onClick="sendParamter('target')">ارسال
                         الاهداف</button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
-                        onClick="sendParamter('INCENTIVE_GRAD_DEATILS')">INCENTIVE_GRAD_DEATILS</button>
+                        onClick="sendParamter('INCENTIVE_GRAD_DEATILS')">SEND GRAD</button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('FIX')">(FIX)</button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
                         onClick="sendParamter('INCENTIVE_MIX')">
                         ارسال حوافز فورية (MIX) </button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('فتح أضافة بيع')">فتح أضافة بيع
                     </button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('GPS & Near')">GPS & Near</button>
                 </div>
-                <div class=" col-md-3 col-12 mb-3">
+                <div class=" col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100 " id="runCode" name="runCode"
                         onClick="sendParamter('فتح التحميل للغير مباشر')">فتح التحميل للغير مباشر</button>
                 </div>
-                <div class="col-md-3 col-12 mb-3">
+                <div class="col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('مشاكل الطباعة')">أرسال حل مشكلة الطباعة</button>
                 </div>
-                <div class="col-md-3 col-12 mb-3">
+                <div class="col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('تفعيل الحد الأئتمانى')">تفعيل الحد الأئتمانى</button>
                 </div>
-                <div class="col-md-3 col-12 mb-3">
+                <div class="col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('تفعيل الفترة الأئتمانية')">فتح تفعيل الفترة الأئتمانية</button>
                 </div>
-                <div class="col-md-3 col-12 mb-3">
+                <div class="col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('فتح عدد البيع')">فتح عدد البيع</button>
                 </div>
-                <div class="col-md-3 col-12 mb-3">
+                <div class="col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('زيادة عدد الزيارات')">زيادة عدد
                         الزيارات</button>
                 </div>
-                <div class="col-md-3 col-12 mb-3">
+                <div class="col-md-3 col-6 mb-3">
                     <button class="btn btn-success w-100" id="runCode" name="runCode"
                         onClick="sendParamter('زيادة قيمة الحد الأئتمانى')">زيادة قيمة الحد الأئتمانى</button>
                 </div>
@@ -182,7 +189,7 @@
                     salesRepId: salesRepId,
                     posCode: posCode,
                     Region: Region,
-                    creditLimit:creditLimit,
+                    creditLimit: creditLimit,
                 },
                 beforeSend: function() {
                     $('body').css('cursor', 'wait');
@@ -198,13 +205,13 @@
                             title: 'Oops...',
                             text: data['message'],
                         })
-                    } else if(data['status'] == 'success' ){
+                    } else if (data['status'] == 'success') {
                         Swal.fire({
                             icon: 'success',
                             title: 'عملية ناجحة',
                             text: data['message'],
                         })
-                        
+
                         $(document).ready(function() {
                             var crudServiceBaseUrl = "http://localhost:8000",
                                 dataSource = new kendo.data.DataSource({

@@ -17,9 +17,9 @@
     <div class="main ">
         <div class="main-content container-fluid">
             <div class="header-top">
-                {{-- <i class="fas fa-bars"></i> --}}
+                <p class="SideBarTitle info">@yield('title')</p>
             </div>
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-md-3 col-12">
                     <label for="BranchAjax">Region</label>
                     <div class="SalesMenAjax">
@@ -30,7 +30,7 @@
                     <label for="CompanyAjax">Company</label>
                     <div class="">
                         @include('sales.Common.companiesSelect')
-                    </div>
+                    </div>0
                 </div>
                 <div class="col-md-3 col-12">
                     <label for="multiple">Sales Terr</label>
@@ -45,92 +45,81 @@
                     </div>
                 </div>
             </div>
-
             <form id="Product">
-                <div class="col-md-12" style="margin:30px">
+                <div class="row mb-3">
                     <div class="form-group col-md-3">
-                        <div class="col-md-4">
-                            <label>Begin Date</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                @include('sales.Common.BeginDate')
-                            </div>
+                        <label class="form-label">Begin Date</label>
+                        <div class="form-group">
+                            @include('sales.Common.BeginDate')
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <div class="col-md-4">
-                            <label>End Date</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                @include('sales.Common.EndDate')
-                            </div>
+                        <label class="form-label">End Date</label>
+                        <div class="form-group">
+                            @include('sales.Common.EndDate')
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-4">
-                            <label>By Account</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select class="selectpicker" multiple data-live-search="true" name="multiple" id="Account"
-                                data-actions-box="true">
-                                @foreach ($accounts as $account)
-                                    <option value="{{ $account->acc_id }}" name="multiple_select" id="Account">
-                                        {{ $account->acc_desc }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <label class="form-label">By Account</label>
+                        <select class="selectpicker" multiple data-live-search="true" name="multiple" id="Account"
+                            data-actions-box="true">
+                            @foreach ($accounts as $account)
+                                <option value="{{ $account->acc_id }}" name="multiple_select" id="Account">
+                                    {{ $account->acc_desc }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group col-md-3">
-                        <button class="btn btn-success" id="submit" style="font-size:26px">Search</button>
+                        <button class="btn btn-outline-success w-100" id="submit" style="font-size:26px">Search</button>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group col-md-3">
-                        <div class="col-md-4">
-                            <label>OR Invoice ID</label>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-3">
+                            <div class="col-md-4">
+                                <label>OR Invoice ID</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" name="invoice" class="form-control" placeholder="Enter Invoice Id"
+                                    id="invoice" style="color:black">
+                            </div>
+                            <span class="text-danger" id="name-error"></span>
                         </div>
-                        <div class="col-md-8">
-                            <input type="text" name="invoice" class="form-control" placeholder="Enter Invoice Id"
-                                id="invoice" style="color:black">
+                        <div class="form-group col-md-3">
+                            <div class="col-md-4">
+                                <label>OR SalesRep ID</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" name="sales_rep" class="form-control" placeholder="Enter Sales Rep ID"
+                                    id="sales_rep" style="color:black">
+                            </div>
+                            <span class="text-danger" id="name-error"></span>
                         </div>
-                        <span class="text-danger" id="name-error"></span>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <div class="col-md-4">
-                            <label>OR SalesRep ID</label>
+                        <div class="form-group col-md-3">
+                            <div class="col-md-4">
+                                <label>OR POS_CODE</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" name="pos_code" class="form-control" placeholder="Enter POS ID"
+                                    id="pos_code" style="color:black">
+                            </div>
+                            <span class="text-danger" id="name-error"></span>
                         </div>
-                        <div class="col-md-8">
-                            <input type="text" name="sales_rep" class="form-control" placeholder="Enter Sales Rep ID"
-                                id="sales_rep" style="color:black">
-                        </div>
-                        <span class="text-danger" id="name-error"></span>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <div class="col-md-4">
-                            <label>OR POS_CODE</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="text" name="pos_code" class="form-control" placeholder="Enter POS ID"
-                                id="pos_code" style="color:black">
-                        </div>
-                        <span class="text-danger" id="name-error"></span>
-                    </div>
-                    <div class="form-group col-md-3">
-                        @include('sales.Common.PrintDailySalesReport')
-                        <div class="col-md-6">
-                            <input type="button" value="Print Div" onclick="PrintElem('#myDiv')" />
+                        <div class="form-group col-md-3">
+                            @include('sales.Common.PrintDailySalesReport')
+                            <div class="col-md-6">
+                                <input type="button" value="Print Div" onclick="PrintElem('#myDiv')" />
 
 
-                        </div>
-                        <div class="col-md-6">
-                            <input type="button" onclick="PrintDiv();" value="Print" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="button" onclick="PrintDiv();" value="Print" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
+
+
 
             <div id="grid" class="d-none"></div>
             <div class="example" id="InvoicesTotal">
@@ -182,7 +171,7 @@
 
 
     {{-- STYLE --}}
-    <style type="text/css">
+    {{-- <style type="text/css">
         #example {
             font-size: 18px;
             padding-left: 14em !important;
@@ -215,9 +204,9 @@
         }
 
         /* .k-grid tr .checkbox-align {
-                                                                                                                                            text-align: center;
-                                                                                                                                            vertical-align: middle;
-                                                                                                                                        } */
+                                                                                                                                                    text-align: center;
+                                                                                                                                                    vertical-align: middle;
+                                                                                                                                                } */
 
         .product-photo {
             display: inline-block;
@@ -259,9 +248,9 @@
         }
 
         /* #grid .k-grid-edit-row>td>.k-rating {
-                                                                                                                                            margin-left: 275px;
-                                                                                                                                            width: 100%;
-                                                                                                                                        } */
+                                                                                                                                                    margin-left: 275px;
+                                                                                                                                                    width: 100%;
+                                                                                                                                                } */
 
         .k-widget {
             text-align: center;
@@ -269,8 +258,8 @@
         }
 
         /* .k-input {
-                                                                                                                                            width: 18em;
-                                                                                                                                        } */
+                                                                                                                                                    width: 18em;
+                                                                                                                                                } */
 
         .topbar .menu ul li .dropdown-menu a {
             color: #ffffff;
@@ -283,7 +272,7 @@
         .k-footer-template {
             display: none;
         }
-    </style>
+    </style> --}}
 
 
 
