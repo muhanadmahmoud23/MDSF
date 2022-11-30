@@ -57,7 +57,6 @@ $(".fa-chevron-left").click(function() {
     $(".nav11").toggleClass("close11");
     $(".fa-chevron-left").toggleClass("rotate")
 });
-
 // ======================
 let arrow  = document.querySelectorAll(".arrow");
 let nav = document.querySelector(".nav11");
@@ -73,7 +72,9 @@ for (let i = 0; i < arrow.length; i++) {
 
 
 
-
+document.getElementById("FileAttachment").onchange = function () {
+    document.getElementById("fileuploadurl").value = this.value.replace(/C:\\fakepath\\/i, '');
+};
 
 let mychart =document.getElementById('myChart');
 let massPopChart=new Chart(mychart,{
