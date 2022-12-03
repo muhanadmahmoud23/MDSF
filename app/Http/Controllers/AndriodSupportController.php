@@ -29,7 +29,16 @@ class AndriodSupportController extends Controller
         $data['status'] = 'error';
         $data['message'] = 'برجاء التاكد من البيانات';
         $data['result'] = null;
-
+		
+		//SalesRep Check Validation
+		$allSalesrep = DB::connection('oracle2')->table('VER_CTRL')->select('SALESREP_ID')->where('SALESREP_ID',$salesRepId)->get();
+		if($allSalesrep == null){
+			return response()->json([
+            'status' => $data['status'],
+            'message' => 'wrong salesrep',
+            'result' => $data['result']
+        ]);
+		}			
         //Paramters Table 
         if ($requestData == 'فتح احداثيات جميع العملاء' || $requestData == 'الزيارات الخارجية' || $requestData == 'عودة' || $requestData == 'الغاء فاتورة بحافز' || $requestData == 'فتح أضافة بيع' || $requestData == 'GPS & Near' || $requestData == 'فتح التحميل للغير مباشر' || $requestData  = "فتح عدد البيع" || $requestData = "زيادة عدد الزيارات") {
             $data = ParamtersTable($salesRepId, $runCode);
