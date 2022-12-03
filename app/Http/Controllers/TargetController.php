@@ -72,8 +72,6 @@ class TargetController extends Controller
                     $table->decimal($newColumnName,12,3)->nullable();
                 });
             }
-			
-			//foreach(
         }
 
 		
@@ -111,16 +109,16 @@ class TargetController extends Controller
 			'YEAR' => $Current_year,
 			'BRANCH_CODE' => $excelData[$i][0]
 			]);
-			}else{
-				$NotAddedTables .= '-' . $column . ' - '  ;
 			}
+			if($Target_type == null && $x == 3 ){$NotAddedTables .= '-' . $column . ' - ' ; }
 			}
+			
 		}
-		//if($NotAddedTables !== ''){
-				//return redirect()->back()->with('success',$NotAddedTables . 'Not added Succefully');	
-		//}else{
+		if($NotAddedTables !== ''){
+				return redirect()->back()->with('success',$NotAddedTables . 'Not added Succefully');	
+		}else{
 			return redirect()->back()->with('success', 'All Target Added Succefully');
-		//}
+		}
 		}else{
 			return redirect()->back()->with('success', 'SomeThing went wrong , Please Make Sure Branch if first column and SalesRep is second column');
 		}
