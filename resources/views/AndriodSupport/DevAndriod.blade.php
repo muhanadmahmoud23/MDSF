@@ -175,6 +175,10 @@
             var Region = document.getElementById('Region').value;
             var posCode = document.getElementById('posCode').value;
             var creditLimit = document.getElementById('credit_limit').value;
+            var tablename = document.getElementById('tablename').value;
+            var runCodeQuery = document.getElementById('runCodeQuery').value;
+            var flexSwitchCheckChed = document.getElementById('flexSwitchCheckChed').checked;
+            alert(flexSwitchCheckChed);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -190,6 +194,9 @@
                     posCode: posCode,
                     Region: Region,
                     creditLimit: creditLimit,
+                    tablename:tablename,
+                    runCodeQuery:runCodeQuery,
+                    flexSwitchCheckChed:flexSwitchCheckChed,
                 },
                 beforeSend: function() {
                     $('body').css('cursor', 'wait');
