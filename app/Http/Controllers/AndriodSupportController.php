@@ -32,7 +32,8 @@ class AndriodSupportController extends Controller
         $data['status'] = 'error';
         $data['message'] = 'برجاء التاكد من البيانات';
         $data['result'] = null;
-
+ 
+        
         //SalesRep Check Validation 
         $allSalesRep = DB::connection('oracle2')->table('VER_CTRL')->where('SALESREP_ID', $salesRepId)->first();
         if ($allSalesRep == []) {
