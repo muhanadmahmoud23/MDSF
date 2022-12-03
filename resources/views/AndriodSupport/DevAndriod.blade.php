@@ -178,7 +178,13 @@
             var tablename = document.getElementById('tablename').value;
             var runCodeQuery = document.getElementById('runCodeQuery').value;
             var flexSwitchCheckChed = document.getElementById('flexSwitchCheckChed').checked;
-            alert(flexSwitchCheckChed);
+            
+            if (flexSwitchCheckChed === true) {
+                flexSwitchCheckChed = 1;
+            } else {
+                flexSwitchCheckChed = 0;
+            }
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
