@@ -1,9 +1,10 @@
-﻿<?php
+<?php
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\DBRetrive;
 use Illuminate\Http\Request;
+use App\Http\Traits\DBRetrive;;
+
 use Illuminate\Support\Facades\DB;
 
 class AndriodSupportController extends Controller
@@ -32,26 +33,23 @@ class AndriodSupportController extends Controller
         $data['status'] = 'error';
         $data['message'] = 'برجاء التاكد من البيانات';
         $data['result'] = null;
- 
-        
+
+
+
         //SalesRep Check Validation 
-        $allSalesRep = DB::connection('oracle2')->table('VER_CTRL')->where('SALESREP_ID', $salesRepId)->first();
-        if ($allSalesRep == []) {
+        $SalesMan = checkSalesManExist($salesRepId);
+        if($SalesMan == 1){
             return response()->json([
                 'status' => 'error',
                 'message' => 'كود المندوب غير صحيح',
                 'result' => null
             ]);
         }
-
-        //Checkbox All = True
-        // if()
-
+        
         $requestData = $runCode;
         // Manual Table Name & Manual Query Run Code
         if ($requestData == 'Query') {
             helper_update_table($salesRepId, $tablename, $runCodeQuery);
-
             return response()->json([
                 'status' => 'success',
                 'message' => 'table name = ' . $tablename . ' & ' . 'runCodeQuery = ' . $runCodeQuery,
@@ -65,11 +63,6 @@ class AndriodSupportController extends Controller
             $data = ParamtersTable($salesRepId, $runCode);
         }
 
-        //updatePOS
-        $requestData = $runCode;
-        if ($requestData == 'تفعيل الحد الأئتمانى' || $requestData == 'تفعيل الفترة الأئتمانية') {
-            $data = updatePOS($salesRepId, $posCode, $runCode);
-        }
 
         //Unique Paramters
         $requestData = $runCode;
@@ -77,26 +70,42 @@ class AndriodSupportController extends Controller
             $data = UniqueParamters($salesRepId, $runCode);
         }
 
-        //زيادة قيمة الحد الأئتمانى
+        //POS CREDIT VALUES
         $requestData = $runCode;
-        if ($requestData == 'زيادة قيمة الحد الأئتمانى') {
+        if ($requestData == 'تفعيل الحد الأئتمانى' || $requestData == 'تفعيل الفترة الأئتمانية' || $requestData == 'فتح احداثيات') {
+            if ($flexSwitchCheckChed == 1) {
+                $data = AllPosQueries($salesRepId, $requestData);
+            }
+            $requestData = $runCode;
+            if ($flexSwitchCheckChed == 0) {
+                if ($requestData == 'تفعيل الحد الأئتمانى' || $requestData == 'تفعيل الفترة الأئتمانية') {
+                    $data = updatePOS($salesRepId, $posCode, $runCode, $creditLimit);
+                }
+                if ($requestData == 'فتح احداثيات' && $salesRepId) {
+                    $data = coordinates($salesRepId, $posCode);
+                }
+
+            }
+        }
+        
+        //POS CREDIT VALUE (زيادة قيمة الحد الأئتمانى)
+        $requestData = $runCode;
+        if ($salesRepId && $posCode && $requestData == 'زيادة قيمة الحد الأئتمانى') {
             if ($creditLimit && $posCode) {
                 helper_update_table($salesRepId, 'POS', 'set pos_creditlimit = ' . $creditLimit . ' where POS_CODE ="' . $posCode . '"');
                 $data['status'] = 'success';
-                $data['message'] = 'تم فتح الاحداثيات   ';
+                $data['message'] = 'تم زيادة قيمة الحد الأئتمانى ';
                 $data['result'] = sync_data_by_salesrep_id($salesRepId);
             } elseif (!$posCode) {
+                $data['status'] = 'error';
                 $data['message'] = 'برجاء التاكد كود العميل';
+                $data['result'] = null;
             } elseif (!$creditLimit) {
+                $data['status'] = 'error';
                 $data['message'] = 'برجاء التاكد الحد الاتمانية ';
+                $data['result'] = null;
             }
-        }
-
-        //فتح احداثيات
-        $requestData = $runCode;
-        if ($requestData == 'فتح احداثيات' && $salesRepId) {
-            $data = coordinates($salesRepId, $posCode);
-        }
+        } 
 
         //Search
         $requestData = $runCode;
