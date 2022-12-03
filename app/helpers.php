@@ -53,7 +53,7 @@ if (!function_exists('get_data_pivot_table')) {
         function helper_update_table($SALESREP_ID, $TAB_NAME, $RUN_CODE)
         {
             DB::insert('insert into SYNC_DATA_SALESREP@SALES (SALESREP_ID, TAB_NAME, RUN_CODE,USER_ID, USER_NAME) values (?, ?,?,?,?)', [
-                $SALESREP_ID, $TAB_NAME, $RUN_CODE,Auth::user()->id, Auth::user()->name
+                $SALESREP_ID, $TAB_NAME, $RUN_CODE, Auth::user()->id, Auth::user()->name
             ]);
         }
     }
@@ -227,7 +227,7 @@ if (!function_exists('get_data_pivot_table')) {
     }
 
     if (!function_exists('updatePos')) {
-        function updatePOS($salesRepId, $posCode, $requestData)
+        function updatePOS($salesRepId, $posCode, $requestData, $creditLimit)
         {
             if ($salesRepId && $posCode && $requestData == 'تفعيل الحد الأئتمانى') {
                 helper_update_table($salesRepId, 'POS', 'set ACTIVE_CREDIT_LIMIT = 0 where POS_CODE ="' . $posCode . '"');
@@ -257,3 +257,33 @@ if (!function_exists('get_data_pivot_table')) {
         }
     }
 }
+
+if (!function_exists('AllPosQueries')) {
+    function AllPosQueries($salesRepId, $requestData)
+    {
+        if ($salesRepId) {
+            if ($requestData == 'فتح احداثيات') {
+                helper_update_table($salesRepId, 'PARAMETERS', 'set param_val = 0 where param_id = 7');
+                $status = 'success';
+                $message = 'تم فتح الاحداثيات';
+                $result = sync_data_by_salesrep_id($salesRepId);
+            } elseif ($requestData == 'تفعيل الفترة الأئتمانية') {
+                helper_update_table($salesRepId, 'POS', 'set ACTIVE_CREDIT_PERIOD = 0');
+                $status = 'success';
+                $message = 'تم تفعيل الفترة الأتمانية';
+                $result = sync_data_by_salesrep_id($salesRepId);
+            } elseif ($requestData == 'تفعيل الحد الأئتمانى') {
+                helper_update_table($salesRepId, 'POS', 'set ACTIVE_CREDIT_LIMIT = 0');
+                $status = 'success';
+                $message = 'تفعيل الحد الأئتمانى';
+                $result = sync_data_by_salesrep_id($salesRepId);
+            }
+        }
+        $data['status'] = $status;
+        $data['message'] = $message;
+        $data['result'] = $result;
+
+        return $data;
+    }
+}
+
