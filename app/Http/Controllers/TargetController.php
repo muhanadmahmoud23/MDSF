@@ -110,9 +110,9 @@ class TargetController extends Controller
 			'BRANCH_CODE' => $excelData[$i][0]
 			]);
 			}
-			if($Target_type == null && $x == 3 ){$NotAddedTables .= '-' . $column . ' - ' ; }
+	
 			}
-			
+					if($Target_type == null && $x == 3 ){$NotAddedTables .= '-' . $column . ' - ' ; }
 		}
 		if($NotAddedTables !== ''){
 				return redirect()->back()->with('success',$NotAddedTables . 'Not added Succefully');	
