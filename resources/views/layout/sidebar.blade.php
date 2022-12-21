@@ -170,7 +170,26 @@
                     </li>
                 </ul>
             </li>
-
+            <li class="parent">
+                <div class="icon-link">
+                    <a href="#">
+                        <i class="fas fa-truck"></i>
+                        <span class="link-name">Load & Unload</span>
+                    </a>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{route('loading-unloading-order')}}">Orders</a>
+                    </li>
+                    <li>
+                        <a href="#">SalesRep</a>
+                    </li>
+                    <li>
+                        <a href="#">Loading Header</a>
+                    </li>
+                </ul>
+            </li>
             <li class="parent logout">
                 <div class="icon-link">
                     <a href="{{ route('logout') }}"

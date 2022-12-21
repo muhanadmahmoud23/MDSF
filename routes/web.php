@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AndriodSupportController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\TargetController;
 use App\Http\Controllers\HomeContoller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoadingUnloadingController;
 use App\Http\Controllers\SalesTotalDailySalesReportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -61,3 +63,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/target-import', [TargetController::class, 'importView'])->name('target-import-view');
 Route::post('/import', [TargetController::class, 'import'])->name('import');
 
+// Loading & Unloading 
+Route::get('/loading-unloading-order', [LoadingUnloadingController::class, 'orderIndex'])->name('loading-unloading-order');
+Route::get('/GetOrderWhereSalesMenAndData', [LoadingUnloadingController::class, 'GetOrderWhereSalesMenAndData'])->name('GetOrderWhereSalesMenAndData');
+//Ajax
+Route::get('salesTerrWhereRegion', [AjaxController::class, 'salesTerrWhereRegion'])->name('salesTerrWhereRegion');
+Route::get('salesMenWhereSalesTerr', [AjaxController::class, 'salesMenWhereSalesTerr'])->name('salesMenWhereSalesTerr');

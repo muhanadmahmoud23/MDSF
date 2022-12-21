@@ -1,14 +1,3 @@
-// /*
-//  * Atrana
-//  */
-
-
-
-// /*
-//  * this is the javascipt for the Atrana template.
-//  * if you want to change, please create a new javascript, 
-//  * because if one is missing in the original Atrana javascript it will fall apart
-//  */
 
 
 // preloader
@@ -32,7 +21,7 @@ $(document).ready(function () {
 
    
 
-    if ($(window).width() <=700) {
+    if ($(window).width() <=700 || $(window).width() <=10800) {
         $(".nav11").addClass("close11");
     }else{
         $(".nav11").removeClass("close11");
@@ -53,6 +42,7 @@ $(document).ready(function () {
       }).resize();
 });
 
+
 $(".fa-chevron-left").click(function() {
     $(".nav11").toggleClass("close11");
     $(".fa-chevron-left").toggleClass("rotate")
@@ -72,9 +62,12 @@ for (let i = 0; i < arrow.length; i++) {
 
 
 
-document.getElementById("FileAttachment").onchange = function () {
-    document.getElementById("fileuploadurl").value = this.value.replace(/C:\\fakepath\\/i, '');
-};
+// document.getElementById("FileAttachment").onchange = function () {
+//     document.getElementById("fileuploadurl").value = this.value.replace(/C:\\fakepath\\/i, '');
+// };
+$('#FileAttachment').on('change', function () {
+    $('#fileuploadurl').val( this.value.replace(/C:\\fakepath\\/i, ''))
+});
 
 let mychart =document.getElementById('myChart');
 let massPopChart=new Chart(mychart,{

@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\GEN_ACTIVE_SALESREP_INFO;
+use App\Models\SALES_TERRITORIES_ACTIVE;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Traits\DBRetrive;
+
 
 if (!function_exists('helper_get_quantity')) {
     function helper_get_quantity($QuantityMeasure)
@@ -53,14 +57,16 @@ if (!function_exists('get_data_pivot_table')) {
         function helper_update_table($SALESREP_ID, $TAB_NAME, $RUN_CODE)
         {
             DB::insert('insert into SYNC_DATA_SALESREP@SALES (SALESREP_ID, TAB_NAME, RUN_CODE,USER_ID, USER_NAME) values (?, ?,?,?,?)', [
-                $SALESREP_ID, $TAB_NAME, $RUN_CODE, Auth::user()->id, Auth::user()->name
+                $SALESREP_ID,
+                $TAB_NAME,
+                $RUN_CODE, Auth::user()->id, Auth::user()->name
             ]);
         }
     }
     if (!function_exists('sync_data_by_salesrep_id')) {
         function sync_data_by_salesrep_id($salesrep_id)
         {
-            $result =  DB::connection('oracle2')->table('SYNC_DATA_SALESREP')->select('*')->where('SALESREP_ID', $salesrep_id)->orderBy('COMM_DATE', 'DESC')->get();
+            $result = DB::connection('oracle2')->table('SYNC_DATA_SALESREP')->select('*')->where('SALESREP_ID', $salesrep_id)->orderBy('COMM_DATE', 'DESC')->get();
             return $result;
         }
     }
@@ -135,7 +141,7 @@ if (!function_exists('get_data_pivot_table')) {
         function coordinates($salesRepId, $posCode)
         {
             if ($salesRepId && $posCode) {
-                helper_update_table($salesRepId, 'PARAMETERS', 'set LONGITUDE = 0, LATITUDE = 0 where POS_CODE = "' . $posCode . '"');
+                helper_update_table($salesRepId, 'POS', 'set LONGITUDE = 0, LATITUDE = 0 where POS_CODE = "' . $posCode . '"');
                 $status = 'success';
                 $message = 'تم فتح الاحداثيات بنجاح';
                 $result = sync_data_by_salesrep_id($salesRepId);
@@ -287,3 +293,50 @@ if (!function_exists('AllPosQueries')) {
     }
 }
 
+if (!function_exists('checkSalesManExist')) {
+    function checkSalesManExist($salesRepId)
+    {
+        $SalesMan = DB::connection('oracle2')->table('VER_CTRL')->where('SALESREP_ID', $salesRepId)->first();
+        if ($SalesMan == []) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+}
+
+if (!function_exists('FineTobComapinesSelect')) {
+    function FineTobComapinesSelect()
+    {
+        $companies = ['FINE', 'TOB'];
+        return $companies;
+    }
+}
+
+
+if (!function_exists('GetSalesTerrWhereRegionAndCompanies')) {
+    function GetSalesTerrWhereRegionAndCompanies($branch, $company)
+    {
+        $SalesTerr = SALES_TERRITORIES_ACTIVE::select('NAME', 'SALES_TER_ID')
+            ->whereIn('BRANCH_CODE', $branch)
+            ->get();
+        if ($company !== null) {
+            $SalesTerr = $SalesTerr->whereIn('PROD_GROUP_ID', $company);
+        }
+
+        return $SalesTerr;
+    }
+}
+
+
+if (!function_exists('SalesRepWhereSalesTerr')) {
+    function SalesMenWhereSalesTerr($SalesTerr)
+    {
+        $SalesRep = GEN_ACTIVE_SALESREP_INFO::select('SALES_ID', 'SALESREP_NAME')
+            ->whereIn('SALES_TER_ID', $SalesTerr)
+            ->distinct()
+            ->orderBy('SALESREP_NAME')
+            ->get();
+        return $SalesRep;
+    }
+}

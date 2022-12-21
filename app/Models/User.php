@@ -14,11 +14,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-   
+
     protected $table = 'php_users';
-    
+
     protected $fillable = [
-	'id',
+        'id',
         'name',
         'email',
         'password',

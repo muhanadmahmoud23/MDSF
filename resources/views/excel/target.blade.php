@@ -19,6 +19,21 @@
                 }
             </script>
         @endif
+        @if (\Session::has('error'))
+            <script>
+                $(function() {
+                    SwalfireSuccessMessage();
+                });
+
+                function SwalfireSuccessMessage() {
+                    swal.fire({
+                        title: "Target By SalesRep",
+                        text: "{!! \Session::get('error') !!}",
+                        type: "error"
+                    });
+                }
+            </script>
+        @endif
         <div class="main-content container-fluid">
             <div class="header-top">
                 <p class="SideBarTitle info">Insert Target By SalesRep Excel</p>

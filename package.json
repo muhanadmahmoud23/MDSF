@@ -17,6 +17,7 @@
     "dependencies": {
         "chart.js": "^3.9.1",
         "mdb-ui-kit": "^5.0.0",
+        "multiple-select": "^1.5.2",
         "sweetalert2": "^11.4.33"
     }
 }

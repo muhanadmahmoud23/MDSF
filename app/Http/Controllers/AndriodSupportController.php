@@ -38,7 +38,7 @@ class AndriodSupportController extends Controller
 
         //SalesRep Check Validation 
         $SalesMan = checkSalesManExist($salesRepId);
-        if($SalesMan == 1){
+        if($SalesMan == 0){
             return response()->json([
                 'status' => 'error',
                 'message' => 'كود المندوب غير صحيح',

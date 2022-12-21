@@ -192,7 +192,7 @@
             });
             $.ajax({
                 type: 'get',
-                url: '{{ route('DevAndriodInvoice') }}',
+                url: '{{ route("DevAndriodInvoice") }}',
                 dataType: 'json',
                 data: {
                     requestData: requestData,

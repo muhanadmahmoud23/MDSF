@@ -1,11 +1,9 @@
-<!DOCTYPE html>
 @include('layout.head')
 
 <body>
     @include('layout.sidebar')
-    @include('layout.topbar')
     @yield('content')
+    @include('layout.js')
 </body>
-@include('layout.js')
 
 </html>

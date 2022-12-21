@@ -183,8 +183,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
-        Spatie\Menu\Laravel\MenuServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -213,7 +212,6 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Menu' => Spatie\Menu\Laravel\Facades\Menu::class,
     ])->toArray(),
 
 ];
