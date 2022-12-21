@@ -5,7 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <!-- General JS Scripts -->
 <script src="{{ asset('assets/js/atrana.js') }}"></script>
 <!-- JS Libraies -->
@@ -17,9 +17,9 @@
 <script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 {{-- charts --}}
-<script src="{{ asset('assets/js/chart.min.js') }}"></script>
-<script src="{{ asset('assets/js/moment.min.js') }}"></script>
-<script src="{{ asset('assets/js/sweetalert2@11') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('assets/js/virtual-select.min.js') }}"></script>
 <script src="{{ asset('assets/kendou//js/kendo.all.min.js') }}"></script>
 <script src="{{ asset('assets/kendou/content/shared/js/console.js') }}"></script>
