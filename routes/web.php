@@ -4,7 +4,7 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AndriodSupportController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\TargetController;
-use App\Http\Controllers\HomeContoller;
+use App\Http\Controllers\PostingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoadingUnloadingController;
 use App\Http\Controllers\SalesTotalDailySalesReportController;
@@ -69,3 +69,6 @@ Route::get('/GetOrderWhereSalesMenAndData', [LoadingUnloadingController::class, 
 //Ajax
 Route::get('salesTerrWhereRegion', [AjaxController::class, 'salesTerrWhereRegion'])->name('salesTerrWhereRegion');
 Route::get('salesMenWhereSalesTerr', [AjaxController::class, 'salesMenWhereSalesTerr'])->name('salesMenWhereSalesTerr');
+//Posting
+Route::get('posPostingIndex', [PostingController::class, 'posPostingIndex'])->name('posPostingIndex');
+Route::post('posPostingSendData', [PostingController::class, 'posPostingSendData'])->name('posPostingSendData');

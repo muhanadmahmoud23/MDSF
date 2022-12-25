@@ -195,6 +195,7 @@
                 url: '{{ route("DevAndriodInvoice") }}',
                 dataType: 'json',
                 data: {
+                    
                     requestData: requestData,
                     salesRepId: salesRepId,
                     posCode: posCode,

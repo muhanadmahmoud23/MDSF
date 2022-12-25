@@ -1,11 +1,11 @@
 <?php
 
+use App\Models\BRANCHES;
 use App\Models\GEN_ACTIVE_SALESREP_INFO;
 use App\Models\SALES_TERRITORIES_ACTIVE;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Traits\DBRetrive;
-
 
 if (!function_exists('helper_get_quantity')) {
     function helper_get_quantity($QuantityMeasure)
@@ -304,6 +304,54 @@ if (!function_exists('checkSalesManExist')) {
         }
     }
 }
+
+if (!function_exists('checkBranchExist')) {
+    function checkBranchExist($branchArray)
+    {
+        $branches = BRANCHES::select('BRANCH_CODE', 'BRANCH_NAME')
+            ->whereIn('BRANCH_CODE', $branchArray)
+            ->orderBy('BRANCH_NAME')
+            ->distinct()
+            ->get();
+
+        return $branches;
+
+        if ($branches == []) {
+            return 0;
+        } else {
+            return $branches;
+        }
+    }
+}
+
+if (!function_exists('getBranchesIfExist')) {
+    function getBranchesIfExist($branchArray)
+    {
+        $branches = BRANCHES::select('BRANCH_CODE', 'BRANCH_NAME')
+            ->whereIn('BRANCH_CODE', $branchArray)
+            ->orderBy('BRANCH_NAME')
+            ->distinct()
+            ->get();
+
+        return $branches;
+    }
+}
+
+if (!function_exists('postHandleBranch')) {
+    function postHandleBranch($BRANCH_CODE)
+    {
+        $branch = DB::table('post_handle')->where('branch_code', $BRANCH_CODE)->first();
+        return $branch;
+    }
+}
+
+if (!function_exists('postHandleBranchUpdate')) {
+    function postHandleBranchUpdate($BRANCH_CODE,$flag,$user)
+    {
+        DB::table('post_handle')->where('branch_code', $BRANCH_CODE)->update(['inprogress' => $flag,'username'=>$user]);
+    }
+}
+
 
 if (!function_exists('FineTobComapinesSelect')) {
     function FineTobComapinesSelect()

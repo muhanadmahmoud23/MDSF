@@ -19,14 +19,34 @@
             </li>
             <li class="parent">
                 <div class="icon-link">
-                    <a>
-                        <i class="fa-sharp fa-solid fa-truck-front"></i>
-                        <span class="link-name">MASTER DATA</span>
+                    <a href="#">
+                        <i class="fab fa-android"></i>
+                        <span class="link-name">SUPPORT</span>
                     </a>
                     <i class="fas fa-chevron-down arrow"></i>
                 </div>
                 <ul class="sub-menu">
-
+                    <li>
+                        <a href="#">Send Data</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('DevAndriodIndex') }}">Dev Andriod </a>
+                    </li>
+                    <li>
+                        <a href="#">Managers Android Support</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent">
+                <div class="icon-link">
+                    <a>
+                        <i class="fas fa-money-bill"></i>
+                        <span class="link-name">Posting</span>
+                    </a>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="{{ route('posPostingIndex') }}">Pos Posting</a></li>
                 </ul>
             </li>
             <li class="parent">
@@ -124,26 +144,6 @@
                     </li>
                     <li>
                         <a href="#">Target Details</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="parent">
-                <div class="icon-link">
-                    <a href="#">
-                        <i class="fab fa-android"></i>
-                        <span class="link-name">SUPPORT</span>
-                    </a>
-                    <i class="fas fa-chevron-down arrow"></i>
-                </div>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="#">Send Data</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('DevAndriodIndex') }}">Dev Andriod </a>
-                    </li>
-                    <li>
-                        <a href="#">Managers Android Support</a>
                     </li>
                 </ul>
             </li>
