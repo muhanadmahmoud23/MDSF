@@ -51,7 +51,7 @@
 
 
 
-<script type="text/javascript">
+<script>
     $('#Post').on('submit', function (e) {
 
         e.preventDefault();
@@ -67,10 +67,10 @@
         });
 
         $.ajax({
-            url: '{{ URL::to("posPostingSendData") }}',
+            url: '{{ route("posPostingSendData") }}',
             type: 'post',
+            dataType: 'json',
             data: {
-                "_token": "{{ csrf_token() }}",
                 Begindate: Begindate,
                 endDate: endDate,
                 branches: branches,
