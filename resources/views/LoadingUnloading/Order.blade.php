@@ -23,8 +23,7 @@
                     <div class="col-md-3 col-12 mb-2">
                         <label for="multiple">Sales Terr</label>
                         <div class="SalesTerrAjax ">
-                            <select class="selectpicker" multiple data-live-search="true" name="multiple"
-                                data-actions-box="true" id="selectpickersalesTerr">
+                            <select class="selectpicker" multiple data-live-search="true" name="multiple" data-actions-box="true" id="selectpickersalesTerr">
                                 <option value="" name="multiple_select"></option>
                             </select>
                         </div>
@@ -55,6 +54,15 @@
                         </div>
                     </div>
 
+                    <div class="col-md-3 col-12 mb-2">
+                        <label for="salesrep_id" class="form-label">SalesRep Id</labeL>
+                        <input class="form-control" min="0" type="number" name="salesRepId" id="salesRepId" placeholder="Enter sales Code..">
+                    </div>
+
+                    <div class="col-md-3 col-12 mb-2">
+                        <label for="salesrep_id" class="form-label">Loading Number</labeL>
+                        <input class="form-control" min="0" type="number" name="loadingNumber" id="loadingNumber" placeholder="Enter Loading Number..">
+                    </div>
                     <div>
                         <button class="btn btn-success btn-lg" id="submit">Search</button>
                     </div>
@@ -68,13 +76,15 @@
             </div>
 
         </div>
+        <div id="grid" class="">
     </div>
 </div>
 
 
-<script>
 
-    $(document).on('change', '#BranchAjax', function () {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+<script>
+    $(document).on('change', '#BranchAjax', function() {
         var branch = $('#BranchAjax').val();
         var areaList = $('#selectpickersalesTerr');
         areaList.empty();
@@ -92,19 +102,19 @@
             data: {
                 branch: branch,
             },
-            success: function (response) {
-                $.each(response, function (i, area) {
+            success: function(response) {
+                $.each(response, function(i, area) {
                     $('#selectpickersalesTerr').append($(`<option  value='${area.sales_ter_id}'>${area.name}</option>`)).selectpicker('refresh');
                 });
             },
-            error: function () {
+            error: function() {
                 areaList.empty();
             }
         });
     });
 </script>
 <script>
-    $(document).on('change', '#selectpickersalesTerr', function () {
+    $(document).on('change', '#selectpickersalesTerr', function() {
 
         var salesTerr = $('#selectpickersalesTerr').val();
         $('#SalesMenAjax').empty();
@@ -120,8 +130,8 @@
             data: {
                 salesTerr: salesTerr,
             },
-            success: function (response) {
-                $.each(response, function (i, area) {
+            success: function(response) {
+                $.each(response, function(i, area) {
                     $('#SalesMenAjax').append($(`<option  value='${area.sales_id}'>${area.salesrep_name}</option>`)).selectpicker('refresh');
                 });
             }
@@ -130,56 +140,56 @@
     });
 </script>
 
+        <div class="k-pivotgrid-wrapper">
+            {{-- <div id="configurator" class="hidden-on-narrow"></div> --}}
+            <div id="pivotgrid" class="hidden-on-narrow"></div>
+        </div>
+        <div class="responsive-message"></div>
+    </div>
 </div>
+<script src="{{ asset('assets/kendou/examples/content/shared/js/products.js') }}"></script>
+
 <script type="text/javascript">
-    $('#Product').on('submit', function (e) {
+        $('#Product').on('submit', function(e) {
 
-        e.preventDefault();
+            e.preventDefault();
+            
+            let endDate = $('#endDate').val();
+            let Begindate = $('#Begindate').val();
+            let SalesMen = $('#SalesMenAjax').val();
+            let salesRepId = $('#salesRepId').val();
+            let loadingNumber = $('#loadingNumber').val();
+            let CompanyAjax =  $('#CompanyAjax').val();
 
-        let endDate = $('#endDate').val();
-        let Begindate = $('#Begindate').val();
-        let SalesMen = $('#SalesMenAjax').val();
+            $.ajax({
+                url: '{{ URL::to('GetOrderWhereSalesMenAndData') }}',
+                type: 'get',
+                data: {
+                    Begindate: Begindate,
+                    endDate: endDate,
+                    SalesMen: SalesMen,
+                    salesRepId: salesRepId,
+                    loadingNumber:loadingNumber,
+                    CompanyAjax:CompanyAjax,
+                },
+                beforeSend: function() {
+                    // $("body").addClass("loading");
+                    // $('body').css('cursor', 'wait');
+                },
+                success: function(data) {
+                  
+                    $('body').css('cursor', 'auto');
+                    $("body").removeClass("loading");
 
-        $.ajax({
-            url: '{{ URL::to("GetOrderWhereSalesMenAndData") }}',
-            type: 'get',
-            data: {
-                Begindate: Begindate,
-                endDate: endDate,
-                SalesMen: SalesMen,
-            },
-            beforeSend: function () {
-
-                $(".overlay").fadeIn();
-                $(".loader").fadeIn();
-
-            },
-            success: function (data) {
-                $('body').css('cursor', 'auto');
-                $("body").removeClass("loading");
-                $(".overlay").fadeOut();
-                $(".loader").fadeOut();
-
-                if (data['SaleTerrResult'] == "Missing Paramter") {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Missing Paramter!',
-                    })
-                } else if (data['SaleTerrResult'] == "Not Found") {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Not Found!',
-                    })
-                } else if (data['status'] == 'success') {
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'عملية ناجحة',
-                    })
-                     $(document).ready(function() {
-                            var crudServiceBaseUrl = "http://localhost:8000",
+                    if (data['status'] == "error") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: data.message,
+                        })
+                    } else if(data['allDetails'] == false) {
+                        $(document).ready(function() {
+                            var crudServiceBaseUrl = "http://10.1.100.125/8125",
                                 dataSource = new kendo.data.DataSource({
                                     data: data['result'],
                                     batch: true,
@@ -189,11 +199,38 @@
                                         field: "TotalSales",
                                         aggregate: "sum"
                                     }],
+                                    // group: {
+                                    //     field: "sub__cat_id",
+                                    // },
+                                    // sort: {
+                                    //     field: "main__cat_id",
+                                    //     dir: "desc"
+                                    // },
                                     schema: {
                                         model: {
-                                            id: "SALESREP_ID",
+                                            id: "id",
                                             fields: {
                                                 salescall_id: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                salescall_details_id: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                total_invoice: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                incentive_amount: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                net_amout: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                category_id: {
                                                     editable: false,
                                                     nullable: true
                                                 },
@@ -207,8 +244,9 @@
                                 columnMenu: {
                                     filterable: false
                                 },
-                                height: 260,
+                                height: 600,
                                 editable: "incell",
+                                // pageable: true,
                                 pageable: {
                                     refresh: true,
                                     pageSizes: true,
@@ -217,140 +255,429 @@
                                 navigatable: true,
                                 resizable: true,
                                 reorderable: true,
+                                // groupable: true,
                                 filterable: true,
                                 dataBound: onDataBound,
-                                columns: [{
+                                toolbar: ["excel", "search"],
+                                columns: [
+                                    // {
+                                    //     selectable: true,
+                                    //     width: 75,
+                                    //     attributes: {
+                                    //         "class": "checkbox-align",
+                                    //     },
+                                    //     headerAttributes: {
+                                    //         "class": "checkbox-align",
+                                    //     }
+                                    // },
+                                    {
+                                        field: "branch_code",
+                                        title: "Branch code",
+                                        width: 100
+                                    },
+                                    {
+                                        field: "sales_ter_id",
+                                        title: "Sales ter id",
+                                        width: 100
+                                    },
+                                    {
+                                        field: "loading_number",
+                                        title: "Loading number",
+                                        width: 100
+                                    },
+                                    {
+                                        field: "category_id",
+                                        title: "Category ID",
+                                        width: 100
+                                    },
+                                    {
                                         field: "salesrep_id",
-                                        title: "Sales Rep",
-                                        width: 50
-                                    },
-                                    {
-                                        field: "tab_name",
-                                        title: "Tab Name",
-                                        width: 50
-                                    },
-                                    {
-                                        field: "run_code",
-                                        title: "Run Code",
-                                        width: 160
-                                    },
-                                    {
-                                        field: "comm_date",
-                                        title: "Comm Date",
-                                        width: 80
-                                    },
-                                    {
-                                        field: "hh_upd_status",
-                                        title: "HH UPD STATUS",
-                                        width: 20
-                                    },
-                                    {
-                                        field: "hh_upd_date",
-                                        title: "HH UPD DATE",
+                                        title: "Sales Rep ID",
                                         width: 100
                                     },
                                     {
-                                        field: "user_id",
-                                        title: "User ID",
-                                        width: 20
+                                        field: "salesman",
+                                        title: "Sales Man",
+                                        width: 150
                                     },
                                     {
-                                        field: "user_name",
-                                        title: "User Name",
+                                        field: "start_date",
+                                        title: "Start date",
+                                        width: 200
+                                    },
+                                    {
+                                        field: "end_date",
+                                        title: "End Date",
+                                        width: 200
+                                    },
+                                    {
+                                        field: "result",
+                                        title: "Result",
+                                        width: 450
+                                    },
+                                    {
+                                        field: "total_amount",
+                                        title: "Total Amount",
                                         width: 100
                                     },
-
+                                    {
+                                        field: "div",
+                                        title: "DIV",
+                                        width: 100
+                                    },
                                 ],
                             });
                         });
-                    // $(document).ready(function () {
-                    //     var pivotgrid = $("#pivotgrid").kendoPivotGrid({
-                    //         filterable: true,
-                    //         sortable: true,
-                    //         columnWidth: 120,
-                    //         height: 570,
-                    //         dataSource: {
-                    //             data: data['SaleTerrResult'],
-                    //             schema: {
-                    //                 model: {
-                    //                     fields: {
-                    //                         salesrep_name: {
-                    //                             caption: "salesrep_name"
-                    //                         },
-                    //                         pos_name: {
-                    //                             type: "string"
-                    //                         },
-                    //                         pos_code: {
-                    //                             type: "number"
-                    //                         },
 
-                    //                     }
-                    //                 },
-                    //                 cube: {
-                    //                     dimensions: {
+                        function onDataBound(e) {
+                            var grid = this;
+                            grid.table.find("tr").each(function() {
+                                var dataItem = grid.dataItem(this);
+                                var themeColor = dataItem.Discontinued ? 'success' : 'error';
+                                var text = dataItem.Discontinued ? 'available' :
+                                    'not available';
 
-                    //                     },
+                                $(this).find(".badgeTemplate").kendoBadge({
+                                    themeColor: themeColor,
+                                    text: text,
+                                });
 
-                    //                     company_name: {
-                    //                         caption: "company_name"
-                    //                     },
-                    //                     pos_code: {
-                    //                         caption: "pos_code"
-                    //                     },
-                    //                     measures: {
+                                $(this).find(".rating").kendoRating({
+                                    min: 1,
+                                    max: 5,
+                                    label: false,
+                                    selection: "continuous"
+                                });
 
-                    //                     }
-                    //                 }
-                    //             },
-                    //             columns: [{
-                    //                 name: "company_name",
-                    //                 expand: true
-                    //             }, {
-                    //                 name: "prod_seq",
-                    //                 expand: true
-                    //             }, {
-                    //                 name: "prod_id",
-                    //                 expand: true
-                    //             }, {
-                    //                 name: "product_id",
-                    //                 expand: true
-                    //             }],
-                    //             rows: [{
-                    //                 name: "salesrep_name",
-                    //                 expand: true
-                    //             }, {
-                    //                 name: "pos_name",
-                    //                 expand: true
-                    //             },
-                    //             {
-                    //                 name: "pos_code",
-                    //                 expand: true
-                    //             }, {
-                    //                 name: "visit_start_time",
-                    //                 expand: true
-                    //             },
-                    //             {
-                    //                 name: "visit_end_time",
-                    //                 expand: true
-                    //             },
-                    //             ]
-                    //         }
-                    //     }).data("kendoPivotGrid");
+                                $(this).find(".sparkline-chart").kendoSparkline({
+                                    legend: {
+                                        visible: false
+                                    },
+                                    data: [dataItem.TargetSales],
+                                    type: "bar",
+                                    chartArea: {
+                                        margin: 0,
+                                        width: 180,
+                                        background: "transparent"
+                                    },
+                                    seriesDefaults: {
+                                        labels: {
+                                            visible: true,
+                                            format: '{0}%',
+                                            background: 'none'
+                                        }
+                                    },
+                                    categoryAxis: {
+                                        majorGridLines: {
+                                            visible: false
+                                        },
+                                        majorTicks: {
+                                            visible: false
+                                        }
+                                    },
+                                    valueAxis: {
+                                        type: "numeric",
+                                        min: 0,
+                                        max: 130,
+                                        visible: false,
+                                        labels: {
+                                            visible: false
+                                        },
+                                        minorTicks: {
+                                            visible: false
+                                        },
+                                        majorGridLines: {
+                                            visible: false
+                                        }
+                                    },
+                                    tooltip: {
+                                        visible: false
+                                    }
+                                });
 
+                                kendo.bind($(this), dataItem);
+                            });
+                        }
 
-                    // });
+                        function returnFalse() {
+                            return false;
+                        }
 
-                }
-            },
+                        function clientCategoryEditor(container, options) {
+                            $('<input required name="Category">')
+                                .appendTo(container)
+                                .kendoDropDownList({
+                                    autoBind: false,
+                                    dataTextField: "CategoryName",
+                                    dataValueField: "CategoryID",
+                                    dataSource: {
+                                        data: categories
+                                    }
+                                });
+                        }
 
+                        function clientCountryEditor(container, options) {
+                            $('<input required name="Country">')
+                                .appendTo(container)
+                                .kendoDropDownList({
+                                    dataTextField: "CountryNameLong",
+                                    dataValueField: "CountryNameShort",
+                                    template: "<div class='dropdown-country-wrap'><img src='../content/web/country-flags/#:CountryNameShort#.png' alt='#: CountryNameLong#' title='#: CountryNameLong#' width='30' /><span>#:CountryNameLong #</span></div>",
+                                    dataSource: {
+                                        transport: {
+                                            read: {
+                                                url: "http://localhost:8080",
+                                                dataType: "json"
+                                            }
+                                        }
+                                    },
+                                    autoWidth: true
+                                });
+                        };
+                    }else if(data['allDetails'] == true) {
+                        $(document).ready(function() {
+                            var crudServiceBaseUrl = "http://10.1.100.125/8125",
+                                dataSource = new kendo.data.DataSource({
+                                    data: data['result'],
+                                    batch: true,
+                                    pageSize: 100000000,
+                                    autoSync: true,
+                                    aggregate: [{
+                                        field: "TotalSales",
+                                        aggregate: "sum"
+                                    }],
+                                    // group: {
+                                    //     field: "sub__cat_id",
+                                    // },
+                                    // sort: {
+                                    //     field: "main__cat_id",
+                                    //     dir: "desc"
+                                    // },
+                                    schema: {
+                                        model: {
+                                            id: "id",
+                                            fields: {
+                                                salescall_id: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                salescall_details_id: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                total_invoice: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                incentive_amount: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                net_amout: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                                category_id: {
+                                                    editable: false,
+                                                    nullable: true
+                                                },
+                                            }
+                                        }
+                                    }
+                                });
+
+                            $("#grid").kendoGrid({
+                                dataSource: dataSource,
+                                columnMenu: {
+                                    filterable: false
+                                },
+                                height: 600,
+                                editable: "incell",
+                                // pageable: true,
+                                pageable: {
+                                    refresh: true,
+                                    pageSizes: true,
+                                },
+                                sortable: true,
+                                navigatable: true,
+                                resizable: true,
+                                reorderable: true,
+                                // groupable: true,
+                                filterable: true,
+                                dataBound: onDataBound,
+                                toolbar: ["excel", "search"],
+                                columns: [
+                                    // {
+                                    //     selectable: true,
+                                    //     width: 75,
+                                    //     attributes: {
+                                    //         "class": "checkbox-align",
+                                    //     },
+                                    //     headerAttributes: {
+                                    //         "class": "checkbox-align",
+                                    //     }
+                                    // },
+                                    {
+                                        field: "loading_number",
+                                        title: "Loading number",
+                                        width: 100
+                                    },
+                                    {
+                                        field: "salesrep_id",
+                                        title: "Sales Rep ID",
+                                        width: 100
+                                    },
+
+                                    {
+                                        field: "result",
+                                        title: "Result",
+                                        width: 450
+                                    },
+                                    {
+                                        field: "return_date",
+                                        title: "Return Date",
+                                        width: 100
+                                    },
+                                    {
+                                        field: "cat_id",
+                                        title: "Category ID",
+                                        width: 100
+                                    },
+                                    {
+                                        field: "user_name",
+                                        title: "User name",
+                                        width: 100
+                                    },
+                                    {
+                                        field: "comp_name",
+                                        title: "Company name",
+                                        width: 100
+                                    },
+                                    {
+                                        field: "status",
+                                        title: "Status",
+                                        width: 100
+                                    },
+                                ],
+                            });
+                        });
+
+                        function onDataBound(e) {
+                            var grid = this;
+                            grid.table.find("tr").each(function() {
+                                var dataItem = grid.dataItem(this);
+                                var themeColor = dataItem.Discontinued ? 'success' : 'error';
+                                var text = dataItem.Discontinued ? 'available' :
+                                    'not available';
+
+                                $(this).find(".badgeTemplate").kendoBadge({
+                                    themeColor: themeColor,
+                                    text: text,
+                                });
+
+                                $(this).find(".rating").kendoRating({
+                                    min: 1,
+                                    max: 5,
+                                    label: false,
+                                    selection: "continuous"
+                                });
+
+                                $(this).find(".sparkline-chart").kendoSparkline({
+                                    legend: {
+                                        visible: false
+                                    },
+                                    data: [dataItem.TargetSales],
+                                    type: "bar",
+                                    chartArea: {
+                                        margin: 0,
+                                        width: 180,
+                                        background: "transparent"
+                                    },
+                                    seriesDefaults: {
+                                        labels: {
+                                            visible: true,
+                                            format: '{0}%',
+                                            background: 'none'
+                                        }
+                                    },
+                                    categoryAxis: {
+                                        majorGridLines: {
+                                            visible: false
+                                        },
+                                        majorTicks: {
+                                            visible: false
+                                        }
+                                    },
+                                    valueAxis: {
+                                        type: "numeric",
+                                        min: 0,
+                                        max: 130,
+                                        visible: false,
+                                        labels: {
+                                            visible: false
+                                        },
+                                        minorTicks: {
+                                            visible: false
+                                        },
+                                        majorGridLines: {
+                                            visible: false
+                                        }
+                                    },
+                                    tooltip: {
+                                        visible: false
+                                    }
+                                });
+
+                                kendo.bind($(this), dataItem);
+                            });
+                        }
+
+                        function returnFalse() {
+                            return false;
+                        }
+
+                        function clientCategoryEditor(container, options) {
+                            $('<input required name="Category">')
+                                .appendTo(container)
+                                .kendoDropDownList({
+                                    autoBind: false,
+                                    dataTextField: "CategoryName",
+                                    dataValueField: "CategoryID",
+                                    dataSource: {
+                                        data: categories
+                                    }
+                                });
+                        }
+
+                        function clientCountryEditor(container, options) {
+                            $('<input required name="Country">')
+                                .appendTo(container)
+                                .kendoDropDownList({
+                                    dataTextField: "CountryNameLong",
+                                    dataValueField: "CountryNameShort",
+                                    template: "<div class='dropdown-country-wrap'><img src='../content/web/country-flags/#:CountryNameShort#.png' alt='#: CountryNameLong#' title='#: CountryNameLong#' width='30' /><span>#:CountryNameLong #</span></div>",
+                                    dataSource: {
+                                        transport: {
+                                            read: {
+                                                url: "http://localhost:8080",
+                                                dataType: "json"
+                                            }
+                                        }
+                                    },
+                                    autoWidth: true
+                                });
+                        };
+                    }
+                },
+
+            });
         });
-    });
+    </script>
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
-</script>
+
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $('#datetimepicker1').datetimepicker({
             format: 'YYYY-MM-DD',
             defaultDate: new Date(),
@@ -360,7 +687,7 @@
     });
 </script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $('#datetimepicker2').datetimepicker({
             format: 'YYYY-MM-DD',
             defaultDate: new Date(),
@@ -370,4 +697,6 @@
     });
 </script>
 <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.1.min.js"></script>
+
 @endsection
+

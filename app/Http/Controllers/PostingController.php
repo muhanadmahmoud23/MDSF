@@ -24,7 +24,6 @@ class PostingController extends Controller
     public function posPostingSendData(Request $request)
     {
 
-        DB::table('TEST_S_D_ALL_MST')->truncate();
 
         //Data Initalize 
         $dateFrom = $request->Begindate;
@@ -57,7 +56,6 @@ class PostingController extends Controller
             } else {
                 //If Successfull
                 $branchesDetails = getBranchesIfExist($branches);
-
 
                 foreach ($branchesDetails as $branch) {
                     $branchNames .= "-" . $branch->branch_name . "- "; //for front end
@@ -99,9 +97,9 @@ class PostingController extends Controller
                                     'POS_ID' => $salescall->pos_id,
                                     'SALES_TER_ID' => $salescall->sales_ter_id,
                                     'SALES_ID' => $salescall->salesrep_id,
-                                    'ROUTE_TYPE_ID' => $salescall->route_type_id, 
+                                    'ROUTE_TYPE_ID' => $salescall->route_type_id,
                                     'ROUTE_ID' => $salescall->route_id,
-                                    'TRANS_TYPE' => $salescall->reason_id, 
+                                    'TRANS_TYPE' => $salescall->reason_id,
                                     'DAY' => $salescall->day,
                                     'BRANCH_CODE' => $branch->branch_code,
                                     'CAT_ID' => $salescall->cat_id,
@@ -138,5 +136,40 @@ class PostingController extends Controller
                 'message' => 'Missing Paramter',
             ]);
         }
+    }
+
+    public function newPosPostingSendData(Request $request)
+    {
+        $month = substr($request->monthDate, 0, 3);
+        $year = $request->yearDate;
+
+        $start_date = '01-' . $month . '-' . $year;
+        $end_date = $month . '-' . $year;
+
+        // dd($start_date , $end_date);
+
+        if ($start_date && $end_date) {
+
+            $query = DB::statement("update test_s_d_all_mst m set m.ter_id=(select distinct to_number( Substr(sc.pos_code, 1, Instr(pos_code, '_') -1))from salescall@sales sc where m.salescall_id=sc.salescall_id), m.pos_id= (select distinct to_number( Substr(sc.pos_code,  Instr(pos_code, '_') +1))from salescall@sales sc where m.salescall_id=sc.salescall_id) and m.day>='?' and salescall_id in ( select salescall_id from salescall@sales where pos_code in (select s.pos_code_perm from new_pos@sales s where s.create_date like '?' ));',[$start_date , $end_date] ");
+
+            if ($query) {
+                return response()->json([
+                    'Status' => 'success',
+                    'message' => "All Branch New Pos Updated Succeffullyy"
+                ]);
+            } else {
+                return response()->json([
+                    'Status' => 'error',
+                    'message' => "Something went wrong"
+                ]);
+            }
+        } else {
+            return response()->json([
+                'Status' => 'success',
+                'message' => "Missing paramter"
+            ]);
+        }
+
+
     }
 }

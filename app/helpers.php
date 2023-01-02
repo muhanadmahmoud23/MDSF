@@ -305,6 +305,18 @@ if (!function_exists('checkSalesManExist')) {
     }
 }
 
+if (!function_exists('checkloadingNumberExist')) {
+    function checkloadingNumberExist($loadingNumber)
+    {
+        $SalesMan = DB::table('loading_header')->where('loading_number', $loadingNumber)->first();
+        if ($SalesMan == []) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+}
+
 if (!function_exists('checkBranchExist')) {
     function checkBranchExist($branchArray)
     {

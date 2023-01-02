@@ -13,7 +13,7 @@ class AndriodSupportController extends Controller
 
     public function DevAndriodIndex()
     {
-        $tablenames = DB::connection('oracle2')->table('TAB_LOADING')->get();
+        $tablenames = DB::connection('oracle2')->table('TAB_LOADING')->orderBy('SFA_TABLENAME')->get()->unique('insertion_seq');
         $regions = $this->branches();
         return view('AndriodSupport.DevAndriod', [
             'tablenames'  =>  $tablenames,

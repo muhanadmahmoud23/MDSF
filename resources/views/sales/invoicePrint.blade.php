@@ -23,25 +23,25 @@
                 <div class="col-md-3 col-12">
                     <label for="BranchAjax">Region</label>
                     <div class="SalesMenAjax">
-                        @include('sales.Common.branchesSelect')
+                        @include('Include.branchesSelect')
                     </div>
                 </div>
                 <div class="col-md-3 col-12">
                     <label for="CompanyAjax">Company</label>
                     <div class="">
-                        @include('sales.Common.companiesSelect')
+                        @include('Include.companiesSelect')
                     </div>0
                 </div>
                 <div class="col-md-3 col-12">
                     <label for="multiple">Sales Terr</label>
                     <div class="">
-                        @include('sales.Common.SalesTerrSelect')
+                        @include('Include.SalesTerrSelect')
                     </div>
                 </div>
                 <div class="col-md-3 col-12">
                     <label for="multiple">Sales Men</label>
                     <div class="">
-                        @include('sales.Common.SalesMenSelect')
+                        @include('Include.SalesMenSelect')
                     </div>
                 </div>
             </div>
@@ -50,13 +50,13 @@
                     <div class="form-group col-md-3">
                         <label class="form-label">Begin Date</label>
                         <div class="form-group">
-                            @include('sales.Common.BeginDate')
+                            @include('Include.BeginDate')
                         </div>
                     </div>
                     <div class="form-group col-md-3">
                         <label class="form-label">End Date</label>
                         <div class="form-group">
-                            @include('sales.Common.EndDate')
+                            @include('Include.EndDate')
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -105,7 +105,7 @@
                             <span class="text-danger" id="name-error"></span>
                         </div>
                         <div class="form-group col-md-3">
-                            @include('sales.Common.PrintDailySalesReport')
+                            @include('Include.PrintDailySalesReport')
                             <div class="col-md-6">
                                 <input type="button" value="Print Div" onclick="PrintElem('#myDiv')" />
 

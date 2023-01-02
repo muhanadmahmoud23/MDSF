@@ -1,5 +1,4 @@
 @include('layout.head')
-@include('layout.topbar')
 @include('layout.sidebar')
 @include('layout.js')
 
@@ -21,4 +20,3 @@
 </head>
 
 @yield('content')
-@include('layout.footer')

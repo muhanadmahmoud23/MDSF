@@ -68,7 +68,6 @@ for (let i = 0; i < arrow.length; i++) {
 $('#FileAttachment').on('change', function () {
     $('#fileuploadurl').val( this.value.replace(/C:\\fakepath\\/i, ''))
 });
-
 let mychart =document.getElementById('myChart');
 let massPopChart=new Chart(mychart,{
     type:'bar',

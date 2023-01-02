@@ -10,7 +10,7 @@
                         <label for="multiple">Region</label>
                     </div>
                     <div class="col-md-8">
-                        @include('sales.Common.branchesSelect')
+                        @include('Include.branchesSelect')
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -18,7 +18,7 @@
                         <label for="multiple">Company</label>
                     </div>
                     <div class="col-md-8">
-                        @include('sales.Common.companiesSelect')
+                        @include('Include.companiesSelect')
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -26,7 +26,7 @@
                         <label for="multiple">Sales Terr</label>
                     </div>
                     <div class="col-md-8">
-                        @include('sales.Common.SalesTerrSelect')
+                        @include('Include.SalesTerrSelect')
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -34,7 +34,7 @@
                         <label for="multiple">Sales Men</label>
                     </div>
                     <div class="col-md-8">
-                        @include('sales.Common.SalesMenSelect')
+                        @include('Include.SalesMenSelect')
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
-                                @include('sales.Common.BeginDate')
+                                @include('Include.BeginDate')
                             </div>
                         </div>
                     </div>
@@ -57,12 +57,12 @@
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
-                                @include('sales.Common.EndDate')
+                                @include('Include.EndDate')
                             </div>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        @include('sales.Common.ByDatePickUp')
+                        @include('Include.ByDatePickUp')
                     </div>
                     <div class="col-md-3">
                         <input type="checkbox" id="VisitTimeDetails" name="VisitTimeDetails" value="1">

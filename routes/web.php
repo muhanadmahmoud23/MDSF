@@ -57,18 +57,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/file-import', [ExcelController::class, 'importView'])->name('import-view');
     Route::post('/import', [ExcelController::class, 'import'])->name('import');
     Route::get('/export-users', [ExcelController::class, 'exportUsers'])->name('export');
-});
-
     //Target
-Route::get('/target-import', [TargetController::class, 'importView'])->name('target-import-view');
-Route::post('/import', [TargetController::class, 'import'])->name('import');
-
-// Loading & Unloading 
-Route::get('/loading-unloading-order', [LoadingUnloadingController::class, 'orderIndex'])->name('loading-unloading-order');
-Route::get('/GetOrderWhereSalesMenAndData', [LoadingUnloadingController::class, 'GetOrderWhereSalesMenAndData'])->name('GetOrderWhereSalesMenAndData');
-//Ajax
-Route::get('salesTerrWhereRegion', [AjaxController::class, 'salesTerrWhereRegion'])->name('salesTerrWhereRegion');
-Route::get('salesMenWhereSalesTerr', [AjaxController::class, 'salesMenWhereSalesTerr'])->name('salesMenWhereSalesTerr');
-//Posting
-Route::get('posPostingIndex', [PostingController::class, 'posPostingIndex'])->name('posPostingIndex');
-Route::post('posPostingSendData', [PostingController::class, 'posPostingSendData'])->name('posPostingSendData');
+    Route::get('/target-import', [TargetController::class, 'importView'])->name('target-import-view');
+    Route::post('/import', [TargetController::class, 'import'])->name('import');
+    // Loading & Unloading 
+    Route::get('/loading-unloading-order', [LoadingUnloadingController::class, 'orderIndex'])->name('loading-unloading-order');
+    Route::get('/GetOrderWhereSalesMenAndData', [LoadingUnloadingController::class, 'GetOrderWhereSalesMenAndData'])->name('GetOrderWhereSalesMenAndData');
+    //Ajax
+    Route::get('salesTerrWhereRegion', [AjaxController::class, 'salesTerrWhereRegion'])->name('salesTerrWhereRegion');
+    Route::get('salesMenWhereSalesTerr', [AjaxController::class, 'salesMenWhereSalesTerr'])->name('salesMenWhereSalesTerr');
+    //Posting
+    Route::get('posPostingIndex', [PostingController::class, 'posPostingIndex'])->name('posPostingIndex');
+    Route::post('posPostingSendData', [PostingController::class, 'posPostingSendData'])->name('posPostingSendData');
+    Route::post('newPosPostingSendData', [PostingController::class, 'newPosPostingSendData'])->name('newPosPostingSendData');
+});
