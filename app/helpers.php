@@ -327,12 +327,6 @@ if (!function_exists('checkBranchExist')) {
             ->get();
 
         return $branches;
-
-        if ($branches == []) {
-            return 0;
-        } else {
-            return $branches;
-        }
     }
 }
 
